@@ -57,8 +57,8 @@ exclude: [vendor]
 safe: false
 lsi: false
 username: yezilong9
-repo: yezilong9.github.com
-branch: source
+repo: blog
+branch: master
 relative_source: /
 destination: target/
 production_url:  https://yezilong9.github.com
