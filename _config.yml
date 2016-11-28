@@ -23,7 +23,7 @@ short_url: 'http://blog.lo168.com/'
 google_analytics: utf-8
 disqus: username
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: /
+baseurl:
 
 # Permalinks
 permalink: /:title
