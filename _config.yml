@@ -1,14 +1,14 @@
 # Jykell configuration
 #markdown: redcarpet
 #highlighter: pygments
-markdown: kramdown
+markdown: rdiscount
 highlighter: rouge
 paginate: 5
 language: 'zh-cn'
 
 # Website info
 name: '叶子的博客'
-description: "遇到问题时冷静对待，这或许不能解决问题但能使你收获更多"
+description: "遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多"
 
 # Author's info
 author: '叶子'
