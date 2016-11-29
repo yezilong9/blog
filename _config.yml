@@ -1,3 +1,20 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @yezilong9
+ Unwatch 1
+  Star 0
+  Fork 0 yezilong9/blog
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
+Branch: gh-pages Find file Copy pathblog/_config.yml
+237f3e3  16 hours ago
+@yezilong9 yezilong9 提交
+1 contributor
+RawBlameHistory
+Executable File  76 lines (64 sloc)  1.78 KB
 # Jykell configuration
 #markdown: redcarpet
 #highlighter: pygments
@@ -7,7 +24,7 @@ paginate: 5
 language: 'zh-cn'
 
 # Website info
-name: '叶子的博客1'
+name: '叶子的博客'
 description: "遇到问题时冷静对待，这或许不能解决问题但能使你收获更多"
 
 # Author's info
@@ -16,7 +33,7 @@ author: '叶子'
 nickname: casper
 bio: '会一点点Java'
 location: '广东 广州'
-url: 'http://blog.lo168.com'
+url: 'http://blog.lo168.com/'
 image: 'assets/images/casper.png'
 
 short_url: 'http://blog.lo168.com/'
@@ -73,3 +90,5 @@ exclude:
   - "*.Rmd"
   - vendor
   - .travis.yml
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status Help
