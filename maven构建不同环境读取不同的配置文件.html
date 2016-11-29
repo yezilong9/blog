@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- [[! Page Meta ]] -->
-    <title>Gettysburg Address</title>
+    <title>maven构建不同环境读取不同的配置文件</title>
     <meta name="description" content="叶子的博客 - 遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
 
     <meta name="HandheldFriendly" content="True" />
@@ -93,9 +93,11 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head no-cover">
-    <nav class="main-nav  clearfix">
+<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
         
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         
     </nav>
 </header>
@@ -105,16 +107,16 @@
     <article class="post tag-fiction">
 
         <header class="post-header">
-            <h1 class="post-title">Gettysburg Address</h1>
+            <h1 class="post-title">maven构建不同环境读取不同的配置文件</h1>
             <section class="post-meta">
             <!-- <a href='/'>叶子</a> -->
-            <time class="post-date" datetime="1863-11-19">19 Nov 1863</time>
+            <time class="post-date" datetime="2015-01-01">01 Jan 2015</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
                 
                     
-                       <a href='/tag/fiction'>Fiction</a>
+                       <a href='/tag/maven'>Maven</a>
                     
                 
                 
@@ -123,15 +125,104 @@
 
         <section class="post-content">
 
-            <p>Fourscore and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.</p>
+            <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。</p>
 
-<p>Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.</p>
+<p>首先，我已一个spring-boot项目为例子讲解，举一反三，其他项目也是同样原理的，或者有部分配置不同而已。</p>
 
-<p>But, in a larger sense, we can not dedicate-we can not consecrate-we can not hallow-this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us-that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion-that we here highly resolve that these dead shall not have died in vain-that this nation, under God, shall have a new birth of freedom-and that government of the people, by the people, for the people shall not perish from the earth.</p>
+<h3>pom.xml代码:</h3>
 
-<p>By <strong>Abraham Lincoln</strong></p>
+<p>在project根下加入</p>
 
-<p>The 16th president of the USA until he was assassinated in April of 1963. He led the US through its Civil War - its bloodiest and greatest moral, constitutional and political crisis.</p>
+<pre><code class="xml">&lt;profiles&gt;
+
+ &lt;!-- 开发环境，默认激活 --&gt;
+     &lt;profile&gt;
+        &lt;id&gt;dev&lt;/id&gt;
+      &lt;properties&gt;
+         &lt;env&gt;dev&lt;/env&gt;
+       &lt;/properties&gt;
+       &lt;activation&gt;
+            &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+       &lt;/activation&gt;
+ &lt;/profile&gt;
+
+ &lt;!-- 测服 --&gt;
+ &lt;profile&gt;
+      &lt;id&gt;test&lt;/id&gt;
+        &lt;properties&gt;
+           &lt;env&gt;test&lt;/env&gt;
+        &lt;/properties&gt;
+ &lt;/profile&gt;
+
+ &lt;!-- 正服 --&gt;
+  &lt;profile&gt;
+      &lt;id&gt;product&lt;/id&gt;
+       &lt;properties&gt;
+         &lt;env&gt;product&lt;/env&gt;
+       &lt;/properties&gt;
+  &lt;/profile&gt;
+
+ &lt;/profiles&gt;
+</code></pre>
+
+<h3>然后找到build根节点，在里面加入资源路径引入</h3>
+
+<p>```xml</p>
+
+<!--资源引入-->
+
+
+<p><resources>
+     <resource>
+           <directory>${project.basedir}/src/main/resources/${env}</directory>
+        <includes>
+             <include>application.properties</include>
+        </includes>
+      <filtering>true</filtering><!--这个相当重要，不加就不能动态构建不同资源了-->
+     </resource>
+ </resources></p>
+
+<!--构建的主要插件-->
+
+
+<p> <plugins>
+      <plugin>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin></p>
+
+<p> <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-war-plugin</artifactId>
+      <configuration>
+         <warName>tiles</warName>
+       <archive>
+         <addMavenDescriptor>false</addMavenDescriptor>
+       </archive>
+   <webResources>
+       <resource>
+           <directory>src/main/resources/${env}/application.properties</directory>
+           <filtering>true</filtering>
+       </resource>
+   </webResources>
+       </configuration>
+ </plugin></p>
+
+<p> </plugins>
+```
+大家请看插件中有war包的插件，这个就是最终构建成可发布版本时用到的。</p>
+
+<p>当中webResources就是读取项目中的配置文件操作，请细看里面部分，directory就是读取的配置文件路径${env}大家应该都知道了，就是我们上面配置的项目环境的变量，当打包为test的时候，env = test。所以这样就能直接构建时动态读取需要的配置文件了。</p>
+
+<h3>最后的知识点（重要）：</h3>
+
+<pre><code class="Bash">这样我们就能打包时传入构建项目的目标环境了。。。
+命令如下：mvn clean package -P目标环境代码
+如我要配置到测试环境的，那就是mvn clean package -Ptest
+so：之后我会和大家探讨jenkins，那jenkins就可以约定好测试环境为test，生产是product来构建项目了。（后话）
+
+其他配置我就不写上去了，其他只不过就是项目的名称版本和所拥有的依赖。
+</code></pre>
 
 
         </section>
@@ -163,15 +254,15 @@
 
             <section class="share">
                 <h4>Share this post</h4>
-                <a class="icon-twitter" href="http://twitter.com/share?text=Gettysburg Address&amp;url=http://blog.lo168.com/gettysburg-address"
+                <a class="icon-twitter" href="http://twitter.com/share?text=maven构建不同环境读取不同的配置文件&amp;url=http://blog.lo168.com/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"
                     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>
                 </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.lo168.com/gettysburg-address"
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.lo168.com/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"
                     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <span class="hidden">Facebook</span>
                 </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.lo168.com/gettysburg-address"
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.lo168.com/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"
                    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <span class="hidden">Google+</span>
                 </a>
@@ -190,10 +281,10 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/down-the-rabbit-hole">
+        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">
             <section class="post">
-                <h2>Down The Rabbit Hole</h2>
-                <p>Alice was beginning to get very tired of sitting by her sister on the bank,...</p>
+                <h2>twemproxy 部署文档</h2>
+                <p>### 简介 twemproxy 主要用于Redis 和 Memcached 的集群代理 ### 功能介绍 我们知道，无论是 Memcached 还是当前的 Redis，其本身都不具备分布式集群特性，当我们有大量 Redis 或...</p>
             </section>
         </a>
     

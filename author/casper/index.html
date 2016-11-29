@@ -115,7 +115,7 @@
             <span class="author-location icon-location">广东 广州</span>
             <span class="author-link icon-link"><a href="http://blog.lo168.com/">http://blog.lo168.com/</a></span>
             <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
-            <span class="author-stats"><i class="icon-stats"></i>9 posts</span>
+            <span class="author-stats"><i class="icon-stats"></i>7 posts</span>
         </div>
     </section>
 <!-- /author -->
@@ -141,10 +141,22 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0">测试文章</a></h2>
+            <h2 class="post-title"><a href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82">让SpringMVC接收PUT方法</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>【一】从第3000行开始，显示1000行。即显示3000~3999行 cat filename | tail -n +3000 | head -n 1000 public class ArticleReadNumService extends ReadNumTemplate { private Article article; private ArticleReadNumService(){} public static ArticleReadNumService create(Article... <a class="read-more" href="/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0">&raquo;</a></p>
+            <p>暂时只支持 application/x-www-form-urlencoded
+
+spring加入bean
+java
+@Bean
+public Filter initializeHttpPutHandler(){
+    return new HttpPutFormContentFilter();
+}
+
+
+即可使springmvc程序接收put的form表单请求。暂时只支持application/x-www-form-urlencoded
+后续会开发form-data的方式
+ <a class="read-more" href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
@@ -155,20 +167,25 @@
                 on 
                 
                     
-                       <a href='/tag/fiction'>Fiction</a>
+                       <a href='/tag/spring'>Spring</a>
                        
                 
             
-            <time class="post-date" datetime="2016-11-28">28 Nov 2016</time>
+            <time class="post-date" datetime="2015-07-11">11 Jul 2015</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/a-full-and-comprehensive-style-test">A Full and Comprehensive Style Test</a></h2>
+            <h2 class="post-title"><a href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket">使用netty构建简单的WebSocket</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>This is just an ipsis verbis copy of the first example running on the Ghost Demo. This shows how you can use html styling to achieve... <a class="read-more" href="/a-full-and-comprehensive-style-test">&raquo;</a></p>
+            <p>websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。
+
+因为只是demo，所以我这里不对其进行过多的代码分析和项目讲解，日后我会在这个demo进行项目构建，会是一个大型的聊天室？会是一个高性能的socket通讯系统？大家敬请期待吧！
+
+demo地址：WebSocketDemo
+ <a class="read-more" href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
@@ -179,24 +196,20 @@
                 on 
                 
                     
-                       <a href='/tag/test'>Test</a>,
-                       
-                
-                    
-                       <a href='/tag/content'>Content</a>
+                       <a href='/tag/netty'>Netty</a>
                        
                 
             
-            <time class="post-date" datetime="2014-09-27">27 Sep 2014</time>
+            <time class="post-date" datetime="2015-07-07">07 Jul 2015</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/the-businessman-and-fisherman">The Businessman & the fisherman</a></h2>
+            <h2 class="post-title"><a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">设计模式之模板方法(java实现)</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>An American businessman took a vacation to a small coastal Mexican village on doctor’s orders. Unable to sleep after an urgent phone call from the office... <a class="read-more" href="/the-businessman-and-fisherman">&raquo;</a></p>
+            <p>首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现 新建一个模板类： ```java /* * 模板超类 / public abstract class RefreshBeverage { public final void prepareBeverageTemplate(){ boilWater();//帮水煮沸 brew();//炮制饮料 pourInCup();//倒入杯子中 addCondiments();//加入调味料 } /** * 公共方法,private为了限制必须要遵从模板 */... <a class="read-more" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
@@ -207,24 +220,20 @@
                 on 
                 
                     
-                       <a href='/tag/fables'>Fables</a>,
-                       
-                
-                    
-                       <a href='/tag/fiction'>Fiction</a>
+                       <a href='/tag/java'>Java</a>
                        
                 
             
-            <time class="post-date" datetime="2014-08-12">12 Aug 2014</time>
+            <time class="post-date" datetime="2015-04-06">06 Apr 2015</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/i-have-a-dream">I Have a Dream</a></h2>
+            <h2 class="post-title"><a href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">springboot用maven打独立应用的jar包</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our... <a class="read-more" href="/i-have-a-dream">&raquo;</a></p>
+            <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。 这里会使用到maven，如果不熟识的自行先去补习以下：） 假设你已经有了spring boot应用，你就可以执行以下操作 第一步：修改pom配置 我继续使用动态构建目标环境的配置，如果不熟识，可以先去maven构建不同环境读取不同的配置文件看看复习一下 配置部分: ```xml dev dev true &lt;!-- 正服 --&gt; &lt;profile&gt; &lt;id&gt;product&lt;/id&gt; &lt;properties&gt; &lt;env&gt;product&lt;/env&gt; &lt;/properties&gt; &lt;/profile&gt; &lt;/profiles&gt; ${project.basedir}/src/main/resources/${env} application.properties true... <a class="read-more" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
@@ -235,20 +244,24 @@
                 on 
                 
                     
-                       <a href='/tag/speeches'>Speeches</a>
+                       <a href='/tag/maven'>Maven</a>,
+                       
+                
+                    
+                       <a href='/tag/SpringBoot'>Springboot</a>
                        
                 
             
-            <time class="post-date" datetime="1963-08-28">28 Aug 1963</time>
+            <time class="post-date" datetime="2015-03-03">03 Mar 2015</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/the-purpose-of-education">The Purpose of Education</a></h2>
+            <h2 class="post-title"><a href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">spring mvc mongo集群(xml和注解)</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>As I engage in the so-called "bull sessions" around and about the school, I too often find that most college men have a misconception of the... <a class="read-more" href="/the-purpose-of-education">&raquo;</a></p>
+            <p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:) 以下内容你将会学到如何使用spring xml和注解方式集群配置mongodb，以及简单的mongoTemplate源码学习 注意：前提是mongodb本身配置好主从模式！ 在数据越来越最求读取性能的时候，mongodb必须是大家非常喜爱的nosql数据库。spring对mongodb数据库的支持也是非常友好，既有jpa方式的操作，也有template方式操作。这里重点讲template，其spring工具类是mongoTemplate，里面包括所有的mongo操作。当然了，大家还是需要基于这个工具类去封装一层更加便于自己操作的类，下面会介绍到。。。 叶子是以spring boot来讲解的。例如springmvc，ssh等xml配置都是差不多的 首先我们来添加pom文件依赖 &lt;dependency&gt; &lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;/dependency&gt; 这个依赖大家可以进去看看，里面已经包括了driver和data的包，不是spring-boot的话是要添加以下这两个包了 &lt;dependency&gt; &lt;groupId&gt;org.mongodb&lt;/groupId&gt; &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt; &lt;version&gt;2.12.3&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.data&lt;/groupId&gt; &lt;artifactId&gt;spring-data-mongodb&lt;/artifactId&gt; &lt;version&gt;1.2.0.RELEASE&lt;/version&gt; &lt;/dependency&gt; xml配置mongodb &lt;?xml version="1.0"... <a class="read-more" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
@@ -259,15 +272,15 @@
                 on 
                 
                     
-                       <a href='/tag/speeches'>Speeches</a>,
+                       <a href='/tag/spring'>Spring</a>,
                        
                 
                     
-                       <a href='/tag/fiction'>Fiction</a>
+                       <a href='/tag/mongo'>Mongo</a>
                        
                 
             
-            <time class="post-date" datetime="1948-12-12">12 Dec 1948</time>
+            <time class="post-date" datetime="2015-02-02">02 Feb 2015</time>
         </footer>
     </article>
     

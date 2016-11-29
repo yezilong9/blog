@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>http://blog.lo168.com/</title>
+   
+   <link>http://blog.lo168.com/</link>
+   <description>遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</description>
+   <language>zh-cn</language>
+   <managingEditor> 叶子</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>设计模式之模板方法(java实现)</title>
+	  <link>//%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)</link>
+	  <author>叶子</author>
+	  <pubDate>2015-04-06T18:18:00+08:00</pubDate>
+	  <guid>//%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)</guid>
+	  <description><![CDATA[
+	     <p>首先大家可以先想想一个场景，就是炮制饮料。
+我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现</p>
+
+<p>新建一个模板类：
+```java
+/<em>*
+ * 模板超类
+ </em>/
+public abstract class RefreshBeverage {</p>
+
+<pre><code>public final void prepareBeverageTemplate(){
+    boilWater();//帮水煮沸
+    brew();//炮制饮料
+    pourInCup();//倒入杯子中
+    addCondiments();//加入调味料
+}
+
+/**
+ * 公共方法,private为了限制必须要遵从模板
+ */
+private void boilWater(){
+    System.out.println("把水煮沸了！");
+}
+
+private void pourInCup(){
+    System.out.println("倒入杯子中了！");
+}
+
+
+
+/**
+ * 以下是各自子类不同的方法实现
+ */
+protected abstract void brew();
+
+protected abstract void addCondiments();
+</code></pre>
+
+<p>}
+```
+然后可以看到里面煮水和倒入杯子两个方法，放在任何饮料也是需要执行的，所以我们子类不需要实现，要实现的是其中需要变化的方法。例如加入该饮料的材料和炮制过程</p>
+
+<p>咖啡：
+```java
+public class Coffee extends RefreshBeverage {
+    @Override
+    protected void brew() {
+        System.out.println("炮制咖啡");
+    }</p>
+
+<pre><code>@Override
+protected void addCondiments() {
+    System.out.println("加入糖让咖啡更加甜");
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>茶:
+```java
+public class Tea extends RefreshBeverage {
+    @Override
+    protected void brew() {
+        System.out.println("倒入茶叶");
+    }</p>
+
+<pre><code>@Override
+protected void addCondiments() {
+    System.out.println("加入牛奶,变成奶茶");
+}
+</code></pre>
+
+<p>}
+<code>
+测试：
+</code>java
+public class Test {</p>
+
+<pre><code>public static void  main(String ...arg){
+    RefreshBeverage r1 = new Coffee();
+    r1.prepareBeverageTemplate();
+
+    RefreshBeverage r2 = new Tea();
+    r2.prepareBeverageTemplate();
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>ok，这里只是一个简单的实现，实际应用场景又会是怎么样的呢？
+这里叶子本人遇到了一个需求，就是阅读数。
+这个阅读数有分 文章阅读数和在微信的阅读数（在同一个表分别两个不同字段），以及分享之后的阅读数（不同表）
+这里就涉及两个model，一个是article类，一个是shared类</p>
+
+<p>模板:
+```java
+public abstract class ReadNumTemplate {</p>
+
+<pre><code>private static final Logger logger = LoggerFactory.getLogger(ReadNumTemplate.class);
+private static final long TIME = 3600000l;
+
+private String redisKey;
+private RedisService redisService;
+private String redisTimeKey;
+private Constant constant;
+private GenericMongoDao genericMongoDao;
+private boolean isBuild = false;
+
+protected void build(String redisKey,
+                     RedisService redisService,
+                     Constant constant,
+                     GenericMongoDao genericMongoDao){
+    this.redisKey = redisKey;
+    this.redisService = redisService;
+    this.redisTimeKey = redisKey + "_time";
+    this.constant = constant;
+    this.genericMongoDao = genericMongoDao;
+    this.isBuild = true;
+}
+
+
+/**
+ * 阅读数统一模板方法
+ * @return
+ */
+protected final Long addReadNum(){
+    if(!isBuild){
+        throw new RuntimeException("ReadNumTemplete is not build");
+    }
+    if (!redisService.exists(redisTimeKey)) {
+        redisService.set(redisTimeKey, String.valueOf(System.currentTimeMillis()));
+    }
+    Long count = redisService.incr(redisKey);
+    if(isSave(count)){
+        saveToDb();
+    }
+    return syncho(count);
+}
+
+
+/**
+ * 是否能保存
+ * @param count
+ * @return
+ */
+private boolean isSave(Long count){
+    return count % constant.MAX_READ_COUNT == 0 || arriveTime();
+}
+
+
+/**
+ * 判断时间是否已经达到存入数据库的临界值
+ * @return
+ */
+private boolean arriveTime() {
+    String timeValue = redisService.get(redisTimeKey);
+    if (redisService.exists(redisTimeKey)) {
+        long time = System.currentTimeMillis() - Long.parseLong(timeValue);
+        if (time &gt; TIME) {
+            redisService.set(redisTimeKey, String.valueOf(System.currentTimeMillis()));
+            logger.info(MessageFormat.format(getName() + ":{0}达到1小时，可以保存数据库", redisKey));
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+/**
+ * 同步方法
+ */
+private Long syncho(Long redisCount) {
+    Long dbCount = getDbCount();
+    if (dbCount == null) {
+        dbCount = 0l;
+    }
+    if (redisCount &lt; dbCount) {
+        redisService.set(redisKey, String.valueOf(dbCount));
+    }
+    if (redisCount % constant.MAX_READ_COUNT == 0) {
+        return  dbCount + constant.MAX_READ_COUNT;
+    } else {
+        return  dbCount &lt; redisCount ? redisCount : dbCount;
+    }
+}
+private Long getRedisCount(){
+    if(redisService.exists(redisKey)){
+        return Long.parseLong(redisService.get(redisKey));
+    }else{
+        return 0L;
+    }
+}
+
+/**
+ * 异步保存到数据库
+ */
+@Async
+private void saveToDb() {
+    genericMongoDao.updateDefindProperty("id", getId(), getProperty(), getRedisCount());
+}
+
+protected abstract String getName();
+
+protected abstract String getId();
+
+protected abstract Long getDbCount();
+
+protected abstract String getProperty();
+</code></pre>
+
+<p>}
+```
+代码还是比较烂，大家海涵。我先分析一下代码。这里有公共方法：
+1. 保存阅读数到数据库。
+2. 获取redis里面的阅读数。
+3. 判断是否能保存。(判断条件是是否已经到达200条，或者这个key是否保存在redis超过1小时)
+4. 保存该reidskey的时间（因为要用到判断是否已经达到1小时）</p>
+
+<p>其中文章阅读数:
+```java
+public class ArticleReadNumService extends ReadNumTemplate {</p>
+
+<pre><code>private Article article;
+
+private ArticleReadNumService(){}
+
+public static ArticleReadNumService create(Article article, RedisService redisService, Constant constant, ArticleRepository articleRepository){
+    ArticleReadNumService articleReadNumService  = new ArticleReadNumService();
+    articleReadNumService.article = article;
+    articleReadNumService.build(constant.read_count_key + articleReadNumService.article.getId(),
+            redisService, constant,articleRepository);
+    return articleReadNumService;
+}
+
+
+@Override
+protected String getName() {
+    return "文章阅读数";
+}
+
+@Override
+protected String getId() {
+    return article.getId();
+}
+
+@Override
+protected Long getDbCount() {
+    return article.getRead_num();
+}
+
+@Override
+protected String getProperty() {
+    return "read_num";
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>微站阅读数:
+```java
+public class WzReadNumService extends ReadNumTemplate{</p>
+
+<pre><code>private Article article;
+
+public static WzReadNumService create(Article article, RedisService redisService, Constant constant,ArticleRepository articleRepository){
+    WzReadNumService wzReadNumService = new WzReadNumService();
+    wzReadNumService.article = article;
+    String redisKey = constant.weixin_read_count_key + article.getId();
+    wzReadNumService.build(redisKey, redisService, constant, articleRepository);
+    return wzReadNumService;
+}
+
+@Override
+protected String getName() {
+    return "微站阅读数";
+}
+
+@Override
+protected String getId() {
+    return article.getId();
+}
+
+@Override
+protected Long getDbCount() {
+    return article.getWx_read_num();
+}
+
+@Override
+protected String getProperty() {
+    return "wx_read_num";
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>分享阅读数:
+```java
+public class SharedReadNumService extends ReadNumTemplate{</p>
+
+<pre><code>private SharedRecord sharedRecord;
+
+public static SharedReadNumService create(SharedRecord sharedRecord, RedisService redisService, Constant constant, SharedRecordRepository sharedRecordRepository){
+    SharedReadNumService sharedReadNumService = new SharedReadNumService();
+    sharedReadNumService.sharedRecord = sharedRecord;
+    sharedReadNumService.build(constant.shared_read_count_key+sharedRecord.getId(),redisService,constant,sharedRecordRepository);
+    return sharedReadNumService;
+}
+
+@Override
+protected String getName() {
+    return "分享阅读数";
+}
+
+@Override
+protected String getId() {
+    return sharedRecord.getId();
+}
+
+
+@Override
+protected Long getDbCount() {
+    return sharedRecord.getReadNum().longValue();
+}
+
+@Override
+protected String getProperty() {
+    return "shared_record";
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<pre><code>可以看出来，里面各个子类需要做的东西已经是很少了，这样大大增加了可读性和维护。而公共方法的private就是为了限制这个模板只能是给差不多的类使用。
+唯一不满意就是里面一个build方法，因为需要把bean传进去给模板方法，不得而为之，如果各位小伙伴有更好的提议不妨给我留言。
+
+模板方法大致介绍完毕，如果各位小伙伴有更好的实际需求应用模板方法的，可以留言提出让叶子也多学习学习。
+</code></pre>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

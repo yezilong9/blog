@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>http://blog.lo168.com/</title>
+   
+   <link>http://blog.lo168.com/</link>
+   <description>遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</description>
+   <language>zh-cn</language>
+   <managingEditor> 叶子</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>springboot用maven打独立应用的jar包</title>
+	  <link>//springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85</link>
+	  <author>叶子</author>
+	  <pubDate>2015-03-03T18:18:00+08:00</pubDate>
+	  <guid>//springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85</guid>
+	  <description><![CDATA[
+	     <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。
+以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。</p>
+
+<pre><code>这里会使用到maven，如果不熟识的自行先去补习以下：）
+假设你已经有了spring boot应用，你就可以执行以下操作
+</code></pre>
+
+<h3>第一步：修改pom配置</h3>
+
+<p>我继续使用动态构建目标环境的配置，如果不熟识，可以先去<a href="http://blog.lo168.com/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html">maven构建不同环境读取不同的配置文件</a>看看复习一下</p>
+
+<p>配置部分:
+```xml
+<profiles>
+        <!-- 开发环境，默认激活 -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile></p>
+
+<pre><code>    &lt;!-- 正服 --&gt;
+    &lt;profile&gt;
+        &lt;id&gt;product&lt;/id&gt;
+        &lt;properties&gt;
+            &lt;env&gt;product&lt;/env&gt;
+        &lt;/properties&gt;
+    &lt;/profile&gt;
+&lt;/profiles&gt;
+</code></pre>
+
+<p><build>
+<resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources/${env}</directory>
+                <includes>
+                    <include>application.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <!-- 加载的class目录的前缀（依赖的jar目录） -->
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- 入口 -->
+                            <mainClass>com.test.jpa.ApiService</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- 把依赖的jar包拷到lib目录下 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin></p>
+
+<pre><code>        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.3&lt;/version&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;id&gt;copy-resources&lt;/id&gt;
+                    &lt;phase&gt;package&lt;/phase&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;copy-resources&lt;/goal&gt;
+                    &lt;/goals&gt;
+                    &lt;configuration&gt;
+                        &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+                        &lt;!-- 把配置文件拷到和jar包同一个路径下 --&gt;
+                        &lt;outputDirectory&gt;${project.build.directory}&lt;/outputDirectory&gt;
+                        &lt;resources&gt;
+                            &lt;resource&gt;
+                                &lt;directory&gt;src/main/resources/${env}/&lt;/directory&gt;
+                                &lt;includes&gt;
+                                    &lt;include&gt;application.properties&lt;/include&gt;
+                                &lt;/includes&gt;
+                                &lt;filtering&gt;true&lt;/filtering&gt;
+                            &lt;/resource&gt;
+                        &lt;/resources&gt;
+                    &lt;/configuration&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
+        &lt;!-- 打jar包时需要把配置文件给排除在外 --&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;phase&gt;package&lt;/phase&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;jar&lt;/goal&gt;
+                    &lt;/goals&gt;
+                    &lt;configuration&gt;
+                        &lt;classifier&gt;${env}&lt;/classifier&gt;
+                        &lt;excludes&gt;
+                            &lt;exclude&gt;application.properties&lt;/exclude&gt;
+                        &lt;/excludes&gt;
+                    &lt;/configuration&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+
+<pre><code>我没有copy模块名称和依赖的配置，因为各有各不同。
+其中大家可以留意
+</code></pre>
+
+<p><id>copy-resources</id>
+<phase>package</phase>
+<goals>
+    <goal>copy-resources</goal>
+</goals>
+<configuration>
+    <encoding>UTF-8</encoding>
+    <!-- 把配置文件拷到和jar包同一个路径下 -->
+    <outputDirectory>${project.build.directory}</outputDirectory>
+    <resources>
+        <resource>
+            <directory>src/main/resources/${env}/</directory>
+            <includes>
+                <include>application.properties</include>
+            </includes>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
+</configuration>
+```
+这个是重点，把配置文件copy到jar包同级目录，并且指定outputDirectory是读取同级目录的配置文件为springboot的自身配置。lib依赖包同理，我就不多说了。</p>
+
+<h3>第二步：执行maven命令</h3>
+
+<p>读过我那篇maven不同环境配置都知道，maven打包命令应该是:
+<code>Bash
+mvn clean package -P${env}
+</code>
+假设我要发布一个正式环境的jar包，那应该就是:
+<code>Bash
+mvn clean package -Pproduct
+</code></p>
+
+<p>ok，执行完命令之后，去程序目录的target里面看看是否已经生产了配置文件，jar包，还有lib依赖文件夹？
+因为方便区别，我特意把包的别名改成环境的别名，留意这一段：
+```xml
+<configuration>
+  <classifier>${env}</classifier>
+    <excludes>
+        <exclude>application.properties</exclude>
+    </excludes>
+</configuration></p>
+
+<pre><code>这样打出来的包名为:**xxx-1.0-SNAPSHOT-product.jar**
+
+### 第三步：执行命令并修改配置重启
+各位应该都跃跃欲试了，到这一步就可以执行命令来看看是否成功。
+</code></pre>
+
+<p>java -jar xxx-1.0-SNAPSHOT-product.jar
+```</p>
+
+<p>如果启动没问题，就说明lib依赖和配置文件能够正确读取，jar应用正确分离出来了。
+这样，小伙伴们就能随便修改配置文件而不需要重新打包啦:-)</p>
+
+<pre><code>那如果更新到外网，那我们就可以区分多种更新了。
+1.更新应用代码，也就是jar包，重启。
+2.只更新配置文件，重启。
+
+这样问题就来了？如何才能更加方便自己去发布不同地址服务器，并执行停止，启动或重启动作呢？
+这样的话，就要用到shell脚本了。编写这样的脚本，发布动作就变得异常简单。欲知如何编写？叶子下回分解
+</code></pre>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

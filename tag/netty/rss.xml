@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>http://blog.lo168.com/</title>
+   
+   <link>http://blog.lo168.com/</link>
+   <description>遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</description>
+   <language>zh-cn</language>
+   <managingEditor> 叶子</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>使用netty构建简单的WebSocket</title>
+	  <link>//%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket</link>
+	  <author>叶子</author>
+	  <pubDate>2015-07-07T18:18:00+08:00</pubDate>
+	  <guid>//%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket</guid>
+	  <description><![CDATA[
+	     <p>websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。</p>
+
+<p>因为只是demo，所以我这里不对其进行过多的代码分析和项目讲解，日后我会在这个demo进行项目构建，会是一个大型的聊天室？会是一个高性能的socket通讯系统？大家敬请期待吧！</p>
+
+<p>demo地址：<a href="https://github.com/yezilong9/WebSocketDemo">WebSocketDemo</a></p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

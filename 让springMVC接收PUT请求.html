@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- [[! Page Meta ]] -->
-    <title>The Businessman & the fisherman</title>
+    <title>让SpringMVC接收PUT方法</title>
     <meta name="description" content="叶子的博客 - 遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
 
     <meta name="HandheldFriendly" content="True" />
@@ -93,9 +93,9 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover7.jpg) ">
+<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
     <nav class="main-nav  overlay  clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
         
             <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         
@@ -104,23 +104,19 @@
 
 <main class="content" role="main">
 
-    <article class="post tag-test tag-content">
+    <article class="post tag-fiction">
 
         <header class="post-header">
-            <h1 class="post-title">The Businessman & the fisherman</h1>
+            <h1 class="post-title">让SpringMVC接收PUT方法</h1>
             <section class="post-meta">
             <!-- <a href='/'>叶子</a> -->
-            <time class="post-date" datetime="2014-08-12">12 Aug 2014</time>
+            <time class="post-date" datetime="2015-07-11">11 Jul 2015</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
                 
                     
-                       <a href='/tag/fables'>Fables</a>,
-                    
-                
-                    
-                       <a href='/tag/fiction'>Fiction</a>
+                       <a href='/tag/spring'>Spring</a>
                     
                 
                 
@@ -129,39 +125,18 @@
 
         <section class="post-content">
 
-            <p>An American businessman took a vacation to a small coastal Mexican village on doctor’s orders. Unable to sleep after an urgent phone call from the office the first morning, he walked out to the pier to clear his head. A small boat with just one fisherman had docked, and inside the boat were several large yellowfin tuna. The American complimented the Mexican on the quality of his fish.</p>
+            <h3>暂时只支持 application/x-www-form-urlencoded</h3>
 
-<p>“How long did it take you to catch them?” the American asked.</p>
+<p>spring加入bean
+<code>java
+@Bean
+public Filter initializeHttpPutHandler(){
+    return new HttpPutFormContentFilter();
+}
+</code></p>
 
-<p>“Only a little while,” the Mexican replied in surprisingly good English.</p>
-
-<p>“Why don’t you stay out longer and catch more fish?” the American then asked.</p>
-
-<p>“I have enough to support my family and give a few to friends,” the Mexican said as he unloaded them into a basket.</p>
-
-<p>“But… What do you do with the rest of your time?”</p>
-
-<p>The Mexican looked up and smiled. “I sleep late, fish a little, play with my children, take a siesta with my wife, Julia, and stroll into the village each evening, where I sip wine and play guitar with my amigos. I have a full and busy life, señor.”</p>
-
-<p>The American laughed and stood tall. “Sir, I’m a Harvard M.B.A. and can help you. You should spend more time fishing, and with the proceeds, buy a bigger boat. In no time, you could buy several boats with the increased haul. Eventually, you would have a fleet of fishing boats.”</p>
-
-<p>He continued, “Instead of selling your catch to a middleman, you would sell directly to the consumers, eventually opening your own cannery. You would control the product, processing, and distribution. You would need to leave this small coastal fishing village, of course, and move to Mexico City, then to Los Angeles, and eventually to New York City, where you could run your expanded enterprise with proper management.</p>
-
-<p>The Mexican fisherman asked, “But, señor, how long will all this take?”</p>
-
-<p>To which the American replied, “15-20 years, 25 tops.”</p>
-
-<p>“But what then, señor?”</p>
-
-<p>The American laughed and said, “That’s the best part. When the time is right, you would announce an IPO and sell your company stock to the public and become very rich. You would make millions.”</p>
-
-<p>“Millions señor? Then what?"</p>
-
-<p>“Then you would retire and move to a small coastal fishing village, where you would sleep late, fish a little, play with your kids, take a siesta with your wife, and stroll in to the village in the evenings where you could sip wine and play your guitar with your amigos.”</p>
-
-<p>Adapted from the "Anekdote zur Senkung der Arbeitsmoral" by <strong>Heinrich Böll</strong></p>
-
-<p>An influential German write and Nobel Prize for Literature in 1972.</p>
+<p>即可使springmvc程序接收put的form表单请求。暂时只支持application/x-www-form-urlencoded
+后续会开发form-data的方式</p>
 
 
         </section>
@@ -193,15 +168,15 @@
 
             <section class="share">
                 <h4>Share this post</h4>
-                <a class="icon-twitter" href="http://twitter.com/share?text=The Businessman & the fisherman&amp;url=http://blog.lo168.com/the-businessman-and-fisherman"
+                <a class="icon-twitter" href="http://twitter.com/share?text=让SpringMVC接收PUT方法&amp;url=http://blog.lo168.com/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82"
                     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>
                 </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.lo168.com/the-businessman-and-fisherman"
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.lo168.com/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82"
                     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <span class="hidden">Facebook</span>
                 </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.lo168.com/the-businessman-and-fisherman"
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.lo168.com/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82"
                    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <span class="hidden">Google+</span>
                 </a>
@@ -220,20 +195,18 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover3.jpg)" href="/a-full-and-comprehensive-style-test">
-            <section class="post">
-                <h2>A Full and Comprehensive Style Test</h2>
-                <p>This is just an ipsis verbis copy of the first example running on the Ghost...</p>
-            </section>
-        </a>
-    
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover4.jpg)" href="/i-have-a-dream">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket">
             <section class="post">
-                <h2>I Have a Dream</h2>
-                <p>I am happy to join with you today in what will go down in history...</p>
+                <h2>使用netty构建简单的WebSocket</h2>
+                <p>websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。
+
+因为只是demo，所以我这里不对其进行过多的代码分析和项目讲解，日后我会在这个demo进行项目构建，会是一个大型的聊天室？会是一个高性能的socket通讯系统？大家敬请期待吧！
+
+demo地址：WebSocketDemo
+</p>
             </section>
         </a>
     

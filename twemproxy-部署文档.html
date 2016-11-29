@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>twemproxy 部署文档</title>
+    <meta name="description" content="叶子的博客 - 遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/prettify.css" />
+
+    <!-- <script src="/assets/js/jquery.min.js"></script> -->
+    <!-- <style>.hljs { background: none; }</style> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script> -->
+
+   <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+       <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="叶子的博客" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="叶子的博客" />
+    <meta property="og:description" content="遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="叶子的博客" />
+    <meta name="twitter:description" content="遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Finding The Way Home",
+    "url": "/",
+    "image": "/assets/images/cover1.jpg",
+    "description": "遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="叶子的博客" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">菜单</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">关闭</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">主页</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <!-- <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li> -->
+        <!-- <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li> -->
+        <!-- <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li> -->
+        <li class="nav-author " role="presentation"><a href="/author/casper">关于</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">订阅</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">twemproxy 部署文档</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>叶子</a> -->
+            <time class="post-date" datetime="2015-01-04">04 Jan 2015</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/redis'>Redis</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <h3>简介</h3>
+
+<p>twemproxy 主要用于Redis 和 Memcached 的集群代理</p>
+
+<h3>功能介绍</h3>
+
+<p>我们知道，无论是 Memcached 还是当前的 Redis，其本身都不具备分布式集群特性，当我们有大量 Redis 或 Memcached 的时候，通常只能通过客户端的一些数据分配算法（比如一致性哈希），来实现集群存储的特性。 而 Twemproxy 通过引入一个代理层，可以将其后端的多台 Redis 或 Memcached 实例进行统一管理与分配，使应用程序只需要在 Twemproxy 上进行操作，而不用关心后面具体有多少个真实的 Redis 或 Memcached 存储。 在 Redis 的 Cluster 方案还没有正式推出之前，通过 Proxy 的方式来实现存储集群可能是最好的选择了。更何况 Twemproxy 是通过 Twitter 自身得到了充分检验的产品。</p>
+
+<h3>性能</h3>
+
+<p>根据 Redis 作者的测试结果，在大多数情况下，Twemproxy 的性能相当不错，直接操作 Redis 相比，最多只有20%的性能损失。这对于它带来的好处来说真的是微不足道了。唯一可能还有待改进的是其 MGET 操作的效率，其性能只有直接操作 Redis 的 50%。</p>
+
+<h3>安装与配置</h3>
+
+<p>线上部署与安装, twenproxy 部署到170上,安装目录/opt/module/twenproxy</p>
+
+<pre><code class="Bash">apt-get install automake
+apt-get install libtool
+git clone git://github.com/twitter/twemproxy.git
+cd twemproxy
+autoreconf -fvi
+./configure --enable-debug=log
+make
+src/nutcracker -h
+</code></pre>
+
+<p>输入src/nutcracker -h 在命令行可以显示帮助信息,那么就证明安装成功</p>
+
+<pre><code>1.假如192.168.30.170的redis跟192.168.30.171的redis安装成功
+2.现在通过twenproxy代理集群
+3.直接看/opt/module/twenproxy/conf/nutcracker.xrk.yml配置文件,还有很多配置参数详细请看 https://github.com/twitter/twemproxy
+
+redis:
+listen: 192.168.30.170:55555 #twenproxy部署在192.168.30.170:55555 上
+hash: fnv1a_64
+distribution: ketama
+auto_eject_hosts: true
+preconnect: true
+server_connections: 50
+redis: true
+server_retry_timeout: 2000
+server_failure_limit: 1
+servers:
+- 192.168.30.170:6379:1 #部署170的redis
+- 192.168.30.171:6380:1 #部署171的redis
+</code></pre>
+
+<h3>启动服务</h3>
+
+<pre><code class="Bash">cd /opt/module/twenproxy
+#查看命令信息
+./src/nutcracker -h
+Usage: nutcracker [-?hVdDt] [-v verbosity level] [-o output file]
+              [-c conf file] [-s stats port] [-a stats addr]
+              [-i stats interval] [-p pid file] [-m mbuf size]
+Options:
+  -h, --help             : this help #帮助
+  -V, --version          : show version and exit #版本
+  -t, --test-conf        : test configuration for syntax errors and exit #测试配置文件是否有语法错误
+  -d, --daemonize        : run as a daemon #是否守护进程启动
+  -D, --describe-stats   : print stats description and exit #描述
+  -v, --verbosity=N      : set logging level (default: 5, min: 0, max: 11)
+  -o, --output=S         : set logging file (default: stderr)
+  -c, --conf-file=S      : set configuration file (default: conf/nutcracker.yml) #指定配置文件
+  -s, --stats-port=N     : set stats monitoring port (default: 22222) #端口
+  -a, --stats-addr=S     : set stats monitoring ip (default: 0.0.0.0) #设置地址
+  -i, --stats-interval=N : set stats aggregation interval in msec (default: 30000 msec)
+  -p, --pid-file=S       : set pid file (default: off)
+  -m, --mbuf-size=N      : set size of mbuf chunk in bytes (default: 16384 bytes)
+#查看命令信息
+#启动命令
+1. 为了方便调试启动
+./src/nutcracker -c /opt/module/twenproxy/conf/nutcracker.xrk.yml
+2.守护进程启动
+./src/nutcracker -d -c /opt/module/twenproxy/conf/nutcracker.xrk.yml
+</code></pre>
+
+<h3>连接并测试是否成功</h3>
+
+<pre><code class="Bash">redis-cli -h 192.168.30.170 -p 55555
+连接失败:
+提示信息:Could not connect to Redis at 192.168.9.13:55555: Connection refused
+连接成功:
+提示信息:redis 192.168.30.170:55555&gt;
+set key1 1
+get key1
+</code></pre>
+
+<p>以上是twenproxy安装配置与测试连接</p>
+
+<h3>优点</h3>
+
+<p>这是一个轻量级的 Redis和memcached代理。使用它可以减少缓存服务器的连接数，并且利用它来作分片。这个代理的速度是相当快的，明月在网上查到会有20%的性 能损耗，但明月用redis-benchmark做了测试，发现性能几乎是无损的，甚至有时更快。后来找到英文原文，作者是说最差情况下，性能损耗不会多 于20%。明月觉得这个很了不起，按道理说，有了一层代理，怎么说都得折损一部分性能，但是他切能使得访问更快。看了源码，原来是用了pipeline. 首先redis是支持使用pipeline批处理的。twemproxy与每个redis服务器都会建立一个连接，每个连接实现了两个FIFO的队列，通 过这两个队列实现对redis的pipeline访问。将多个客户端的访问合并到一个连接,这样既减少了redis服务器的连接数，又提高了访问性能。</p>
+
+<h3>缺点</h3>
+
+<ol>
+<li>虽然可以动态移除节点，但该移除节点的数据就丢失了。</li>
+<li>redis集群动态增加节点的时候,twemproxy不会对已有数据做重分布.maillist里面作者说这个需要自</li>
+<li>性能上的损耗</li>
+</ol>
+
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/author/casper" style="background-image: url(/assets/images/casper.png)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/author/casper">叶子</a></h4>
+
+                
+                    <p> 会一点点Java</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> 广东 广州</span>
+                    <span class="author-link icon-link"><a href="http://blog.lo168.com/"> http://blog.lo168.com/</a></span>
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=twemproxy 部署文档&amp;url=http://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">
+            <section class="post">
+                <h2>spring mvc mongo集群(xml和注解)</h2>
+                <p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:) 以下内容你将会学到如何使用spring xml和注解方式集群配置mongodb，以及简单的mongoTemplate源码学习 注意：前提是mongodb本身配置好主从模式！ 在数据越来越最求读取性能的时候，mongodb必须是大家非常喜爱的nosql数据库。spring对mongodb数据库的支持也是非常友好，既有jpa方式的操作，也有template方式操作。这里重点讲template，其spring工具类是mongoTemplate，里面包括所有的mongo操作。当然了，大家还是需要基于这个工具类去封装一层更加便于自己操作的类，下面会介绍到。。。 叶子是以spring boot来讲解的。例如springmvc，ssh等xml配置都是差不多的 ### 首先我们来添加pom文件依赖 ```xml spring-boot-starter-data-mongodb org.springframework.boot ``` 这个依赖大家可以进去看看，里面已经包括了driver和data的包，不是spring-boot的话是要添加以下这两个包了 ```xml...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">
+            <section class="post">
+                <h2>maven构建不同环境读取不同的配置文件</h2>
+                <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。 首先，我已一个spring-boot项目为例子讲解，举一反三，其他项目也是同样原理的，或者有部分配置不同而已。 pom.xml代码: 在project根下加入 &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt; &lt;properties&gt; &lt;env&gt;dev&lt;/env&gt; &lt;/properties&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2016</section>
+          <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
+      </footer>
+  </div>
+  <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- [[! The main JavaScript file for Casper ]] -->
+  <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="/assets/js/index.js"></script>
+    <script src="/assets/js/prettify.js"></script>
+    <script>
+        $(window).load(function(){
+           $("pre").addClass("prettyprint");
+           prettyPrint();
+       })
+   </script>
+  <!-- Add Google Analytics  -->
+      <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'utf-8', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+</body>
+</html>

@@ -72,7 +72,7 @@
     <ul>
         <li class="nav-home " role="presentation"><a href="/">主页</a></li>
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
-        <!-- <li class="nav-fables  nav-current" role="presentation"><a href="/tag/fables">Fables</a></li> -->
+        <!-- <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li> -->
         <!-- <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li> -->
         <!-- <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li> -->
         <li class="nav-author " role="presentation"><a href="/author/casper">关于</a></li>
@@ -101,10 +101,10 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">Fables</h1>
+            <h1 class="page-title">Springboot</h1>
             <h2 class="page-description">
             
-                A series of short stories that make you think.
+			    A 1-post collection
             
             </h2>
         </div>
@@ -130,10 +130,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/the-businessman-and-fisherman">The Businessman & the fisherman</a></h2>
+            <h2 class="post-title"><a href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">springboot用maven打独立应用的jar包</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>An American businessman took a vacation to a small coastal Mexican village on doctor’s orders. Unable to sleep after an urgent phone call from the office... <a class="read-more" href="/the-businessman-and-fisherman">&raquo;</a></p>
+            <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。 这里会使用到maven，如果不熟识的自行先去补习以下：） 假设你已经有了spring boot应用，你就可以执行以下操作 第一步：修改pom配置 我继续使用动态构建目标环境的配置，如果不熟识，可以先去maven构建不同环境读取不同的配置文件看看复习一下 配置部分: ```xml dev dev true &lt;!-- 正服 --&gt; &lt;profile&gt; &lt;id&gt;product&lt;/id&gt; &lt;properties&gt; &lt;env&gt;product&lt;/env&gt; &lt;/properties&gt; &lt;/profile&gt; &lt;/profiles&gt; ${project.basedir}/src/main/resources/${env} application.properties true... <a class="read-more" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
@@ -144,15 +144,15 @@
                 on 
                 
                     
-                       <a href='/tag/fables'>Fables</a>,
+                       <a href='/tag/maven'>Maven</a>,
                        
                 
                     
-                       <a href='/tag/fiction'>Fiction</a>
+                       <a href='/tag/SpringBoot'>Springboot</a>
                        
                 
             
-            <time class="post-date" datetime="2014-08-12">12 Aug 2014</time>
+            <time class="post-date" datetime="2015-03-03">03 Mar 2015</time>
         </footer>
     </article>
     

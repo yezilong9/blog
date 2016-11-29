@@ -62,7 +62,7 @@
 
 
 </head>
-<body class="paged archive-template nav-closed">
+<body class="tag-template nav-closed">
 
     <div class="nav">
     <h3 class="nav-title">菜单</h3>
@@ -70,7 +70,7 @@
         <span class="hidden">关闭</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">主页</a></li>
+        <li class="nav-home " role="presentation"><a href="/">主页</a></li>
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         <!-- <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li> -->
         <!-- <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li> -->
@@ -85,29 +85,30 @@
     <div class="site-wrapper">
 
         <!-- [[! Everything else gets inserted here ]] -->
-        <!-- 删除logo: '' -->
-<!-- < default -->
+        <!-- < dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover1.jpg) ">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
     <nav class="main-nav overlay clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
         
-        
-            <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
         
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">
-                叶子的博客
-                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
-            </h1>
-            <h2 class="page-description">遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</h2>
+            <h1 class="page-title">Java</h1>
+            <h2 class="page-description">
+            
+			    A 1-post collection
+            
+            </h2>
         </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -119,11 +120,7 @@
         
             <nav class="pagination" role="pagination">
     
-        
-            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
-        
-    
-    <span class="page-number"> Page 2 of 2 </span>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
         
@@ -133,10 +130,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">twemproxy 部署文档</a></h2>
+            <h2 class="post-title"><a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">设计模式之模板方法(java实现)</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>简介 twemproxy 主要用于Redis 和 Memcached 的集群代理 功能介绍 我们知道，无论是 Memcached 还是当前的 Redis，其本身都不具备分布式集群特性，当我们有大量 Redis 或 Memcached 的时候，通常只能通过客户端的一些数据分配算法（比如一致性哈希），来实现集群存储的特性。 而 Twemproxy 通过引入一个代理层，可以将其后端的多台 Redis 或 Memcached 实例进行统一管理与分配，使应用程序只需要在 Twemproxy 上进行操作，而不用关心后面具体有多少个真实的 Redis 或... <a class="read-more" href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">&raquo;</a></p>
+            <p>首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现 新建一个模板类： ```java /* * 模板超类 / public abstract class RefreshBeverage { public final void prepareBeverageTemplate(){ boilWater();//帮水煮沸 brew();//炮制饮料 pourInCup();//倒入杯子中 addCondiments();//加入调味料 } /** * 公共方法,private为了限制必须要遵从模板 */... <a class="read-more" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
@@ -147,35 +144,11 @@
                 on 
                 
                     
-                       <a href='/tag/redis'>Redis</a>
+                       <a href='/tag/java'>Java</a>
                        
                 
             
-            <time class="post-date" datetime="2015-01-04">04 Jan 2015</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">maven构建不同环境读取不同的配置文件</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。 首先，我已一个spring-boot项目为例子讲解，举一反三，其他项目也是同样原理的，或者有部分配置不同而已。 pom.xml代码: 在project根下加入 &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt; &lt;properties&gt; &lt;env&gt;dev&lt;/env&gt; &lt;/properties&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;/activation&gt; &lt;/profile&gt; &lt;!-- 测服 --&gt; &lt;profile&gt; &lt;id&gt;test&lt;/id&gt; &lt;properties&gt; &lt;env&gt;test&lt;/env&gt; &lt;/properties&gt; &lt;/profile&gt;... <a class="read-more" href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/author/casper'>叶子</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/tag/maven'>Maven</a>
-                       
-                
-            
-            <time class="post-date" datetime="2015-01-01">01 Jan 2015</time>
+            <time class="post-date" datetime="2015-04-06">06 Apr 2015</time>
         </footer>
     </article>
     
@@ -184,18 +157,13 @@
     
         <nav class="pagination" role="pagination">
     
-        
-            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
-        
-    
-    <span class="page-number"> Page 2 of 2 </span>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
     
 
 
 </main>
-
 
         <footer class="site-footer clearfix">
           <section class="copyright"><a href="/">叶子的博客</a> &copy; 2016</section>
