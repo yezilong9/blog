@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/cover1.jpg'
 title: 让SpringMVC接收PUT方法
-date:   2015-07-011 10:18:00
+date:   2015-07-11 10:18:00
 tags: spring
 subclass: 'post tag-fiction'
 categories: 'casper'
