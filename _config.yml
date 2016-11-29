@@ -60,7 +60,7 @@ username: yezilong9
 repo: blog
 branch: master
 relative_source: /
-destination: .
+destination: target/
 production_url:  https://yezilong9.github.com
 source_url:      https://yezilong9.github.com
 
