@@ -61,8 +61,8 @@ repo: blog
 branch: master
 relative_source: /
 destination: target/
-production_url:  https://yezilong9.github.com
-source_url:      https://yezilong9.github.com
+production_url:  https://yezilong9.github.com/
+source_url:      https://yezilong9.github.com/
 
 exclude:
   - README.md
