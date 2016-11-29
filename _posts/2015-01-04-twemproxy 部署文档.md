@@ -1,6 +1,5 @@
 ---
 layout: post
-cover: 'assets/images/cover1.jpg'
 title: twemproxy 部署文档
 date:   2015-01-04 10:18:00
 tags: redis

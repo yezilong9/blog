@@ -11,13 +11,22 @@ class: 'post-template'
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head {% if page.cover %}" style="background-image: url({{ site.baseurl }}{{ page.cover }}) {% else %}no-cover{% endif %}">
-    <nav class="main-nav {% if page.cover %} overlay {% endif %} clearfix">
+<header class="main-header post-head"  style="background-image: url({{ site.baseurl }}assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
         {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}"><img src="{{ site.baseurl }}{{ page.logo }}" alt="Blog Logo" /></a>{% endif %}
         {% if page.navigation %}
             <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         {% endif %}
     </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                {{ site.name }}
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">{{ site.description }}</h2>
+        </div>
+    </div>
 </header>
 
 <main class="content" role="main">
@@ -26,10 +35,8 @@ class: 'post-template'
 
         <header class="post-header">
             <h1 class="post-title">{{ page.title }}</h1>
-            <section class="post-meta">
             <!-- <a href='{{ site.baseurl }}{{ page.about }}'>{{ site.author }}</a> -->
-            <time class="post-date" datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date_to_string }}</time>
-                <!-- [[tags prefix=" on "]] -->
+            <section class="post-meta">
                 {% if page.tags.size > 0 %}
                 on
                 {% for tag in page.tags %}
@@ -40,10 +47,11 @@ class: 'post-template'
                     {% endif %}
                 {% endfor %}
                 {% endif %}
+                <time class="post-date" datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%Y-%m-%d' }}</time>
             </section>
         </header>
 
-        <section class="post-content">
+        <section class="post-content" style="margin-top: 40px;">
 
             {{ content }}
 

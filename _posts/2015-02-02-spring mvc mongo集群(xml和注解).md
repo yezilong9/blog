@@ -1,9 +1,9 @@
 ---
 layout: post
-cover: 'assets/images/cover1.jpg'
 title: spring mvc mongo集群(xml和注解)
 date:   2015-02-02 10:18:00
 tags: spring mongo
+cover:  http://7te9zv.com1.z0.glb.clouddn.com/mongo.png
 subclass: 'post tag-fiction'
 categories: 'casper'
 navigation: True
@@ -20,6 +20,7 @@ navigation: True
 叶子是以spring boot来讲解的。例如springmvc，ssh等xml配置都是差不多的
 
 ### 首先我们来添加pom文件依赖
+
 ```xml
 <dependency>
 	<artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -43,6 +44,7 @@ navigation: True
 ```
 
 ### xml配置mongodb
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mongo="http://www.springframework.org/schema/data/mongo" xsi:schemaLocation="http://www.springframework.org/schema/context
@@ -79,6 +81,7 @@ navigation: True
 ```
 
 ### 然后代码里面就可以引用这个配置文件了
+
 ```java
 @Configuration
 @EnableAutoConfiguration
@@ -219,6 +222,7 @@ mongodb.database=reader_production
 ```
 
 然后新建一个mongodb配置类
+
 ```java
 @Configuration
 public class MongoConfiguration {
@@ -248,6 +252,7 @@ public class MongoConfiguration {
 client.setReadPreference(ReadPreference.secondaryPreferred());
 
 ```
+
 这里声明了主从模式是怎么样的，但是有个疑问就是，为啥mongoclient已经持有操作类，但是在mongoTemplate也持有呢？代码如此啰嗦是为什么？知道的可以告诉一下叶子哈:)
 
 ### 主从模式基本参数是：

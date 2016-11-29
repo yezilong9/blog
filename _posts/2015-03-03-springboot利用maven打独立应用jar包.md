@@ -1,9 +1,9 @@
 ---
 layout: post
-cover: 'assets/images/cover1.jpg'
 title: springboot用maven打独立应用的jar包
 date:   2015-03-03 10:18:00
 tags: maven SpringBoot
+cover:  http://7te9zv.com1.z0.glb.clouddn.com/images.png
 subclass: 'post tag-fiction'
 categories: 'casper'
 navigation: True
@@ -164,20 +164,24 @@ navigation: True
     </resources>
 </configuration>
 ```
+
 这个是重点，把配置文件copy到jar包同级目录，并且指定outputDirectory是读取同级目录的配置文件为springboot的自身配置。lib依赖包同理，我就不多说了。
 
 ### 第二步：执行maven命令
 读过我那篇maven不同环境配置都知道，maven打包命令应该是:
+
 ```Bash
 mvn clean package -P${env}
 ```
 假设我要发布一个正式环境的jar包，那应该就是:
+
 ```Bash
 mvn clean package -Pproduct
 ```
 
 ok，执行完命令之后，去程序目录的target里面看看是否已经生产了配置文件，jar包，还有lib依赖文件夹？
 因为方便区别，我特意把包的别名改成环境的别名，留意这一段：
+
 ```xml
 <configuration>
   <classifier>${env}</classifier>
@@ -200,9 +204,9 @@ java -jar xxx-1.0-SNAPSHOT-product.jar
 这样，小伙伴们就能随便修改配置文件而不需要重新打包啦:-)
 
 
-    那如果更新到外网，那我们就可以区分多种更新了。
-    1.更新应用代码，也就是jar包，重启。
-    2.只更新配置文件，重启。
+那如果更新到外网，那我们就可以区分多种更新了。
+1.更新应用代码，也就是jar包，重启。
+2.只更新配置文件，重启。
 
-    这样问题就来了？如何才能更加方便自己去发布不同地址服务器，并执行停止，启动或重启动作呢？
-    这样的话，就要用到shell脚本了。编写这样的脚本，发布动作就变得异常简单。欲知如何编写？叶子下回分解
+这样问题就来了？如何才能更加方便自己去发布不同地址服务器，并执行停止，启动或重启动作呢？
+这样的话，就要用到shell脚本了。编写这样的脚本，发布动作就变得异常简单。欲知如何编写？叶子下回分解
