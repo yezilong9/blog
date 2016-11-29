@@ -20,6 +20,7 @@ navigation: True
 我继续使用动态构建目标环境的配置，如果不熟识，可以先去[maven构建不同环境读取不同的配置文件](http://blog.lo168.com/maven构建不同环境读取不同的配置文件.html)看看复习一下
 
 配置部分:
+
 ```xml
 <profiles>
         <!-- 开发环境，默认激活 -->
@@ -32,7 +33,6 @@ navigation: True
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-
         <!-- 正服 -->
         <profile>
             <id>product</id>
@@ -40,7 +40,7 @@ navigation: True
                 <env>product</env>
             </properties>
         </profile>
-    </profiles>
+</profiles>
 <build>
 <resources>
             <resource>
@@ -139,6 +139,7 @@ navigation: True
         </plugins>
     </build>
 ```
+
 我没有copy模块名称和依赖的配置，因为各有各不同。
 其中大家可以留意
 
