@@ -7,7 +7,7 @@
 
     <!-- [[! Page Meta ]] -->
     <title>测试文章</title>
-    <meta name="description" content="叶子的博客 - 遇到问题时冷静对待，这或许不能解决问题但能使你收获更多" />
+    <meta name="description" content="叶子的博客 - 遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,30 +17,32 @@
     <!-- [[! Styles'n'Scripts ]] -->
     <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
     <link rel="stylesheet" type="text/css"
-          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
     <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
 
     <!-- [[! highlight.js ]] -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
-    <style>.hljs { background: none; }</style>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/prettify.css" />
 
-    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
-        <link rel="canonical" href="/" />
+    <!-- <script src="/assets/js/jquery.min.js"></script> -->
+    <!-- <style>.hljs { background: none; }</style> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script> -->
+
+   <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+       <link rel="canonical" href="/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="叶子的博客" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="叶子的博客" />
-    <meta property="og:description" content="遇到问题时冷静对待，这或许不能解决问题但能使你收获更多" />
+    <meta property="og:description" content="遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
     <meta property="og:url" content="/" />
     <meta property="og:image" content="/assets/images/cover1.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="叶子的博客" />
-    <meta name="twitter:description" content="遇到问题时冷静对待，这或许不能解决问题但能使你收获更多" />
+    <meta name="twitter:description" content="遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
     <meta name="twitter:url" content="/" />
     <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
 
@@ -51,7 +53,7 @@
     "publisher": "Finding The Way Home",
     "url": "/",
     "image": "/assets/images/cover1.jpg",
-    "description": "遇到问题时冷静对待，这或许不能解决问题但能使你收获更多"
+    "description": "遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多"
 }
     </script>
 
@@ -123,35 +125,71 @@
 
         <section class="post-content">
 
-            <h1 id="section">【一】从第3000行开始，显示1000行。即显示3000~3999行</h1>
+            <h3>【一】从第3000行开始，显示1000行。即显示3000~3999行</h3>
 
-<p><code class="highlighter-rouge">
-cat filename | tail -n +3000 | head -n 1000
-</code></p>
+<pre><code class="Bash">cat filename | tail -n +3000 | head -n 1000
+</code></pre>
 
-<h1 id="section-1">【二】显示1000行到3000行</h1>
-<p><code class="highlighter-rouge">
-cat filename| head -n 3000 | tail -n +1000
-</code></p>
+<pre><code class="java">public class ArticleReadNumService extends ReadNumTemplate {
+
+    private Article article;
+
+    private ArticleReadNumService(){}
+
+    public static ArticleReadNumService create(Article article, RedisService redisService, Constant constant, ArticleRepository articleRepository){
+        ArticleReadNumService articleReadNumService  = new ArticleReadNumService();
+        articleReadNumService.article = article;
+        articleReadNumService.build(constant.read_count_key + articleReadNumService.article.getId(),
+                redisService, constant,articleRepository);
+        return articleReadNumService;
+    }
+
+
+    @Override
+    protected String getName() {
+        return "文章阅读数";
+    }
+
+    @Override
+    protected String getId() {
+        return article.getId();
+    }
+
+    @Override
+    protected Long getDbCount() {
+        return article.getRead_num();
+    }
+
+    @Override
+    protected String getProperty() {
+        return "read_num";
+    }
+
+}
+</code></pre>
+
+<h3>【二】显示1000行到3000行</h3>
+
+<pre><code class="Bash">cat filename| head -n 3000 | tail -n +1000
+</code></pre>
 
 <p>*注意两种方法的顺序</p>
 
 <p>分解：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>tail -n 1000：显示最后1000行
+<pre><code class="Bash">tail -n 1000：显示最后1000行
 
 tail -n +1000：从1000行开始显示，显示1000行以后的
 
 head -n 1000：显示前面1000行
 </code></pre>
-</div>
 
-<h1 id="sed">【三】用sed命令</h1>
+<h3>【三】用sed命令</h3>
 
-<p><code class="highlighter-rouge">
-sed -n '5,10p' filename
-</code>
-   这样你就可以只查看文件的第5行到第10行。</p>
+<pre><code class="Bash">sed -n '5,10p' filename
+</code></pre>
+
+<p>   这样你就可以只查看文件的第5行到第10行。</p>
 
 
         </section>
@@ -229,16 +267,22 @@ sed -n '5,10p' filename
         <footer class="site-footer clearfix">
           <section class="copyright"><a href="/">叶子的博客</a> &copy; 2016</section>
           <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
-        </footer>
-    </div>
-    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <!-- [[! The main JavaScript file for Casper ]] -->
-    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="/assets/js/index.js"></script>
-
-    <!-- Add Google Analytics  -->
-        <!-- Google Analytics Tracking code -->
+      </footer>
+  </div>
+  <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- [[! The main JavaScript file for Casper ]] -->
+  <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="/assets/js/index.js"></script>
+    <script src="/assets/js/prettify.js"></script>
+    <script>
+        $(window).load(function(){
+           $("pre").addClass("prettyprint");
+           prettyPrint();
+       })
+   </script>
+  <!-- Add Google Analytics  -->
+      <!-- Google Analytics Tracking code -->
      <script>
 	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

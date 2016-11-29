@@ -6,7 +6,7 @@
       <title>http://blog.lo168.com/</title>
    
    <link>http://blog.lo168.com/</link>
-   <description>遇到问题时冷静对待，这或许不能解决问题但能使你收获更多</description>
+   <description>遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</description>
    <language>zh-cn</language>
    <managingEditor> 叶子</managingEditor>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
