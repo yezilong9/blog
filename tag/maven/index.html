@@ -133,23 +133,24 @@
             <h2 class="post-title"><a href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">springboot用maven打独立应用的jar包</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。 这里会使用到maven，如果不熟识的自行先去补习以下：） 假设你已经有了spring boot应用，你就可以执行以下操作 第一步：修改pom配置 我继续使用动态构建目标环境的配置，如果不熟识，可以先去maven构建不同环境读取不同的配置文件看看复习一下 配置部分: &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt; &lt;properties&gt; &lt;env&gt;dev&lt;/env&gt; &lt;/properties&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;/activation&gt; &lt;/profile&gt; &lt;!-- 正服 --&gt; &lt;profile&gt;... <a class="read-more" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">&raquo;</a></p>
+            <p><img src="http://7te9zv.com1.z0.glb.clouddn.com/images.png" style="border-radius: 5px;text-align: center;width: 100%;height: 200px;"></p>
+            <p><p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。</p>... <a class="read-more" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
             <!-- author -->
             <a href='/author/casper'>叶子</a>
             <!-- [[tags prefix=" on "]] -->
-             
-                on 
+            
+                on
                 
                     
                        <a href='/tag/maven'>Maven</a>,
-                       
+                    
                 
                     
                        <a href='/tag/SpringBoot'>Springboot</a>
-                       
+                    
                 
             
             <time class="post-date" datetime="2015-03-03">03 Mar 2015</time>
@@ -161,19 +162,20 @@
             <h2 class="post-title"><a href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">maven构建不同环境读取不同的配置文件</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。 首先，我已一个spring-boot项目为例子讲解，举一反三，其他项目也是同样原理的，或者有部分配置不同而已。 pom.xml代码: 在project根下加入 &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt; &lt;properties&gt; &lt;env&gt;dev&lt;/env&gt; &lt;/properties&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;/activation&gt; &lt;/profile&gt; &lt;!-- 测服 --&gt; &lt;profile&gt; &lt;id&gt;test&lt;/id&gt; &lt;properties&gt; &lt;env&gt;test&lt;/env&gt; &lt;/properties&gt; &lt;/profile&gt;... <a class="read-more" href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">&raquo;</a></p>
+            <p><img src="http://7te9zv.com1.z0.glb.clouddn.com/images.png" style="border-radius: 5px;text-align: center;width: 100%;height: 200px;"></p>
+            <p><p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。</p> <p>首先，我已一个spring-boot项目为例子讲解，举一反三，其他项目也是同样原理的，或者有部分配置不同而已。</p> <h3>pom.xml代码:</h3>... <a class="read-more" href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
             <!-- author -->
             <a href='/author/casper'>叶子</a>
             <!-- [[tags prefix=" on "]] -->
-             
-                on 
+            
+                on
                 
                     
                        <a href='/tag/maven'>Maven</a>
-                       
+                    
                 
             
             <time class="post-date" datetime="2015-01-01">01 Jan 2015</time>

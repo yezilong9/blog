@@ -93,13 +93,22 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
-    <nav class="main-nav  overlay  clearfix">
+<header class="main-header post-head"  style="background-image: url(/assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
         
         
             <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         
     </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                叶子的博客
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</h2>
+        </div>
+    </div>
 </header>
 
 <main class="content" role="main">
@@ -108,10 +117,8 @@
 
         <header class="post-header">
             <h1 class="post-title">使用netty构建简单的WebSocket</h1>
-            <section class="post-meta">
             <!-- <a href='/'>叶子</a> -->
-            <time class="post-date" datetime="2015-07-07">07 Jul 2015</time>
-                <!-- [[tags prefix=" on "]] -->
+            <section class="post-meta">
                 
                 on
                 
@@ -120,10 +127,11 @@
                     
                 
                 
+                <time class="post-date" datetime="2015-07-07">2015-07-07</time>
             </section>
         </header>
 
-        <section class="post-content">
+        <section class="post-content" style="margin-top: 40px;">
 
             <p>websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。</p>
 
@@ -188,20 +196,20 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82">
+        <a class="read-next-story no-cover" href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82">
             <section class="post">
                 <h2>让SpringMVC接收PUT方法</h2>
-                <p>### 暂时只支持 application/x-www-form-urlencoded spring加入bean ```java @Bean public Filter initializeHttpPutHandler(){ return new HttpPutFormContentFilter(); } ``` 即可使springmvc程序接收put的form表单请求。暂时只支持application/x-www-form-urlencoded...</p>
+                <p>暂时只支持 application/x-www-form-urlencoded spring加入bean ```java @Bean public Filter initializeHttpPutHandler(){ return new HttpPutFormContentFilter(); } ``` 即可使springmvc程序接收put的form表单请求。暂时只支持application/x-www-form-urlencoded 后续会开发form-data的方式...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">
+        <a class="read-next-story prev " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/45C491F2-E299-4DFA-A69E-9A7B480808F5.png)" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">
             <section class="post">
                 <h2>设计模式之模板方法(java实现)</h2>
-                <p>首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现 新建一个模板类： ```java /* * 模板超类 / public abstract class RefreshBeverage { public final...</p>
+                <p>首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现 新建一个模板类： /** * 模板超类 */ public abstract class RefreshBeverage { public final void...</p>
             </section>
         </a>
     

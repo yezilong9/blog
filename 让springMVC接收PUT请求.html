@@ -93,13 +93,22 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
-    <nav class="main-nav  overlay  clearfix">
+<header class="main-header post-head"  style="background-image: url(/assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
         
         
             <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         
     </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                叶子的博客
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</h2>
+        </div>
+    </div>
 </header>
 
 <main class="content" role="main">
@@ -108,10 +117,8 @@
 
         <header class="post-header">
             <h1 class="post-title">让SpringMVC接收PUT方法</h1>
-            <section class="post-meta">
             <!-- <a href='/'>叶子</a> -->
-            <time class="post-date" datetime="2015-07-11">11 Jul 2015</time>
-                <!-- [[tags prefix=" on "]] -->
+            <section class="post-meta">
                 
                 on
                 
@@ -120,20 +127,21 @@
                     
                 
                 
+                <time class="post-date" datetime="2015-07-11">2015-07-11</time>
             </section>
         </header>
 
-        <section class="post-content">
+        <section class="post-content" style="margin-top: 40px;">
 
-            <h3>暂时只支持 application/x-www-form-urlencoded</h3>
+            <p>暂时只支持 application/x-www-form-urlencoded</p>
 
-<p>spring加入bean
-<code>java
-@Bean
+<p>spring加入bean</p>
+
+<pre><code class="java">@Bean
 public Filter initializeHttpPutHandler(){
     return new HttpPutFormContentFilter();
 }
-</code></p>
+</code></pre>
 
 <p>即可使springmvc程序接收put的form表单请求。暂时只支持application/x-www-form-urlencoded
 后续会开发form-data的方式</p>
@@ -198,7 +206,7 @@ public Filter initializeHttpPutHandler(){
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket">
+        <a class="read-next-story prev " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/QQ20150307-1@2x-1024x333.png)" href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket">
             <section class="post">
                 <h2>使用netty构建简单的WebSocket</h2>
                 <p>websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。

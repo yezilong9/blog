@@ -93,13 +93,22 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
-    <nav class="main-nav  overlay  clearfix">
+<header class="main-header post-head"  style="background-image: url(/assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
         
         
             <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         
     </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                叶子的博客
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</h2>
+        </div>
+    </div>
 </header>
 
 <main class="content" role="main">
@@ -108,10 +117,8 @@
 
         <header class="post-header">
             <h1 class="post-title">springboot用maven打独立应用的jar包</h1>
-            <section class="post-meta">
             <!-- <a href='/'>叶子</a> -->
-            <time class="post-date" datetime="2015-03-03">03 Mar 2015</time>
-                <!-- [[tags prefix=" on "]] -->
+            <section class="post-meta">
                 
                 on
                 
@@ -124,10 +131,11 @@
                     
                 
                 
+                <time class="post-date" datetime="2015-03-03">2015-03-03</time>
             </section>
         </header>
 
-        <section class="post-content">
+        <section class="post-content" style="margin-top: 40px;">
 
             <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。
 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。</p>
@@ -288,44 +296,45 @@
 
 <h3>第二步：执行maven命令</h3>
 
-<p>读过我那篇maven不同环境配置都知道，maven打包命令应该是:
-<code>Bash
-mvn clean package -P${env}
-</code>
-假设我要发布一个正式环境的jar包，那应该就是:
-<code>Bash
-mvn clean package -Pproduct
-</code></p>
+<p>读过我那篇maven不同环境配置都知道，maven打包命令应该是:</p>
 
-<p>ok，执行完命令之后，去程序目录的target里面看看是否已经生产了配置文件，jar包，还有lib依赖文件夹？
-因为方便区别，我特意把包的别名改成环境的别名，留意这一段：
-```xml
-<configuration>
-  <classifier>${env}</classifier>
-    <excludes>
-        <exclude>application.properties</exclude>
-    </excludes>
-</configuration></p>
-
-<pre><code>这样打出来的包名为:**xxx-1.0-SNAPSHOT-product.jar**
-
-### 第三步：执行命令并修改配置重启
-各位应该都跃跃欲试了，到这一步就可以执行命令来看看是否成功。
+<pre><code class="Bash">mvn clean package -P${env}
 </code></pre>
 
-<p>java -jar xxx-1.0-SNAPSHOT-product.jar
-```</p>
+<p>假设我要发布一个正式环境的jar包，那应该就是:</p>
+
+<pre><code class="Bash">mvn clean package -Pproduct
+</code></pre>
+
+<p>ok，执行完命令之后，去程序目录的target里面看看是否已经生产了配置文件，jar包，还有lib依赖文件夹？
+因为方便区别，我特意把包的别名改成环境的别名，留意这一段：</p>
+
+<pre><code class="xml">&lt;configuration&gt;
+  &lt;classifier&gt;${env}&lt;/classifier&gt;
+    &lt;excludes&gt;
+        &lt;exclude&gt;application.properties&lt;/exclude&gt;
+    &lt;/excludes&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<p>这样打出来的包名为:<strong>xxx-1.0-SNAPSHOT-product.jar</strong></p>
+
+<h3>第三步：执行命令并修改配置重启</h3>
+
+<p>各位应该都跃跃欲试了，到这一步就可以执行命令来看看是否成功。</p>
+
+<pre><code class="Bash">java -jar xxx-1.0-SNAPSHOT-product.jar
+</code></pre>
 
 <p>如果启动没问题，就说明lib依赖和配置文件能够正确读取，jar应用正确分离出来了。
 这样，小伙伴们就能随便修改配置文件而不需要重新打包啦:-)</p>
 
-<pre><code>那如果更新到外网，那我们就可以区分多种更新了。
+<p>那如果更新到外网，那我们就可以区分多种更新了。
 1.更新应用代码，也就是jar包，重启。
-2.只更新配置文件，重启。
+2.只更新配置文件，重启。</p>
 
-这样问题就来了？如何才能更加方便自己去发布不同地址服务器，并执行停止，启动或重启动作呢？
-这样的话，就要用到shell脚本了。编写这样的脚本，发布动作就变得异常简单。欲知如何编写？叶子下回分解
-</code></pre>
+<p>这样问题就来了？如何才能更加方便自己去发布不同地址服务器，并执行停止，启动或重启动作呢？
+这样的话，就要用到shell脚本了。编写这样的脚本，发布动作就变得异常简单。欲知如何编写？叶子下回分解</p>
 
 
         </section>
@@ -384,7 +393,7 @@ mvn clean package -Pproduct
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">
+        <a class="read-next-story " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/45C491F2-E299-4DFA-A69E-9A7B480808F5.png)" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">
             <section class="post">
                 <h2>设计模式之模板方法(java实现)</h2>
                 <p>首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现 新建一个模板类： ```java /** * 模板超类 */ public abstract class RefreshBeverage { public final...</p>
@@ -394,7 +403,7 @@ mvn clean package -Pproduct
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">
+        <a class="read-next-story prev " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/mongo.png)" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">
             <section class="post">
                 <h2>spring mvc mongo集群(xml和注解)</h2>
                 <p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:) 以下内容你将会学到如何使用spring xml和注解方式集群配置mongodb，以及简单的mongoTemplate源码学习 注意：前提是mongodb本身配置好主从模式！ 在数据越来越最求读取性能的时候，mongodb必须是大家非常喜爱的nosql数据库。spring对mongodb数据库的支持也是非常友好，既有jpa方式的操作，也有template方式操作。这里重点讲template，其spring工具类是mongoTemplate，里面包括所有的mongo操作。当然了，大家还是需要基于这个工具类去封装一层更加便于自己操作的类，下面会介绍到。。。 叶子是以spring boot来讲解的。例如springmvc，ssh等xml配置都是差不多的 首先我们来添加pom文件依赖 &lt;dependency&gt; &lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;/dependency&gt; 这个依赖大家可以进去看看，里面已经包括了driver和data的包，不是spring-boot的话是要添加以下这两个包了 &lt;dependency&gt; &lt;groupId&gt;org.mongodb&lt;/groupId&gt;...</p>

@@ -93,13 +93,22 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
-    <nav class="main-nav  overlay  clearfix">
+<header class="main-header post-head"  style="background-image: url(/assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
         
         
             <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         
     </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                叶子的博客
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</h2>
+        </div>
+    </div>
 </header>
 
 <main class="content" role="main">
@@ -108,10 +117,8 @@
 
         <header class="post-header">
             <h1 class="post-title">spring mvc mongo集群(xml和注解)</h1>
-            <section class="post-meta">
             <!-- <a href='/'>叶子</a> -->
-            <time class="post-date" datetime="2015-02-02">02 Feb 2015</time>
-                <!-- [[tags prefix=" on "]] -->
+            <section class="post-meta">
                 
                 on
                 
@@ -124,10 +131,11 @@
                     
                 
                 
+                <time class="post-date" datetime="2015-02-02">2015-02-02</time>
             </section>
         </header>
 
-        <section class="post-content">
+        <section class="post-content" style="margin-top: 40px;">
 
             <p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:)</p>
 
@@ -331,21 +339,19 @@ mongodb.uri=mongodb://192.168.30.181:27017,192.168.30.183:27017
 mongodb.database=reader_production
 </code></pre>
 
-<p>然后新建一个mongodb配置类
-```java
-@Configuration
-public class MongoConfiguration {</p>
+<p>然后新建一个mongodb配置类</p>
 
-<pre><code>@Value("${mongodb.uri}")
-private String mongoURI;
-@Value("${mongodb.database}")
-private String dataBase;
+<pre><code class="java">@Configuration
+public class MongoConfiguration {
 
-@Bean
-public MongoTemplate mongoTemplate() throws UnknownHostException {
-</code></pre>
+    @Value("${mongodb.uri}")
+    private String mongoURI;
+    @Value("${mongodb.database}")
+    private String dataBase;
 
-<p>//        List<ServerAddress> serverAddresses = Lists.newArrayList();
+    @Bean
+    public MongoTemplate mongoTemplate() throws UnknownHostException {
+//        List&lt;ServerAddress&gt; serverAddresses = Lists.newArrayList();
 //        serverAddresses.add(new ServerAddress("192.168.30.181",27017));
 //        serverAddresses.add(new ServerAddress("192.168.30.183",27017));
 //        MongoClient client = new MongoClient(serverAddresses);
@@ -360,10 +366,10 @@ public MongoTemplate mongoTemplate() throws UnknownHostException {
         return mongoTemplate;
     }
 }
-client.setReadPreference(ReadPreference.secondaryPreferred());</p>
+client.setReadPreference(ReadPreference.secondaryPreferred());
+</code></pre>
 
-<p>```
-这里声明了主从模式是怎么样的，但是有个疑问就是，为啥mongoclient已经持有操作类，但是在mongoTemplate也持有呢？代码如此啰嗦是为什么？知道的可以告诉一下叶子哈:)</p>
+<p>这里声明了主从模式是怎么样的，但是有个疑问就是，为啥mongoclient已经持有操作类，但是在mongoTemplate也持有呢？代码如此啰嗦是为什么？知道的可以告诉一下叶子哈:)</p>
 
 <h3>主从模式基本参数是：</h3>
 
@@ -433,7 +439,7 @@ nearest:不管是主节点、secondary节点，从网络延迟最低的节点上
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">
+        <a class="read-next-story " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/images.png)" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">
             <section class="post">
                 <h2>springboot用maven打独立应用的jar包</h2>
                 <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。 这里会使用到maven，如果不熟识的自行先去补习以下：） 假设你已经有了spring boot应用，你就可以执行以下操作 ### 第一步：修改pom配置 我继续使用动态构建目标环境的配置，如果不熟识，可以先去[maven构建不同环境读取不同的配置文件](http://blog.lo168.com/maven构建不同环境读取不同的配置文件.html)看看复习一下 配置部分: ```xml dev dev true product...</p>
@@ -443,7 +449,7 @@ nearest:不管是主节点、secondary节点，从网络延迟最低的节点上
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">
+        <a class="read-next-story prev no-cover" href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">
             <section class="post">
                 <h2>twemproxy 部署文档</h2>
                 <p>简介 twemproxy 主要用于Redis 和 Memcached 的集群代理 功能介绍 我们知道，无论是 Memcached 还是当前的 Redis，其本身都不具备分布式集群特性，当我们有大量 Redis 或 Memcached 的时候，通常只能通过客户端的一些数据分配算法（比如一致性哈希），来实现集群存储的特性。...</p>

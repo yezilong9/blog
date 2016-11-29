@@ -177,44 +177,45 @@
 
 <h3>第二步：执行maven命令</h3>
 
-<p>读过我那篇maven不同环境配置都知道，maven打包命令应该是:
-<code>Bash
-mvn clean package -P${env}
-</code>
-假设我要发布一个正式环境的jar包，那应该就是:
-<code>Bash
-mvn clean package -Pproduct
-</code></p>
+<p>读过我那篇maven不同环境配置都知道，maven打包命令应该是:</p>
 
-<p>ok，执行完命令之后，去程序目录的target里面看看是否已经生产了配置文件，jar包，还有lib依赖文件夹？
-因为方便区别，我特意把包的别名改成环境的别名，留意这一段：
-```xml
-<configuration>
-  <classifier>${env}</classifier>
-    <excludes>
-        <exclude>application.properties</exclude>
-    </excludes>
-</configuration></p>
-
-<pre><code>这样打出来的包名为:**xxx-1.0-SNAPSHOT-product.jar**
-
-### 第三步：执行命令并修改配置重启
-各位应该都跃跃欲试了，到这一步就可以执行命令来看看是否成功。
+<pre><code class="Bash">mvn clean package -P${env}
 </code></pre>
 
-<p>java -jar xxx-1.0-SNAPSHOT-product.jar
-```</p>
+<p>假设我要发布一个正式环境的jar包，那应该就是:</p>
+
+<pre><code class="Bash">mvn clean package -Pproduct
+</code></pre>
+
+<p>ok，执行完命令之后，去程序目录的target里面看看是否已经生产了配置文件，jar包，还有lib依赖文件夹？
+因为方便区别，我特意把包的别名改成环境的别名，留意这一段：</p>
+
+<pre><code class="xml">&lt;configuration&gt;
+  &lt;classifier&gt;${env}&lt;/classifier&gt;
+    &lt;excludes&gt;
+        &lt;exclude&gt;application.properties&lt;/exclude&gt;
+    &lt;/excludes&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<p>这样打出来的包名为:<strong>xxx-1.0-SNAPSHOT-product.jar</strong></p>
+
+<h3>第三步：执行命令并修改配置重启</h3>
+
+<p>各位应该都跃跃欲试了，到这一步就可以执行命令来看看是否成功。</p>
+
+<pre><code class="Bash">java -jar xxx-1.0-SNAPSHOT-product.jar
+</code></pre>
 
 <p>如果启动没问题，就说明lib依赖和配置文件能够正确读取，jar应用正确分离出来了。
 这样，小伙伴们就能随便修改配置文件而不需要重新打包啦:-)</p>
 
-<pre><code>那如果更新到外网，那我们就可以区分多种更新了。
+<p>那如果更新到外网，那我们就可以区分多种更新了。
 1.更新应用代码，也就是jar包，重启。
-2.只更新配置文件，重启。
+2.只更新配置文件，重启。</p>
 
-这样问题就来了？如何才能更加方便自己去发布不同地址服务器，并执行停止，启动或重启动作呢？
-这样的话，就要用到shell脚本了。编写这样的脚本，发布动作就变得异常简单。欲知如何编写？叶子下回分解
-</code></pre>
+<p>这样问题就来了？如何才能更加方便自己去发布不同地址服务器，并执行停止，启动或重启动作呢？
+这样的话，就要用到shell脚本了。编写这样的脚本，发布动作就变得异常简单。欲知如何编写？叶子下回分解</p>
 
 	  ]]></description>
 	</item>
@@ -321,7 +322,6 @@ mvn clean package -Pproduct
 命令如下：mvn clean package -P目标环境代码
 如我要配置到测试环境的，那就是mvn clean package -Ptest
 so：之后我会和大家探讨jenkins，那jenkins就可以约定好测试环境为test，生产是product来构建项目了。（后话）
-
 其他配置我就不写上去了，其他只不过就是项目的名称版本和所拥有的依赖。
 </code></pre>
 

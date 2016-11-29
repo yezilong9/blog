@@ -220,21 +220,19 @@ mongodb.uri=mongodb://192.168.30.181:27017,192.168.30.183:27017
 mongodb.database=reader_production
 </code></pre>
 
-<p>然后新建一个mongodb配置类
-```java
-@Configuration
-public class MongoConfiguration {</p>
+<p>然后新建一个mongodb配置类</p>
 
-<pre><code>@Value("${mongodb.uri}")
-private String mongoURI;
-@Value("${mongodb.database}")
-private String dataBase;
+<pre><code class="java">@Configuration
+public class MongoConfiguration {
 
-@Bean
-public MongoTemplate mongoTemplate() throws UnknownHostException {
-</code></pre>
+    @Value("${mongodb.uri}")
+    private String mongoURI;
+    @Value("${mongodb.database}")
+    private String dataBase;
 
-<p>//        List<ServerAddress> serverAddresses = Lists.newArrayList();
+    @Bean
+    public MongoTemplate mongoTemplate() throws UnknownHostException {
+//        List&lt;ServerAddress&gt; serverAddresses = Lists.newArrayList();
 //        serverAddresses.add(new ServerAddress("192.168.30.181",27017));
 //        serverAddresses.add(new ServerAddress("192.168.30.183",27017));
 //        MongoClient client = new MongoClient(serverAddresses);
@@ -249,10 +247,10 @@ public MongoTemplate mongoTemplate() throws UnknownHostException {
         return mongoTemplate;
     }
 }
-client.setReadPreference(ReadPreference.secondaryPreferred());</p>
+client.setReadPreference(ReadPreference.secondaryPreferred());
+</code></pre>
 
-<p>```
-这里声明了主从模式是怎么样的，但是有个疑问就是，为啥mongoclient已经持有操作类，但是在mongoTemplate也持有呢？代码如此啰嗦是为什么？知道的可以告诉一下叶子哈:)</p>
+<p>这里声明了主从模式是怎么样的，但是有个疑问就是，为啥mongoclient已经持有操作类，但是在mongoTemplate也持有呢？代码如此啰嗦是为什么？知道的可以告诉一下叶子哈:)</p>
 
 <h3>主从模式基本参数是：</h3>
 

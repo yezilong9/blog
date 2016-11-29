@@ -133,23 +133,24 @@
             <h2 class="post-title"><a href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">spring mvc mongo集群(xml和注解)</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:) 以下内容你将会学到如何使用spring xml和注解方式集群配置mongodb，以及简单的mongoTemplate源码学习 注意：前提是mongodb本身配置好主从模式！ 在数据越来越最求读取性能的时候，mongodb必须是大家非常喜爱的nosql数据库。spring对mongodb数据库的支持也是非常友好，既有jpa方式的操作，也有template方式操作。这里重点讲template，其spring工具类是mongoTemplate，里面包括所有的mongo操作。当然了，大家还是需要基于这个工具类去封装一层更加便于自己操作的类，下面会介绍到。。。 叶子是以spring boot来讲解的。例如springmvc，ssh等xml配置都是差不多的 首先我们来添加pom文件依赖 &lt;dependency&gt; &lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;/dependency&gt; 这个依赖大家可以进去看看，里面已经包括了driver和data的包，不是spring-boot的话是要添加以下这两个包了 &lt;dependency&gt; &lt;groupId&gt;org.mongodb&lt;/groupId&gt; &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt; &lt;version&gt;2.12.3&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.data&lt;/groupId&gt; &lt;artifactId&gt;spring-data-mongodb&lt;/artifactId&gt; &lt;version&gt;1.2.0.RELEASE&lt;/version&gt; &lt;/dependency&gt; xml配置mongodb &lt;?xml version="1.0"... <a class="read-more" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">&raquo;</a></p>
+            <p><img src="http://7te9zv.com1.z0.glb.clouddn.com/mongo.png" style="border-radius: 5px;text-align: center;width: 100%;height: 200px;"></p>
+            <p><p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:)</p> <p>以下内容你将会学到如何使用spring xml和注解方式集群配置mongodb，以及简单的mongoTemplate源码学习... <a class="read-more" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/assets/images/casper.png" alt="Author image" nopin="nopin" />
             <!-- author -->
             <a href='/author/casper'>叶子</a>
             <!-- [[tags prefix=" on "]] -->
-             
-                on 
+            
+                on
                 
                     
                        <a href='/tag/spring'>Spring</a>,
-                       
+                    
                 
                     
                        <a href='/tag/mongo'>Mongo</a>
-                       
+                    
                 
             
             <time class="post-date" datetime="2015-02-02">02 Feb 2015</time>

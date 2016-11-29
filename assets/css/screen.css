@@ -187,7 +187,7 @@ body {
     max-height: 100%;
     font-family: "Merriweather", serif;
     letter-spacing: 0.01rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     line-height: 1.75em;
     color: #3A4145;
     -webkit-font-feature-settings: 'kern' 1;
@@ -249,7 +249,7 @@ a {
 }
 
 a:hover {
-    color: #111;
+    color: #2a6496;
 }
 
 p, ul, ol, dl {
@@ -952,6 +952,7 @@ on photos which happen to have a light background. */
     border-bottom: #CCCCcc 1px solid;
     word-wrap: break-word;
     width: 80%;
+    max-width: 760px;
 }
 .tag-fiction{
     max-width: 800px;
@@ -993,12 +994,11 @@ just for the lolz and stylepoints. */
     }
 
     .post-meta {
-        display: block;
-        margin: 1.75rem 0 0 0;
-        font-family: "Open Sans", sans-serif;
+        color: #9eabb3;
+        font-family: "Open Sans", "Microsoft Yahei", 'Helvetica';
         font-size: 1.5rem;
         line-height: 2.2rem;
-        color: #9EABB3;
+        margin: 1.75rem 0 0 0;
     }
 
     .author-thumb {

@@ -93,13 +93,22 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
-    <nav class="main-nav  overlay  clearfix">
+<header class="main-header post-head"  style="background-image: url(/assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
         
         
             <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         
     </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                叶子的博客
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</h2>
+        </div>
+    </div>
 </header>
 
 <main class="content" role="main">
@@ -108,10 +117,8 @@
 
         <header class="post-header">
             <h1 class="post-title">twemproxy 部署文档</h1>
-            <section class="post-meta">
             <!-- <a href='/'>叶子</a> -->
-            <time class="post-date" datetime="2015-01-04">04 Jan 2015</time>
-                <!-- [[tags prefix=" on "]] -->
+            <section class="post-meta">
                 
                 on
                 
@@ -120,10 +127,11 @@
                     
                 
                 
+                <time class="post-date" datetime="2015-01-04">2015-01-04</time>
             </section>
         </header>
 
-        <section class="post-content">
+        <section class="post-content" style="margin-top: 40px;">
 
             <h3>简介</h3>
 
@@ -285,7 +293,7 @@ get key1
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">
+        <a class="read-next-story " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/mongo.png)" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">
             <section class="post">
                 <h2>spring mvc mongo集群(xml和注解)</h2>
                 <p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:) 以下内容你将会学到如何使用spring xml和注解方式集群配置mongodb，以及简单的mongoTemplate源码学习 注意：前提是mongodb本身配置好主从模式！ 在数据越来越最求读取性能的时候，mongodb必须是大家非常喜爱的nosql数据库。spring对mongodb数据库的支持也是非常友好，既有jpa方式的操作，也有template方式操作。这里重点讲template，其spring工具类是mongoTemplate，里面包括所有的mongo操作。当然了，大家还是需要基于这个工具类去封装一层更加便于自己操作的类，下面会介绍到。。。 叶子是以spring boot来讲解的。例如springmvc，ssh等xml配置都是差不多的 ### 首先我们来添加pom文件依赖 ```xml spring-boot-starter-data-mongodb org.springframework.boot ``` 这个依赖大家可以进去看看，里面已经包括了driver和data的包，不是spring-boot的话是要添加以下这两个包了 ```xml...</p>
@@ -295,7 +303,7 @@ get key1
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">
+        <a class="read-next-story prev " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/images.png)" href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">
             <section class="post">
                 <h2>maven构建不同环境读取不同的配置文件</h2>
                 <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。 首先，我已一个spring-boot项目为例子讲解，举一反三，其他项目也是同样原理的，或者有部分配置不同而已。 pom.xml代码: 在project根下加入 &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt; &lt;properties&gt; &lt;env&gt;dev&lt;/env&gt; &lt;/properties&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;...</p>

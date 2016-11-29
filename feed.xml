@@ -10,7 +10,7 @@
       <item>
         <title>让SpringMVC接收PUT方法</title>
         
-          <description>&lt;h3&gt;暂时只支持 application/x-www-form-urlencoded&lt;/h3&gt;
+          <description>&lt;p&gt;暂时只支持 application/x-www-form-urlencoded&lt;/p&gt;
 </description>
         
         <pubDate>Sat, 11 Jul 2015 18:18:00 +0800</pubDate>

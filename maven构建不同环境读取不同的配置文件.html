@@ -93,13 +93,22 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
-    <nav class="main-nav  overlay  clearfix">
+<header class="main-header post-head"  style="background-image: url(/assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
         
         
             <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
         
     </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                叶子的博客
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多</h2>
+        </div>
+    </div>
 </header>
 
 <main class="content" role="main">
@@ -108,10 +117,8 @@
 
         <header class="post-header">
             <h1 class="post-title">maven构建不同环境读取不同的配置文件</h1>
-            <section class="post-meta">
             <!-- <a href='/'>叶子</a> -->
-            <time class="post-date" datetime="2015-01-01">01 Jan 2015</time>
-                <!-- [[tags prefix=" on "]] -->
+            <section class="post-meta">
                 
                 on
                 
@@ -120,10 +127,11 @@
                     
                 
                 
+                <time class="post-date" datetime="2015-01-01">2015-01-01</time>
             </section>
         </header>
 
-        <section class="post-content">
+        <section class="post-content" style="margin-top: 40px;">
 
             <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。</p>
 
@@ -220,7 +228,6 @@
 命令如下：mvn clean package -P目标环境代码
 如我要配置到测试环境的，那就是mvn clean package -Ptest
 so：之后我会和大家探讨jenkins，那jenkins就可以约定好测试环境为test，生产是product来构建项目了。（后话）
-
 其他配置我就不写上去了，其他只不过就是项目的名称版本和所拥有的依赖。
 </code></pre>
 
@@ -281,7 +288,7 @@ so：之后我会和大家探讨jenkins，那jenkins就可以约定好测试环�
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">
+        <a class="read-next-story no-cover" href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">
             <section class="post">
                 <h2>twemproxy 部署文档</h2>
                 <p>### 简介 twemproxy 主要用于Redis 和 Memcached 的集群代理 ### 功能介绍 我们知道，无论是 Memcached 还是当前的 Redis，其本身都不具备分布式集群特性，当我们有大量 Redis 或...</p>
