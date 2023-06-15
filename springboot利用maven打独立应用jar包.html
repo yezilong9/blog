@@ -137,193 +137,189 @@
 
         <section class="post-content" style="margin-top: 40px;">
 
-            <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。
+            <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件–重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。
 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。</p>
 
-<pre><code>这里会使用到maven，如果不熟识的自行先去补习以下：）
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>这里会使用到maven，如果不熟识的自行先去补习以下：）
 假设你已经有了spring boot应用，你就可以执行以下操作
-</code></pre>
+</code></pre></div></div>
 
-<h3>第一步：修改pom配置</h3>
-
-<p>我继续使用动态构建目标环境的配置，如果不熟识，可以先去<a href="http://blog.lo168.com/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html">maven构建不同环境读取不同的配置文件</a>看看复习一下</p>
+<h3 id="第一步修改pom配置">第一步：修改pom配置</h3>
+<p>我继续使用动态构建目标环境的配置，如果不熟识，可以先去<a href="http://blog.lo168.com/maven构建不同环境读取不同的配置文件.html">maven构建不同环境读取不同的配置文件</a>看看复习一下</p>
 
 <p>配置部分:</p>
 
-<pre><code class="xml">&lt;profiles&gt;
-        &lt;!-- 开发环境，默认激活 --&gt;
-        &lt;profile&gt;
-            &lt;id&gt;dev&lt;/id&gt;
-            &lt;properties&gt;
-                &lt;env&gt;dev&lt;/env&gt;
-            &lt;/properties&gt;
-            &lt;activation&gt;
-                &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
-            &lt;/activation&gt;
-        &lt;/profile&gt;
-        &lt;!-- 正服 --&gt;
-        &lt;profile&gt;
-            &lt;id&gt;product&lt;/id&gt;
-            &lt;properties&gt;
-                &lt;env&gt;product&lt;/env&gt;
-            &lt;/properties&gt;
-        &lt;/profile&gt;
-&lt;/profiles&gt;
-&lt;build&gt;
-&lt;resources&gt;
-            &lt;resource&gt;
-                &lt;directory&gt;${project.basedir}/src/main/resources/${env}&lt;/directory&gt;
-                &lt;includes&gt;
-                    &lt;include&gt;application.properties&lt;/include&gt;
-                &lt;/includes&gt;
-                &lt;filtering&gt;true&lt;/filtering&gt;
-            &lt;/resource&gt;
-        &lt;/resources&gt;
-        &lt;sourceDirectory&gt;src/main/java&lt;/sourceDirectory&gt;
-        &lt;plugins&gt;
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
-                &lt;configuration&gt;
-                    &lt;archive&gt;
-                        &lt;manifest&gt;
-                            &lt;addClasspath&gt;true&lt;/addClasspath&gt;
-                            &lt;!-- 加载的class目录的前缀（依赖的jar目录） --&gt;
-                            &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt;
-                            &lt;!-- 入口 --&gt;
-                            &lt;mainClass&gt;com.test.jpa.ApiService&lt;/mainClass&gt;
-                        &lt;/manifest&gt;
-                    &lt;/archive&gt;
-                &lt;/configuration&gt;
-            &lt;/plugin&gt;
-            &lt;!-- 把依赖的jar包拷到lib目录下 --&gt;
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
-                &lt;executions&gt;
-                    &lt;execution&gt;
-                        &lt;id&gt;copy-dependencies&lt;/id&gt;
-                        &lt;phase&gt;package&lt;/phase&gt;
-                        &lt;goals&gt;
-                            &lt;goal&gt;copy-dependencies&lt;/goal&gt;
-                        &lt;/goals&gt;
-                        &lt;configuration&gt;
-                            &lt;outputDirectory&gt;${project.build.directory}/lib&lt;/outputDirectory&gt;
-                            &lt;overWriteReleases&gt;false&lt;/overWriteReleases&gt;
-                            &lt;overWriteSnapshots&gt;false&lt;/overWriteSnapshots&gt;
-                            &lt;overWriteIfNewer&gt;true&lt;/overWriteIfNewer&gt;
-                        &lt;/configuration&gt;
-                    &lt;/execution&gt;
-                &lt;/executions&gt;
-            &lt;/plugin&gt;
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;profiles&gt;</span>
+        <span class="c">&lt;!-- 开发环境，默认激活 --&gt;</span>
+        <span class="nt">&lt;profile&gt;</span>
+            <span class="nt">&lt;id&gt;</span>dev<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;properties&gt;</span>
+                <span class="nt">&lt;env&gt;</span>dev<span class="nt">&lt;/env&gt;</span>
+            <span class="nt">&lt;/properties&gt;</span>
+            <span class="nt">&lt;activation&gt;</span>
+                <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+            <span class="nt">&lt;/activation&gt;</span>
+        <span class="nt">&lt;/profile&gt;</span>
+        <span class="c">&lt;!-- 正服 --&gt;</span>
+        <span class="nt">&lt;profile&gt;</span>
+            <span class="nt">&lt;id&gt;</span>product<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;properties&gt;</span>
+                <span class="nt">&lt;env&gt;</span>product<span class="nt">&lt;/env&gt;</span>
+            <span class="nt">&lt;/properties&gt;</span>
+        <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+<span class="nt">&lt;build&gt;</span>
+<span class="nt">&lt;resources&gt;</span>
+            <span class="nt">&lt;resource&gt;</span>
+                <span class="nt">&lt;directory&gt;</span>${project.basedir}/src/main/resources/${env}<span class="nt">&lt;/directory&gt;</span>
+                <span class="nt">&lt;includes&gt;</span>
+                    <span class="nt">&lt;include&gt;</span>application.properties<span class="nt">&lt;/include&gt;</span>
+                <span class="nt">&lt;/includes&gt;</span>
+                <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+            <span class="nt">&lt;/resource&gt;</span>
+        <span class="nt">&lt;/resources&gt;</span>
+        <span class="nt">&lt;sourceDirectory&gt;</span>src/main/java<span class="nt">&lt;/sourceDirectory&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;archive&gt;</span>
+                        <span class="nt">&lt;manifest&gt;</span>
+                            <span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+                            <span class="c">&lt;!-- 加载的class目录的前缀（依赖的jar目录） --&gt;</span>
+                            <span class="nt">&lt;classpathPrefix&gt;</span>lib/<span class="nt">&lt;/classpathPrefix&gt;</span>
+                            <span class="c">&lt;!-- 入口 --&gt;</span>
+                            <span class="nt">&lt;mainClass&gt;</span>com.test.jpa.ApiService<span class="nt">&lt;/mainClass&gt;</span>
+                        <span class="nt">&lt;/manifest&gt;</span>
+                    <span class="nt">&lt;/archive&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+            <span class="c">&lt;!-- 把依赖的jar包拷到lib目录下 --&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-dependency-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;executions&gt;</span>
+                    <span class="nt">&lt;execution&gt;</span>
+                        <span class="nt">&lt;id&gt;</span>copy-dependencies<span class="nt">&lt;/id&gt;</span>
+                        <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+                        <span class="nt">&lt;goals&gt;</span>
+                            <span class="nt">&lt;goal&gt;</span>copy-dependencies<span class="nt">&lt;/goal&gt;</span>
+                        <span class="nt">&lt;/goals&gt;</span>
+                        <span class="nt">&lt;configuration&gt;</span>
+                            <span class="nt">&lt;outputDirectory&gt;</span>${project.build.directory}/lib<span class="nt">&lt;/outputDirectory&gt;</span>
+                            <span class="nt">&lt;overWriteReleases&gt;</span>false<span class="nt">&lt;/overWriteReleases&gt;</span>
+                            <span class="nt">&lt;overWriteSnapshots&gt;</span>false<span class="nt">&lt;/overWriteSnapshots&gt;</span>
+                            <span class="nt">&lt;overWriteIfNewer&gt;</span>true<span class="nt">&lt;/overWriteIfNewer&gt;</span>
+                        <span class="nt">&lt;/configuration&gt;</span>
+                    <span class="nt">&lt;/execution&gt;</span>
+                <span class="nt">&lt;/executions&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
 
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;
-                &lt;version&gt;2.3&lt;/version&gt;
-                &lt;executions&gt;
-                    &lt;execution&gt;
-                        &lt;id&gt;copy-resources&lt;/id&gt;
-                        &lt;phase&gt;package&lt;/phase&gt;
-                        &lt;goals&gt;
-                            &lt;goal&gt;copy-resources&lt;/goal&gt;
-                        &lt;/goals&gt;
-                        &lt;configuration&gt;
-                            &lt;encoding&gt;UTF-8&lt;/encoding&gt;
-                            &lt;!-- 把配置文件拷到和jar包同一个路径下 --&gt;
-                            &lt;outputDirectory&gt;${project.build.directory}&lt;/outputDirectory&gt;
-                            &lt;resources&gt;
-                                &lt;resource&gt;
-                                    &lt;directory&gt;src/main/resources/${env}/&lt;/directory&gt;
-                                    &lt;includes&gt;
-                                        &lt;include&gt;application.properties&lt;/include&gt;
-                                    &lt;/includes&gt;
-                                    &lt;filtering&gt;true&lt;/filtering&gt;
-                                &lt;/resource&gt;
-                            &lt;/resources&gt;
-                        &lt;/configuration&gt;
-                    &lt;/execution&gt;
-                &lt;/executions&gt;
-            &lt;/plugin&gt;
-            &lt;!-- 打jar包时需要把配置文件给排除在外 --&gt;
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
-                &lt;executions&gt;
-                    &lt;execution&gt;
-                        &lt;phase&gt;package&lt;/phase&gt;
-                        &lt;goals&gt;
-                            &lt;goal&gt;jar&lt;/goal&gt;
-                        &lt;/goals&gt;
-                        &lt;configuration&gt;
-                            &lt;classifier&gt;${env}&lt;/classifier&gt;
-                            &lt;excludes&gt;
-                                &lt;exclude&gt;application.properties&lt;/exclude&gt;
-                            &lt;/excludes&gt;
-                        &lt;/configuration&gt;
-                    &lt;/execution&gt;
-                &lt;/executions&gt;
-            &lt;/plugin&gt;
-        &lt;/plugins&gt;
-    &lt;/build&gt;
-</code></pre>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-resources-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>2.3<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;executions&gt;</span>
+                    <span class="nt">&lt;execution&gt;</span>
+                        <span class="nt">&lt;id&gt;</span>copy-resources<span class="nt">&lt;/id&gt;</span>
+                        <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+                        <span class="nt">&lt;goals&gt;</span>
+                            <span class="nt">&lt;goal&gt;</span>copy-resources<span class="nt">&lt;/goal&gt;</span>
+                        <span class="nt">&lt;/goals&gt;</span>
+                        <span class="nt">&lt;configuration&gt;</span>
+                            <span class="nt">&lt;encoding&gt;</span>UTF-8<span class="nt">&lt;/encoding&gt;</span>
+                            <span class="c">&lt;!-- 把配置文件拷到和jar包同一个路径下 --&gt;</span>
+                            <span class="nt">&lt;outputDirectory&gt;</span>${project.build.directory}<span class="nt">&lt;/outputDirectory&gt;</span>
+                            <span class="nt">&lt;resources&gt;</span>
+                                <span class="nt">&lt;resource&gt;</span>
+                                    <span class="nt">&lt;directory&gt;</span>src/main/resources/${env}/<span class="nt">&lt;/directory&gt;</span>
+                                    <span class="nt">&lt;includes&gt;</span>
+                                        <span class="nt">&lt;include&gt;</span>application.properties<span class="nt">&lt;/include&gt;</span>
+                                    <span class="nt">&lt;/includes&gt;</span>
+                                    <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+                                <span class="nt">&lt;/resource&gt;</span>
+                            <span class="nt">&lt;/resources&gt;</span>
+                        <span class="nt">&lt;/configuration&gt;</span>
+                    <span class="nt">&lt;/execution&gt;</span>
+                <span class="nt">&lt;/executions&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+            <span class="c">&lt;!-- 打jar包时需要把配置文件给排除在外 --&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;executions&gt;</span>
+                    <span class="nt">&lt;execution&gt;</span>
+                        <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+                        <span class="nt">&lt;goals&gt;</span>
+                            <span class="nt">&lt;goal&gt;</span>jar<span class="nt">&lt;/goal&gt;</span>
+                        <span class="nt">&lt;/goals&gt;</span>
+                        <span class="nt">&lt;configuration&gt;</span>
+                            <span class="nt">&lt;classifier&gt;</span>${env}<span class="nt">&lt;/classifier&gt;</span>
+                            <span class="nt">&lt;excludes&gt;</span>
+                                <span class="nt">&lt;exclude&gt;</span>application.properties<span class="nt">&lt;/exclude&gt;</span>
+                            <span class="nt">&lt;/excludes&gt;</span>
+                        <span class="nt">&lt;/configuration&gt;</span>
+                    <span class="nt">&lt;/execution&gt;</span>
+                <span class="nt">&lt;/executions&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+</code></pre></div></div>
 
 <p>我没有copy模块名称和依赖的配置，因为各有各不同。
 其中大家可以留意</p>
 
-<pre><code class="xml">&lt;id&gt;copy-resources&lt;/id&gt;
-&lt;phase&gt;package&lt;/phase&gt;
-&lt;goals&gt;
-    &lt;goal&gt;copy-resources&lt;/goal&gt;
-&lt;/goals&gt;
-&lt;configuration&gt;
-    &lt;encoding&gt;UTF-8&lt;/encoding&gt;
-    &lt;!-- 把配置文件拷到和jar包同一个路径下 --&gt;
-    &lt;outputDirectory&gt;${project.build.directory}&lt;/outputDirectory&gt;
-    &lt;resources&gt;
-        &lt;resource&gt;
-            &lt;directory&gt;src/main/resources/${env}/&lt;/directory&gt;
-            &lt;includes&gt;
-                &lt;include&gt;application.properties&lt;/include&gt;
-            &lt;/includes&gt;
-            &lt;filtering&gt;true&lt;/filtering&gt;
-        &lt;/resource&gt;
-    &lt;/resources&gt;
-&lt;/configuration&gt;
-</code></pre>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;id&gt;</span>copy-resources<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+<span class="nt">&lt;goals&gt;</span>
+    <span class="nt">&lt;goal&gt;</span>copy-resources<span class="nt">&lt;/goal&gt;</span>
+<span class="nt">&lt;/goals&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;encoding&gt;</span>UTF-8<span class="nt">&lt;/encoding&gt;</span>
+    <span class="c">&lt;!-- 把配置文件拷到和jar包同一个路径下 --&gt;</span>
+    <span class="nt">&lt;outputDirectory&gt;</span>${project.build.directory}<span class="nt">&lt;/outputDirectory&gt;</span>
+    <span class="nt">&lt;resources&gt;</span>
+        <span class="nt">&lt;resource&gt;</span>
+            <span class="nt">&lt;directory&gt;</span>src/main/resources/${env}/<span class="nt">&lt;/directory&gt;</span>
+            <span class="nt">&lt;includes&gt;</span>
+                <span class="nt">&lt;include&gt;</span>application.properties<span class="nt">&lt;/include&gt;</span>
+            <span class="nt">&lt;/includes&gt;</span>
+            <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+        <span class="nt">&lt;/resource&gt;</span>
+    <span class="nt">&lt;/resources&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre></div></div>
 
 <p>这个是重点，把配置文件copy到jar包同级目录，并且指定outputDirectory是读取同级目录的配置文件为springboot的自身配置。lib依赖包同理，我就不多说了。</p>
 
-<h3>第二步：执行maven命令</h3>
-
+<h3 id="第二步执行maven命令">第二步：执行maven命令</h3>
 <p>读过我那篇maven不同环境配置都知道，maven打包命令应该是:</p>
 
-<pre><code class="Bash">mvn clean package -P${env}
+<pre><code class="language-Bash">mvn clean package -P${env}
 </code></pre>
-
 <p>假设我要发布一个正式环境的jar包，那应该就是:</p>
 
-<pre><code class="Bash">mvn clean package -Pproduct
+<pre><code class="language-Bash">mvn clean package -Pproduct
 </code></pre>
 
 <p>ok，执行完命令之后，去程序目录的target里面看看是否已经生产了配置文件，jar包，还有lib依赖文件夹？
 因为方便区别，我特意把包的别名改成环境的别名，留意这一段：</p>
 
-<pre><code class="xml">&lt;configuration&gt;
-  &lt;classifier&gt;${env}&lt;/classifier&gt;
-    &lt;excludes&gt;
-        &lt;exclude&gt;application.properties&lt;/exclude&gt;
-    &lt;/excludes&gt;
-&lt;/configuration&gt;
-</code></pre>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;configuration&gt;</span>
+  <span class="nt">&lt;classifier&gt;</span>${env}<span class="nt">&lt;/classifier&gt;</span>
+    <span class="nt">&lt;excludes&gt;</span>
+        <span class="nt">&lt;exclude&gt;</span>application.properties<span class="nt">&lt;/exclude&gt;</span>
+    <span class="nt">&lt;/excludes&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
 
+</code></pre></div></div>
 <p>这样打出来的包名为:<strong>xxx-1.0-SNAPSHOT-product.jar</strong></p>
 
-<h3>第三步：执行命令并修改配置重启</h3>
-
+<h3 id="第三步执行命令并修改配置重启">第三步：执行命令并修改配置重启</h3>
 <p>各位应该都跃跃欲试了，到这一步就可以执行命令来看看是否成功。</p>
 
-<pre><code class="Bash">java -jar xxx-1.0-SNAPSHOT-product.jar
+<pre><code class="language-Bash">java -jar xxx-1.0-SNAPSHOT-product.jar
 </code></pre>
 
 <p>如果启动没问题，就说明lib依赖和配置文件能够正确读取，jar应用正确分离出来了。
@@ -417,7 +413,7 @@
 
 
         <footer class="site-footer clearfix">
-          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2016</section>
+          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2023</section>
           <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
       </footer>
   </div>

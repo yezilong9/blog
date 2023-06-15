@@ -8,6 +8,20 @@
     
       
       <item>
+        <title>cloudflare pages搭建永久免费vless节点</title>
+        
+          <description>&lt;p&gt;本教程主要用于学习如何搭建vless&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 14 Jun 2023 18:18:00 +0800</pubDate>
+        <link>
+        http://blog.lo168.com//cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9</link>
+        <guid isPermaLink="true">http://blog.lo168.com//cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>让SpringMVC接收PUT方法</title>
         
           <description>&lt;p&gt;暂时只支持 application/x-www-form-urlencoded&lt;/p&gt;
@@ -53,7 +67,7 @@
       <item>
         <title>springboot用maven打独立应用的jar包</title>
         
-          <description>&lt;p&gt;如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。
+          <description>&lt;p&gt;如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件–重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。
 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。&lt;/p&gt;
 </description>
         
@@ -82,8 +96,7 @@
       <item>
         <title>twemproxy 部署文档</title>
         
-          <description>&lt;h3&gt;简介&lt;/h3&gt;
-
+          <description>&lt;h3 id=&quot;简介&quot;&gt;简介&lt;/h3&gt;
 &lt;p&gt;twemproxy 主要用于Redis 和 Memcached 的集群代理&lt;/p&gt;
 </description>
         

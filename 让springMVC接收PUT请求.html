@@ -137,11 +137,11 @@
 
 <p>spring加入bean</p>
 
-<pre><code class="java">@Bean
-public Filter initializeHttpPutHandler(){
-    return new HttpPutFormContentFilter();
-}
-</code></pre>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">Filter</span> <span class="nf">initializeHttpPutHandler</span><span class="o">(){</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="nf">HttpPutFormContentFilter</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>即可使springmvc程序接收put的form表单请求。暂时只支持application/x-www-form-urlencoded
 后续会开发form-data的方式</p>
@@ -203,6 +203,13 @@ public Filter initializeHttpPutHandler(){
 
     <!-- [[! next_post ]] -->
     
+        <a class="read-next-story " style="background-image: url(/../assets/images/image-20230615105617585.png)" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9">
+            <section class="post">
+                <h2>cloudflare pages搭建永久免费vless节点</h2>
+                <p>本教程主要用于学习如何搭建vless ## 注册cloudflare > Cloudflare 是全球知名的CDN服务商，还有各种例如反代、内网穿透、ssl等功能，能够很好的帮助你的网站提升体验，个人免费的套餐就已经足够我们日常使用了 > > 其中里面有worker和pages，pages可以帮助部署项目，比github pages更为强大，我们这次就是利用这个pages免费为我们搭建一个vless节点服务 前往[cloudflare](https://www.cloudflare-cn.com/plans/) 点击页面下方免费套餐 ![image-20230614174502783](../assets/images/image-20230614174502783.png) 注册流程非常简单，这里不再作详细说明了，大家记得**验证邮箱** ##...</p>
+            </section>
+        </a>
+    
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
@@ -214,6 +221,7 @@ public Filter initializeHttpPutHandler(){
 因为只是demo，所以我这里不对其进行过多的代码分析和项目讲解，日后我会在这个demo进行项目构建，会是一个大型的聊天室？会是一个高性能的socket通讯系统？大家敬请期待吧！
 
 demo地址：WebSocketDemo
+
 </p>
             </section>
         </a>
@@ -225,7 +233,7 @@ demo地址：WebSocketDemo
 
 
         <footer class="site-footer clearfix">
-          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2016</section>
+          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2023</section>
           <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
       </footer>
   </div>

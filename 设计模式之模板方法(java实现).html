@@ -138,85 +138,85 @@
 
 <p>新建一个模板类：</p>
 
-<pre><code class="java">/**
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
  * 模板超类
- */
-public abstract class RefreshBeverage {
+ */</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RefreshBeverage</span> <span class="o">{</span>
 
-    public final void prepareBeverageTemplate(){
-        boilWater();//帮水煮沸
-        brew();//炮制饮料
-        pourInCup();//倒入杯子中
-        addCondiments();//加入调味料
-    }
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">prepareBeverageTemplate</span><span class="o">(){</span>
+        <span class="n">boilWater</span><span class="o">();</span><span class="c1">//帮水煮沸</span>
+        <span class="n">brew</span><span class="o">();</span><span class="c1">//炮制饮料</span>
+        <span class="n">pourInCup</span><span class="o">();</span><span class="c1">//倒入杯子中</span>
+        <span class="n">addCondiments</span><span class="o">();</span><span class="c1">//加入调味料</span>
+    <span class="o">}</span>
 
-    /**
+    <span class="cm">/**
      * 公共方法,private为了限制必须要遵从模板
-     */
-    private void boilWater(){
-        System.out.println("把水煮沸了！");
-    }
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">boilWater</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"把水煮沸了！"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    private void pourInCup(){
-        System.out.println("倒入杯子中了！");
-    }
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">pourInCup</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"倒入杯子中了！"</span><span class="o">);</span>
+    <span class="o">}</span>
 
 
 
-    /**
+    <span class="cm">/**
      * 以下是各自子类不同的方法实现
-     */
-    protected abstract void brew();
+     */</span>
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">brew</span><span class="o">();</span>
 
-    protected abstract void addCondiments();
-}
-</code></pre>
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">addCondiments</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>然后可以看到里面煮水和倒入杯子两个方法，放在任何饮料也是需要执行的，所以我们子类不需要实现，要实现的是其中需要变化的方法。例如加入该饮料的材料和炮制过程</p>
 
 <p>咖啡：</p>
 
-<pre><code class="java">public class Coffee extends RefreshBeverage {
-    @Override
-    protected void brew() {
-        System.out.println("炮制咖啡");
-    }
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Coffee</span> <span class="kd">extends</span> <span class="nc">RefreshBeverage</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">brew</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"炮制咖啡"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    @Override
-    protected void addCondiments() {
-        System.out.println("加入糖让咖啡更加甜");
-    }
-}
-</code></pre>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">addCondiments</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"加入糖让咖啡更加甜"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>茶:</p>
 
-<pre><code class="java">public class Tea extends RefreshBeverage {
-    @Override
-    protected void brew() {
-        System.out.println("倒入茶叶");
-    }
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tea</span> <span class="kd">extends</span> <span class="nc">RefreshBeverage</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">brew</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"倒入茶叶"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    @Override
-    protected void addCondiments() {
-        System.out.println("加入牛奶,变成奶茶");
-    }
-}
-</code></pre>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">addCondiments</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"加入牛奶,变成奶茶"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>测试：</p>
 
-<pre><code class="java">public class Test {
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
 
-    public static void  main(String ...arg){
-        RefreshBeverage r1 = new Coffee();
-        r1.prepareBeverageTemplate();
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span>  <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="o">...</span><span class="na">arg</span><span class="o">){</span>
+        <span class="nc">RefreshBeverage</span> <span class="n">r1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coffee</span><span class="o">();</span>
+        <span class="n">r1</span><span class="o">.</span><span class="na">prepareBeverageTemplate</span><span class="o">();</span>
 
-        RefreshBeverage r2 = new Tea();
-        r2.prepareBeverageTemplate();
-    }
-}
-</code></pre>
+        <span class="nc">RefreshBeverage</span> <span class="n">r2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tea</span><span class="o">();</span>
+        <span class="n">r2</span><span class="o">.</span><span class="na">prepareBeverageTemplate</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>ok，这里只是一个简单的实现，实际应用场景又会是怎么样的呢？
 这里叶子本人遇到了一个需求，就是阅读数。
@@ -225,240 +225,242 @@ public abstract class RefreshBeverage {
 
 <p>模板:</p>
 
-<pre><code class="java">public abstract class ReadNumTemplate {
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ReadNumTemplate</span> <span class="o">{</span>
 
-    private static final Logger logger = LoggerFactory.getLogger(ReadNumTemplate.class);
-    private static final long TIME = 3600000l;
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">ReadNumTemplate</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="no">TIME</span> <span class="o">=</span> <span class="mi">3600000</span><span class="n">l</span><span class="o">;</span>
 
-    private String redisKey;
-    private RedisService redisService;
-    private String redisTimeKey;
-    private Constant constant;
-    private GenericMongoDao genericMongoDao;
-    private boolean isBuild = false;
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">redisKey</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">redisTimeKey</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Constant</span> <span class="n">constant</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">GenericMongoDao</span> <span class="n">genericMongoDao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isBuild</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
 
-    protected void build(String redisKey,
-                         RedisService redisService,
-                         Constant constant,
-                         GenericMongoDao genericMongoDao){
-        this.redisKey = redisKey;
-        this.redisService = redisService;
-        this.redisTimeKey = redisKey + "_time";
-        this.constant = constant;
-        this.genericMongoDao = genericMongoDao;
-        this.isBuild = true;
-    }
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">build</span><span class="o">(</span><span class="nc">String</span> <span class="n">redisKey</span><span class="o">,</span>
+                         <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">,</span>
+                         <span class="nc">Constant</span> <span class="n">constant</span><span class="o">,</span>
+                         <span class="nc">GenericMongoDao</span> <span class="n">genericMongoDao</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">redisKey</span> <span class="o">=</span> <span class="n">redisKey</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">redisService</span> <span class="o">=</span> <span class="n">redisService</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">redisTimeKey</span> <span class="o">=</span> <span class="n">redisKey</span> <span class="o">+</span> <span class="s">"_time"</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">constant</span> <span class="o">=</span> <span class="n">constant</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">genericMongoDao</span> <span class="o">=</span> <span class="n">genericMongoDao</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">isBuild</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
 
 
-    /**
+    <span class="cm">/**
      * 阅读数统一模板方法
      * @return
-     */
-    protected final Long addReadNum(){
-        if(!isBuild){
-            throw new RuntimeException("ReadNumTemplete is not build");
-        }
-        if (!redisService.exists(redisTimeKey)) {
-            redisService.set(redisTimeKey, String.valueOf(System.currentTimeMillis()));
-        }
-        Long count = redisService.incr(redisKey);
-        if(isSave(count)){
-            saveToDb();
-        }
-        return syncho(count);
-    }
+     */</span>
+    <span class="kd">protected</span> <span class="kd">final</span> <span class="nc">Long</span> <span class="nf">addReadNum</span><span class="o">(){</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">isBuild</span><span class="o">){</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"ReadNumTemplete is not build"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">redisService</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">redisService</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()));</span>
+        <span class="o">}</span>
+        <span class="nc">Long</span> <span class="n">count</span> <span class="o">=</span> <span class="n">redisService</span><span class="o">.</span><span class="na">incr</span><span class="o">(</span><span class="n">redisKey</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">isSave</span><span class="o">(</span><span class="n">count</span><span class="o">)){</span>
+            <span class="n">saveToDb</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="nf">syncho</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
+    <span class="o">}</span>
 
 
-    /**
+    <span class="cm">/**
      * 是否能保存
      * @param count
      * @return
-     */
-    private boolean isSave(Long count){
-        return count % constant.MAX_READ_COUNT == 0 || arriveTime();
-    }
+     */</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isSave</span><span class="o">(</span><span class="nc">Long</span> <span class="n">count</span><span class="o">){</span>
+        <span class="k">return</span> <span class="n">count</span> <span class="o">%</span> <span class="n">constant</span><span class="o">.</span><span class="na">MAX_READ_COUNT</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">arriveTime</span><span class="o">();</span>
+    <span class="o">}</span>
 
 
-    /**
+    <span class="cm">/**
      * 判断时间是否已经达到存入数据库的临界值
      * @return
-     */
-    private boolean arriveTime() {
-        String timeValue = redisService.get(redisTimeKey);
-        if (redisService.exists(redisTimeKey)) {
-            long time = System.currentTimeMillis() - Long.parseLong(timeValue);
-            if (time &gt; TIME) {
-                redisService.set(redisTimeKey, String.valueOf(System.currentTimeMillis()));
-                logger.info(MessageFormat.format(getName() + ":{0}达到1小时，可以保存数据库", redisKey));
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+     */</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">arriveTime</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">timeValue</span> <span class="o">=</span> <span class="n">redisService</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">redisService</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">))</span> <span class="o">{</span>
+            <span class="kt">long</span> <span class="n">time</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="nc">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">timeValue</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">time</span> <span class="o">&gt;</span> <span class="no">TIME</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">redisService</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()));</span>
+                <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="nc">MessageFormat</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">":{0}达到1小时，可以保存数据库"</span><span class="o">,</span> <span class="n">redisKey</span><span class="o">));</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-    /**
+    <span class="cm">/**
      * 同步方法
-     */
-    private Long syncho(Long redisCount) {
-        Long dbCount = getDbCount();
-        if (dbCount == null) {
-            dbCount = 0l;
-        }
-        if (redisCount &lt; dbCount) {
-            redisService.set(redisKey, String.valueOf(dbCount));
-        }
-        if (redisCount % constant.MAX_READ_COUNT == 0) {
-            return  dbCount + constant.MAX_READ_COUNT;
-        } else {
-            return  dbCount &lt; redisCount ? redisCount : dbCount;
-        }
-    }
-    private Long getRedisCount(){
-        if(redisService.exists(redisKey)){
-            return Long.parseLong(redisService.get(redisKey));
-        }else{
-            return 0L;
-        }
-    }
+     */</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="nf">syncho</span><span class="o">(</span><span class="nc">Long</span> <span class="n">redisCount</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Long</span> <span class="n">dbCount</span> <span class="o">=</span> <span class="n">getDbCount</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">dbCount</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">dbCount</span> <span class="o">=</span> <span class="mi">0</span><span class="n">l</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">redisCount</span> <span class="o">&lt;</span> <span class="n">dbCount</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">redisService</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">redisKey</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">dbCount</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">redisCount</span> <span class="o">%</span> <span class="n">constant</span><span class="o">.</span><span class="na">MAX_READ_COUNT</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span>  <span class="n">dbCount</span> <span class="o">+</span> <span class="n">constant</span><span class="o">.</span><span class="na">MAX_READ_COUNT</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span>  <span class="n">dbCount</span> <span class="o">&lt;</span> <span class="n">redisCount</span> <span class="o">?</span> <span class="n">redisCount</span> <span class="o">:</span> <span class="n">dbCount</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="nf">getRedisCount</span><span class="o">(){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">redisService</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">redisKey</span><span class="o">)){</span>
+            <span class="k">return</span> <span class="nc">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">redisService</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">redisKey</span><span class="o">));</span>
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+            <span class="k">return</span> <span class="mi">0L</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-    /**
+    <span class="cm">/**
      * 异步保存到数据库
-     */
-    @Async
-    private void saveToDb() {
-        genericMongoDao.updateDefindProperty("id", getId(), getProperty(), getRedisCount());
-    }
+     */</span>
+    <span class="nd">@Async</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">saveToDb</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">genericMongoDao</span><span class="o">.</span><span class="na">updateDefindProperty</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">getId</span><span class="o">(),</span> <span class="n">getProperty</span><span class="o">(),</span> <span class="n">getRedisCount</span><span class="o">());</span>
+    <span class="o">}</span>
 
-    protected abstract String getName();
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">();</span>
 
-    protected abstract String getId();
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">();</span>
 
-    protected abstract Long getDbCount();
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">Long</span> <span class="nf">getDbCount</span><span class="o">();</span>
 
-    protected abstract String getProperty();
-}
-</code></pre>
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getProperty</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
-<p>代码还是比较烂，大家海涵。我先分析一下代码。这里有公共方法：
-1. 保存阅读数到数据库。
-2. 获取redis里面的阅读数。
-3. 判断是否能保存。(判断条件是是否已经到达200条，或者这个key是否保存在redis超过1小时)
-4. 保存该reidskey的时间（因为要用到判断是否已经达到1小时）</p>
+<p>代码还是比较烂，大家海涵。我先分析一下代码。这里有公共方法：</p>
+<ol>
+  <li>保存阅读数到数据库。</li>
+  <li>获取redis里面的阅读数。</li>
+  <li>判断是否能保存。(判断条件是是否已经到达200条，或者这个key是否保存在redis超过1小时)</li>
+  <li>保存该reidskey的时间（因为要用到判断是否已经达到1小时）</li>
+</ol>
 
 <p>其中文章阅读数:</p>
 
-<pre><code class="java">public class ArticleReadNumService extends ReadNumTemplate {
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArticleReadNumService</span> <span class="kd">extends</span> <span class="nc">ReadNumTemplate</span> <span class="o">{</span>
 
-    private Article article;
+    <span class="kd">private</span> <span class="nc">Article</span> <span class="n">article</span><span class="o">;</span>
 
-    private ArticleReadNumService(){}
+    <span class="kd">private</span> <span class="nf">ArticleReadNumService</span><span class="o">(){}</span>
 
-    public static ArticleReadNumService create(Article article, RedisService redisService, Constant constant, ArticleRepository articleRepository){
-        ArticleReadNumService articleReadNumService  = new ArticleReadNumService();
-        articleReadNumService.article = article;
-        articleReadNumService.build(constant.read_count_key + articleReadNumService.article.getId(),
-                redisService, constant,articleRepository);
-        return articleReadNumService;
-    }
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">ArticleReadNumService</span> <span class="nf">create</span><span class="o">(</span><span class="nc">Article</span> <span class="n">article</span><span class="o">,</span> <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">,</span> <span class="nc">Constant</span> <span class="n">constant</span><span class="o">,</span> <span class="nc">ArticleRepository</span> <span class="n">articleRepository</span><span class="o">){</span>
+        <span class="nc">ArticleReadNumService</span> <span class="n">articleReadNumService</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArticleReadNumService</span><span class="o">();</span>
+        <span class="n">articleReadNumService</span><span class="o">.</span><span class="na">article</span> <span class="o">=</span> <span class="n">article</span><span class="o">;</span>
+        <span class="n">articleReadNumService</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">constant</span><span class="o">.</span><span class="na">read_count_key</span> <span class="o">+</span> <span class="n">articleReadNumService</span><span class="o">.</span><span class="na">article</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span>
+                <span class="n">redisService</span><span class="o">,</span> <span class="n">constant</span><span class="o">,</span><span class="n">articleRepository</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">articleReadNumService</span><span class="o">;</span>
+    <span class="o">}</span>
 
 
-    @Override
-    protected String getName() {
-        return "文章阅读数";
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"文章阅读数"</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    @Override
-    protected String getId() {
-        return article.getId();
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">article</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    @Override
-    protected Long getDbCount() {
-        return article.getRead_num();
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">Long</span> <span class="nf">getDbCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">article</span><span class="o">.</span><span class="na">getRead_num</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    @Override
-    protected String getProperty() {
-        return "read_num";
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getProperty</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"read_num"</span><span class="o">;</span>
+    <span class="o">}</span>
 
-}
-</code></pre>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>微站阅读数:</p>
 
-<pre><code class="java">public class WzReadNumService extends ReadNumTemplate{
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WzReadNumService</span> <span class="kd">extends</span> <span class="nc">ReadNumTemplate</span><span class="o">{</span>
 
-    private Article article;
+    <span class="kd">private</span> <span class="nc">Article</span> <span class="n">article</span><span class="o">;</span>
 
-    public static WzReadNumService create(Article article, RedisService redisService, Constant constant,ArticleRepository articleRepository){
-        WzReadNumService wzReadNumService = new WzReadNumService();
-        wzReadNumService.article = article;
-        String redisKey = constant.weixin_read_count_key + article.getId();
-        wzReadNumService.build(redisKey, redisService, constant, articleRepository);
-        return wzReadNumService;
-    }
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">WzReadNumService</span> <span class="nf">create</span><span class="o">(</span><span class="nc">Article</span> <span class="n">article</span><span class="o">,</span> <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">,</span> <span class="nc">Constant</span> <span class="n">constant</span><span class="o">,</span><span class="nc">ArticleRepository</span> <span class="n">articleRepository</span><span class="o">){</span>
+        <span class="nc">WzReadNumService</span> <span class="n">wzReadNumService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WzReadNumService</span><span class="o">();</span>
+        <span class="n">wzReadNumService</span><span class="o">.</span><span class="na">article</span> <span class="o">=</span> <span class="n">article</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">redisKey</span> <span class="o">=</span> <span class="n">constant</span><span class="o">.</span><span class="na">weixin_read_count_key</span> <span class="o">+</span> <span class="n">article</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="n">wzReadNumService</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">redisKey</span><span class="o">,</span> <span class="n">redisService</span><span class="o">,</span> <span class="n">constant</span><span class="o">,</span> <span class="n">articleRepository</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">wzReadNumService</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    @Override
-    protected String getName() {
-        return "微站阅读数";
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"微站阅读数"</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    @Override
-    protected String getId() {
-        return article.getId();
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">article</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    @Override
-    protected Long getDbCount() {
-        return article.getWx_read_num();
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">Long</span> <span class="nf">getDbCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">article</span><span class="o">.</span><span class="na">getWx_read_num</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    @Override
-    protected String getProperty() {
-        return "wx_read_num";
-    }
-}
-</code></pre>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getProperty</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"wx_read_num"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>分享阅读数:</p>
 
-<pre><code class="java">public class SharedReadNumService extends ReadNumTemplate{
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SharedReadNumService</span> <span class="kd">extends</span> <span class="nc">ReadNumTemplate</span><span class="o">{</span>
 
-    private SharedRecord sharedRecord;
+    <span class="kd">private</span> <span class="nc">SharedRecord</span> <span class="n">sharedRecord</span><span class="o">;</span>
 
-    public static SharedReadNumService create(SharedRecord sharedRecord, RedisService redisService, Constant constant, SharedRecordRepository sharedRecordRepository){
-        SharedReadNumService sharedReadNumService = new SharedReadNumService();
-        sharedReadNumService.sharedRecord = sharedRecord;
-        sharedReadNumService.build(constant.shared_read_count_key+sharedRecord.getId(),redisService,constant,sharedRecordRepository);
-        return sharedReadNumService;
-    }
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">SharedReadNumService</span> <span class="nf">create</span><span class="o">(</span><span class="nc">SharedRecord</span> <span class="n">sharedRecord</span><span class="o">,</span> <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">,</span> <span class="nc">Constant</span> <span class="n">constant</span><span class="o">,</span> <span class="nc">SharedRecordRepository</span> <span class="n">sharedRecordRepository</span><span class="o">){</span>
+        <span class="nc">SharedReadNumService</span> <span class="n">sharedReadNumService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SharedReadNumService</span><span class="o">();</span>
+        <span class="n">sharedReadNumService</span><span class="o">.</span><span class="na">sharedRecord</span> <span class="o">=</span> <span class="n">sharedRecord</span><span class="o">;</span>
+        <span class="n">sharedReadNumService</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">constant</span><span class="o">.</span><span class="na">shared_read_count_key</span><span class="o">+</span><span class="n">sharedRecord</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span><span class="n">redisService</span><span class="o">,</span><span class="n">constant</span><span class="o">,</span><span class="n">sharedRecordRepository</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">sharedReadNumService</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    @Override
-    protected String getName() {
-        return "分享阅读数";
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"分享阅读数"</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    @Override
-    protected String getId() {
-        return sharedRecord.getId();
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">sharedRecord</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="o">}</span>
 
 
-    @Override
-    protected Long getDbCount() {
-        return sharedRecord.getReadNum().longValue();
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">Long</span> <span class="nf">getDbCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">sharedRecord</span><span class="o">.</span><span class="na">getReadNum</span><span class="o">().</span><span class="na">longValue</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    @Override
-    protected String getProperty() {
-        return "shared_record";
-    }
-}
-</code></pre>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getProperty</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"shared_record"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>可以看出来，里面各个子类需要做的东西已经是很少了，这样大大增加了可读性和维护。而公共方法的private就是为了限制这个模板只能是给差不多的类使用。
 唯一不满意就是里面一个build方法，因为需要把bean传进去给模板方法，不得而为之，如果各位小伙伴有更好的提议不妨给我留言。</p>
@@ -541,7 +543,7 @@ demo地址：[WebSocketDemo](https://github.com/yezilong9/WebSocketDemo)
         <a class="read-next-story prev " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/images.png)" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">
             <section class="post">
                 <h2>springboot用maven打独立应用的jar包</h2>
-                <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件--重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。 这里会使用到maven，如果不熟识的自行先去补习以下：） 假设你已经有了spring boot应用，你就可以执行以下操作 第一步：修改pom配置 我继续使用动态构建目标环境的配置，如果不熟识，可以先去maven构建不同环境读取不同的配置文件看看复习一下 配置部分: &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt;...</p>
+                <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件–重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。 这里会使用到maven，如果不熟识的自行先去补习以下：） 假设你已经有了spring boot应用，你就可以执行以下操作 第一步：修改pom配置 我继续使用动态构建目标环境的配置，如果不熟识，可以先去maven构建不同环境读取不同的配置文件看看复习一下 配置部分: &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt;...</p>
             </section>
         </a>
     
@@ -552,7 +554,7 @@ demo地址：[WebSocketDemo](https://github.com/yezilong9/WebSocketDemo)
 
 
         <footer class="site-footer clearfix">
-          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2016</section>
+          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2023</section>
           <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
       </footer>
   </div>

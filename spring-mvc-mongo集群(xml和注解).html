@@ -146,87 +146,87 @@
 
 <p>叶子是以spring boot来讲解的。例如springmvc，ssh等xml配置都是差不多的</p>
 
-<h3>首先我们来添加pom文件依赖</h3>
+<h3 id="首先我们来添加pom文件依赖">首先我们来添加pom文件依赖</h3>
 
-<pre><code class="xml">&lt;dependency&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-&lt;/dependency&gt;
-</code></pre>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-mongodb<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
 
 <p>这个依赖大家可以进去看看，里面已经包括了driver和data的包，不是spring-boot的话是要添加以下这两个包了</p>
 
-<pre><code class="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.mongodb&lt;/groupId&gt;
-    &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt;
-    &lt;version&gt;2.12.3&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.data&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-data-mongodb&lt;/artifactId&gt;
-    &lt;version&gt;1.2.0.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.mongodb<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>mongo-java-driver<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.12.3<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.data<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-data-mongodb<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.2.0.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
 
-<h3>xml配置mongodb</h3>
+<h3 id="xml配置mongodb">xml配置mongodb</h3>
 
-<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mongo="http://www.springframework.org/schema/data/mongo" xsi:schemaLocation="http://www.springframework.org/schema/context
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span> <span class="na">xmlns:mongo=</span><span class="s">"http://www.springframework.org/schema/data/mongo"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/context
           http://www.springframework.org/schema/context/spring-context-3.0.xsd
           http://www.springframework.org/schema/data/mongo
           http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
           http://www.springframework.org/schema/beans
-          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"&gt;
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"</span><span class="nt">&gt;</span>
 
-    &lt;mongo:mongo replica-set="192.168.30.181:27017,192.168.30.183:27017"&gt;
-        &lt;mongo:options connections-per-host="8"  auto-connect-retry="true" socket-keep-alive="true"  slave-ok="true"  /&gt;
-    &lt;/mongo:mongo&gt;
+    <span class="nt">&lt;mongo:mongo</span> <span class="na">replica-set=</span><span class="s">"192.168.30.181:27017,192.168.30.183:27017"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;mongo:options</span> <span class="na">connections-per-host=</span><span class="s">"8"</span>  <span class="na">auto-connect-retry=</span><span class="s">"true"</span> <span class="na">socket-keep-alive=</span><span class="s">"true"</span>  <span class="na">slave-ok=</span><span class="s">"true"</span>  <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/mongo:mongo&gt;</span>
 
-    &lt;mongo:db-factory dbname="product" mongo-ref="mongo" /&gt;
+    <span class="nt">&lt;mongo:db-factory</span> <span class="na">dbname=</span><span class="s">"product"</span> <span class="na">mongo-ref=</span><span class="s">"mongo"</span> <span class="nt">/&gt;</span>
 
-    &lt;bean id="mappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" /&gt;
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"mappingContext"</span> <span class="na">class=</span><span class="s">"org.springframework.data.mongodb.core.mapping.MongoMappingContext"</span> <span class="nt">/&gt;</span>
 
-    &lt;bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper"&gt;
-        &lt;constructor-arg name="typeKey"&gt;&lt;null /&gt;&lt;/constructor-arg&gt;
-    &lt;/bean&gt;
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"defaultMongoTypeMapper"</span> <span class="na">class=</span><span class="s">"org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">"typeKey"</span><span class="nt">&gt;&lt;null</span> <span class="nt">/&gt;&lt;/constructor-arg&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
 
-    &lt;bean id="mappingMongoConverter" class="org.springframework.data.mongodb.core.convert.MappingMongoConverter"&gt;
-        &lt;constructor-arg name="mongoDbFactory" ref="mongoDbFactory" /&gt;
-        &lt;constructor-arg name="mappingContext" ref="mappingContext" /&gt;
-        &lt;property name="typeMapper" ref="defaultMongoTypeMapper" /&gt;
-    &lt;/bean&gt;
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"mappingMongoConverter"</span> <span class="na">class=</span><span class="s">"org.springframework.data.mongodb.core.convert.MappingMongoConverter"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">"mongoDbFactory"</span> <span class="na">ref=</span><span class="s">"mongoDbFactory"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">"mappingContext"</span> <span class="na">ref=</span><span class="s">"mappingContext"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"typeMapper"</span> <span class="na">ref=</span><span class="s">"defaultMongoTypeMapper"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
 
-    &lt;bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate"&gt;
-        &lt;constructor-arg name="mongoDbFactory" ref="mongoDbFactory" /&gt;
-        &lt;constructor-arg name="mongoConverter" ref="mappingMongoConverter" /&gt;
-    &lt;/bean&gt;
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"mongoTemplate"</span> <span class="na">class=</span><span class="s">"org.springframework.data.mongodb.core.MongoTemplate"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">"mongoDbFactory"</span> <span class="na">ref=</span><span class="s">"mongoDbFactory"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">"mongoConverter"</span> <span class="na">ref=</span><span class="s">"mappingMongoConverter"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
 
-&lt;/beans&gt;
-</code></pre>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></div></div>
 
-<h3>然后代码里面就可以引用这个配置文件了</h3>
+<h3 id="然后代码里面就可以引用这个配置文件了">然后代码里面就可以引用这个配置文件了</h3>
 
-<pre><code class="java">@Configuration
-@EnableAutoConfiguration
-@EnableAspectJAutoProxy(proxyTargetClass = true)
-@ComponentScan("com.xiangrikui.content")
-@ImportResource("classpath:mongo.xml")
-public class ApiService extends WebMvcConfigurerAdapter {
-    @Autowired
-    HttpInterceptor httpInterceptor;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableAutoConfiguration</span>
+<span class="nd">@EnableAspectJAutoProxy</span><span class="o">(</span><span class="n">proxyTargetClass</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="s">"com.xiangrikui.content"</span><span class="o">)</span>
+<span class="nd">@ImportResource</span><span class="o">(</span><span class="s">"classpath:mongo.xml"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiService</span> <span class="kd">extends</span> <span class="nc">WebMvcConfigurerAdapter</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="nc">HttpInterceptor</span> <span class="n">httpInterceptor</span><span class="o">;</span>
 
-    public static void main(String[] args) {
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 
-        SpringApplication.run(ApiService.class, args);
-    }
-}
-</code></pre>
+        <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">ApiService</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>说完xml配置，那我们来谈谈注解配置。作为spring的脑残粉，xml当然是我们最痛恨的配置了，又长又啰嗦，注解才是我们需要的配置。spring boot本身就是“约定大于配置”而开发出来的框架，那spring boot如何注解配置呢，现在道来！</p>
 
 <p>作为程序员，学一样东西当然先去下载，然后看官方文档啦，官方给出的配置是这样滴：</p>
 
-<pre><code class="Bash"># MONGODB (MongoProperties)
+<pre><code class="language-Bash"># MONGODB (MongoProperties)
 spring.data.mongodb.host= # the db host
 spring.data.mongodb.port=27017 # the connection port (defaults to 27107)
 spring.data.mongodb.uri=mongodb://localhost/test # connection URL
@@ -240,32 +240,32 @@ spring.data.mongodb.repositories.enabled=true # if spring data repository suppor
 
 <p>这样是默认的配置，在此，叶子先不使用默认配置，教教大家如何配置自定义mongodb的bean。 spring会默认读取官方配置文件里面的配置，然后构建mongoTemplate。看里面源码可以知道，生成mongoTemplate需要一个MongoDbFactory</p>
 
-<pre><code class="java">/**
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
  * Constructor used for a basic template configuration.
  *
  * @param mongoDbFactory must not be {@literal null}.
- */
-public MongoTemplate(MongoDbFactory mongoDbFactory) {
-    this(mongoDbFactory, null);
-}
-</code></pre>
+ */</span>
+<span class="kd">public</span> <span class="nf">MongoTemplate</span><span class="o">(</span><span class="nc">MongoDbFactory</span> <span class="n">mongoDbFactory</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">this</span><span class="o">(</span><span class="n">mongoDbFactory</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>而生成mongoDbFactory的实现SimpleMongoDbFactory又需要mongo这个类</p>
 
-<pre><code class="java">/**
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
  * Create an instance of {@link SimpleMongoDbFactory} given the {@link Mongo} instance and database name.
  *
  * @param mongo Mongo instance, must not be {@literal null}.
  * @param databaseName database name, not be {@literal null} or empty.
- */
-public SimpleMongoDbFactory(Mongo mongo, String databaseName) {
-    this(mongo, databaseName, null);
-}
-</code></pre>
+ */</span>
+<span class="kd">public</span> <span class="nf">SimpleMongoDbFactory</span><span class="o">(</span><span class="nc">Mongo</span> <span class="n">mongo</span><span class="o">,</span> <span class="nc">String</span> <span class="n">databaseName</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">this</span><span class="o">(</span><span class="n">mongo</span><span class="o">,</span> <span class="n">databaseName</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <p>但是细心的开发者可以看出mongo这个类已经放弃使用，里面方法也都是过期了，怎么办啊？ 别急，叶子找到了MongoClient这个类，继承了mongo类，持有MongoClientOptions的操作配置！这不就是我们要找的吗？</p>
 
-<pre><code class="java">/*
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
  * Copyright (c) 2008-2014 MongoDB, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -279,108 +279,107 @@ public SimpleMongoDbFactory(Mongo mongo, String databaseName) {
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ */</span>
 
-package com.mongodb;
+<span class="kn">package</span> <span class="nn">com.mongodb</span><span class="o">;</span>
 
-import java.net.UnknownHostException;
-import java.util.List;
+<span class="kn">import</span> <span class="nn">java.net.UnknownHostException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
 
-public class MongoClient extends Mongo {
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MongoClient</span> <span class="kd">extends</span> <span class="nc">Mongo</span> <span class="o">{</span>
 
-    private final MongoClientOptions options;
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">MongoClientOptions</span> <span class="n">options</span><span class="o">;</span>
 
-    public MongoClient() throws UnknownHostException {
-        this(new ServerAddress());
-    }
-
-
-    public MongoClient(String host, int port) throws UnknownHostException {
-        this(new ServerAddress(host, port));
-    }
-
-    public MongoClient(ServerAddress addr) {
-        this(addr, new MongoClientOptions.Builder().build());
-    }
+    <span class="kd">public</span> <span class="nf">MongoClient</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="k">new</span> <span class="nc">ServerAddress</span><span class="o">());</span>
+    <span class="o">}</span>
 
 
-    public MongoClient(ServerAddress addr, MongoClientOptions options) {
-        this(addr, null, options);
-    }
+    <span class="kd">public</span> <span class="nf">MongoClient</span><span class="o">(</span><span class="nc">String</span> <span class="n">host</span><span class="o">,</span> <span class="kt">int</span> <span class="n">port</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="k">new</span> <span class="nc">ServerAddress</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">MongoClient</span><span class="o">(</span><span class="nc">ServerAddress</span> <span class="n">addr</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">addr</span><span class="o">,</span> <span class="k">new</span> <span class="nc">MongoClientOptions</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">build</span><span class="o">());</span>
+    <span class="o">}</span>
 
 
-    public MongoClient(List&lt;ServerAddress&gt; seeds, List&lt;MongoCredential&gt; credentialsList) {
-        this(seeds, credentialsList, new MongoClientOptions.Builder().build());
-    }
+    <span class="kd">public</span> <span class="nf">MongoClient</span><span class="o">(</span><span class="nc">ServerAddress</span> <span class="n">addr</span><span class="o">,</span> <span class="nc">MongoClientOptions</span> <span class="n">options</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">addr</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    public MongoClient(MongoClientURI uri) throws UnknownHostException {
-        super(new MongoURI(uri));
-        this.options = uri.getOptions();
-    }
 
-    public List&lt;MongoCredential&gt; getCredentialsList() {
-        return getAuthority().getCredentialsStore().asList();
-    }
+    <span class="kd">public</span> <span class="nf">MongoClient</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">ServerAddress</span><span class="o">&gt;</span> <span class="n">seeds</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">MongoCredential</span><span class="o">&gt;</span> <span class="n">credentialsList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">seeds</span><span class="o">,</span> <span class="n">credentialsList</span><span class="o">,</span> <span class="k">new</span> <span class="nc">MongoClientOptions</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">build</span><span class="o">());</span>
+    <span class="o">}</span>
 
-    public MongoClientOptions getMongoClientOptions() {
-        return options;
-    }
-}
-</code></pre>
+    <span class="kd">public</span> <span class="nf">MongoClient</span><span class="o">(</span><span class="nc">MongoClientURI</span> <span class="n">uri</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="k">new</span> <span class="nc">MongoURI</span><span class="o">(</span><span class="n">uri</span><span class="o">));</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">options</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="na">getOptions</span><span class="o">();</span>
+    <span class="o">}</span>
 
-<p>我删除这个类大部分不需要的方法，只留一些，方便各位小伙伴阅读。其中可以看出，集群不集群其实就是一个你是不是用集合地址的问题，ServerAddress如果是集合list的话，那就是集群了！是不是很简单 还有一种就是MongoClientURI，看里面源码就知道里面其实就是一个简单的截取字符串,我这里不全部讲解了，里面有个函数大家可以看看：Collections.addAll(all, serverPart.split(",")); 简单来说就是多个uri用逗号分隔。说到这里大家会惊叹，我TMD这样就集群了？太简单了吧！ 对于mongodb本身已经配置好集群，开发者再用代码去配置，确实很简单就能集群了 看图说话：</p>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">MongoCredential</span><span class="o">&gt;</span> <span class="nf">getCredentialsList</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getAuthority</span><span class="o">().</span><span class="na">getCredentialsStore</span><span class="o">().</span><span class="na">asList</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">MongoClientOptions</span> <span class="nf">getMongoClientOptions</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">options</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>我删除这个类大部分不需要的方法，只留一些，方便各位小伙伴阅读。其中可以看出，集群不集群其实就是一个你是不是用集合地址的问题，ServerAddress如果是集合list的话，那就是集群了！是不是很简单 还有一种就是MongoClientURI，看里面源码就知道里面其实就是一个简单的截取字符串,我这里不全部讲解了，里面有个函数大家可以看看：Collections.addAll(all, serverPart.split(“,”)); 简单来说就是多个uri用逗号分隔。说到这里大家会惊叹，我TMD这样就集群了？太简单了吧！ 对于mongodb本身已经配置好集群，开发者再用代码去配置，确实很简单就能集群了 看图说话：</p>
 
 <p><img src="http://7te9zv.com1.z0.glb.clouddn.com/mongorep2.png" alt="image" /></p>
 
-<h3>言归正传！ 叶子的配置：</h3>
+<h3 id="言归正传-叶子的配置">言归正传！ 叶子的配置：</h3>
 
-<pre><code class="Bash">#mongodb的uri，集群的话用逗号分隔
+<pre><code class="language-Bash">#mongodb的uri，集群的话用逗号分隔
 mongodb.uri=mongodb://192.168.30.181:27017,192.168.30.183:27017
 mongodb.database=reader_production
 </code></pre>
 
 <p>然后新建一个mongodb配置类</p>
 
-<pre><code class="java">@Configuration
-public class MongoConfiguration {
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MongoConfiguration</span> <span class="o">{</span>
 
-    @Value("${mongodb.uri}")
-    private String mongoURI;
-    @Value("${mongodb.database}")
-    private String dataBase;
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${mongodb.uri}"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">mongoURI</span><span class="o">;</span>
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${mongodb.database}"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">dataBase</span><span class="o">;</span>
 
-    @Bean
-    public MongoTemplate mongoTemplate() throws UnknownHostException {
-//        List&lt;ServerAddress&gt; serverAddresses = Lists.newArrayList();
-//        serverAddresses.add(new ServerAddress("192.168.30.181",27017));
-//        serverAddresses.add(new ServerAddress("192.168.30.183",27017));
-//        MongoClient client = new MongoClient(serverAddresses);
-        MongoClient client = new MongoClient(new MongoClientURI(mongoURI));
-        //优先从secondary节点进行读取操作，secondary节点不可用时从主节点读取数据
-        client.setReadPreference(ReadPreference.secondaryPreferred());
-        MongoDbFactory mongoDbFactory = new SimpleMongoDbFactory(client,dataBase);
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory);
-        MappingMongoConverter mongoConverter = (MappingMongoConverter) mongoTemplate.getConverter();
-        //把spring data mongodb _class这个字段去掉
-        mongoConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
-        return mongoTemplate;
-    }
-}
-client.setReadPreference(ReadPreference.secondaryPreferred());
-</code></pre>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">MongoTemplate</span> <span class="nf">mongoTemplate</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">UnknownHostException</span> <span class="o">{</span>
+<span class="c1">//        List&lt;ServerAddress&gt; serverAddresses = Lists.newArrayList();</span>
+<span class="c1">//        serverAddresses.add(new ServerAddress("192.168.30.181",27017));</span>
+<span class="c1">//        serverAddresses.add(new ServerAddress("192.168.30.183",27017));</span>
+<span class="c1">//        MongoClient client = new MongoClient(serverAddresses);</span>
+        <span class="nc">MongoClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MongoClient</span><span class="o">(</span><span class="k">new</span> <span class="nc">MongoClientURI</span><span class="o">(</span><span class="n">mongoURI</span><span class="o">));</span>
+        <span class="c1">//优先从secondary节点进行读取操作，secondary节点不可用时从主节点读取数据</span>
+        <span class="n">client</span><span class="o">.</span><span class="na">setReadPreference</span><span class="o">(</span><span class="nc">ReadPreference</span><span class="o">.</span><span class="na">secondaryPreferred</span><span class="o">());</span>
+        <span class="nc">MongoDbFactory</span> <span class="n">mongoDbFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleMongoDbFactory</span><span class="o">(</span><span class="n">client</span><span class="o">,</span><span class="n">dataBase</span><span class="o">);</span>
+        <span class="nc">MongoTemplate</span> <span class="n">mongoTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MongoTemplate</span><span class="o">(</span><span class="n">mongoDbFactory</span><span class="o">);</span>
+        <span class="nc">MappingMongoConverter</span> <span class="n">mongoConverter</span> <span class="o">=</span> <span class="o">(</span><span class="nc">MappingMongoConverter</span><span class="o">)</span> <span class="n">mongoTemplate</span><span class="o">.</span><span class="na">getConverter</span><span class="o">();</span>
+        <span class="c1">//把spring data mongodb _class这个字段去掉</span>
+        <span class="n">mongoConverter</span><span class="o">.</span><span class="na">setTypeMapper</span><span class="o">(</span><span class="k">new</span> <span class="nc">DefaultMongoTypeMapper</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">mongoTemplate</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="n">client</span><span class="o">.</span><span class="na">setReadPreference</span><span class="o">(</span><span class="nc">ReadPreference</span><span class="o">.</span><span class="na">secondaryPreferred</span><span class="o">());</span>
+
+</code></pre></div></div>
 
 <p>这里声明了主从模式是怎么样的，但是有个疑问就是，为啥mongoclient已经持有操作类，但是在mongoTemplate也持有呢？代码如此啰嗦是为什么？知道的可以告诉一下叶子哈:)</p>
 
-<h3>主从模式基本参数是：</h3>
-
-<pre><code>primary:默认参数，只从主节点上进行读取操作；
+<h3 id="主从模式基本参数是">主从模式基本参数是：</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>primary:默认参数，只从主节点上进行读取操作；
 primaryPreferred:大部分从主节点上读取数据,只有主节点不可用时从secondary节点读取数据。
 secondary:只从secondary节点上进行读取操作，存在的问题是secondary节点的数据会比primary节点数据“旧”。
 secondaryPreferred:优先从secondary节点进行读取操作，secondary节点不可用时从主节点读取数据；
-nearest:不管是主节点、secondary节点，从网络延迟最低的节点上读取数据。
-</code></pre>
+nearest:不管是主节点、secondary节点，从网络延迟最低的节点上读取数据。 这样就完成配置，xml和注解都一样是需要引入mongoTemplate才能去做操作的，如何操作这里就不作介绍了，以免文章杂而无章。
+</code></pre></div></div>
 
-<p>这样就完成配置，xml和注解都一样是需要引入mongoTemplate才能去做操作的，如何操作这里就不作介绍了，以免文章杂而无章。</p>
 
 
         </section>
@@ -463,7 +462,7 @@ nearest:不管是主节点、secondary节点，从网络延迟最低的节点上
 
 
         <footer class="site-footer clearfix">
-          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2016</section>
+          <section class="copyright"><a href="/">叶子的博客</a> &copy; 2023</section>
           <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
       </footer>
   </div>

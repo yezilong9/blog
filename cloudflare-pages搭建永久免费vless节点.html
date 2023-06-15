@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- [[! Page Meta ]] -->
-    <title>maven构建不同环境读取不同的配置文件</title>
+    <title>cloudflare pages搭建永久免费vless节点</title>
     <meta name="description" content="叶子的博客 - 遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
 
     <meta name="HandheldFriendly" content="True" />
@@ -116,116 +116,134 @@
     <article class="post tag-fiction">
 
         <header class="post-header">
-            <h1 class="post-title">maven构建不同环境读取不同的配置文件</h1>
+            <h1 class="post-title">cloudflare pages搭建永久免费vless节点</h1>
             <!-- <a href='/'>叶子</a> -->
             <section class="post-meta">
                 
                 on
                 
                     
-                       <a href='/tag/maven'>Maven</a>
+                       <a href='/tag/utils'>Utils</a>
                     
                 
                 
-                <time class="post-date" datetime="2015-01-01">2015-01-01</time>
+                <time class="post-date" datetime="2023-06-14">2023-06-14</time>
             </section>
         </header>
 
         <section class="post-content" style="margin-top: 40px;">
 
-            <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。</p>
+            <p>本教程主要用于学习如何搭建vless</p>
 
-<p>首先，我已一个spring-boot项目为例子讲解，举一反三，其他项目也是同样原理的，或者有部分配置不同而已。</p>
+<h2 id="注册cloudflare">注册cloudflare</h2>
 
-<h3 id="pomxml代码">pom.xml代码:</h3>
-<p>在project根下加入</p>
+<blockquote>
+  <p>Cloudflare 是全球知名的CDN服务商，还有各种例如反代、内网穿透、ssl等功能，能够很好的帮助你的网站提升体验，个人免费的套餐就已经足够我们日常使用了</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;profiles&gt;</span>
+  <p>其中里面有worker和pages，pages可以帮助部署项目，比github pages更为强大，我们这次就是利用这个pages免费为我们搭建一个vless节点服务</p>
+</blockquote>
 
- <span class="c">&lt;!-- 开发环境，默认激活 --&gt;</span>
-     <span class="nt">&lt;profile&gt;</span>
-        <span class="nt">&lt;id&gt;</span>dev<span class="nt">&lt;/id&gt;</span>
-      <span class="nt">&lt;properties&gt;</span>
-         <span class="nt">&lt;env&gt;</span>dev<span class="nt">&lt;/env&gt;</span>
-       <span class="nt">&lt;/properties&gt;</span>
-       <span class="nt">&lt;activation&gt;</span>
-            <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
-       <span class="nt">&lt;/activation&gt;</span>
- <span class="nt">&lt;/profile&gt;</span>
+<p>前往<a href="https://www.cloudflare-cn.com/plans/">cloudflare</a> 点击页面下方免费套餐</p>
 
- <span class="c">&lt;!-- 测服 --&gt;</span>
- <span class="nt">&lt;profile&gt;</span>
-      <span class="nt">&lt;id&gt;</span>test<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;properties&gt;</span>
-           <span class="nt">&lt;env&gt;</span>test<span class="nt">&lt;/env&gt;</span>
-        <span class="nt">&lt;/properties&gt;</span>
- <span class="nt">&lt;/profile&gt;</span>
+<p><img src="../assets/images/image-20230614174502783.png" alt="image-20230614174502783" /></p>
 
- <span class="c">&lt;!-- 正服 --&gt;</span>
-  <span class="nt">&lt;profile&gt;</span>
-      <span class="nt">&lt;id&gt;</span>product<span class="nt">&lt;/id&gt;</span>
-       <span class="nt">&lt;properties&gt;</span>
-         <span class="nt">&lt;env&gt;</span>product<span class="nt">&lt;/env&gt;</span>
-       <span class="nt">&lt;/properties&gt;</span>
-  <span class="nt">&lt;/profile&gt;</span>
+<p>注册流程非常简单，这里不再作详细说明了，大家记得<strong>验证邮箱</strong></p>
 
- <span class="nt">&lt;/profiles&gt;</span>
-</code></pre></div></div>
+<h2 id="github导入项目">github导入项目</h2>
 
-<h3 id="然后找到build根节点在里面加入资源路径引入">然后找到build根节点，在里面加入资源路径引入</h3>
+<p>登录自己的github点击添加项目</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--资源引入--&gt;</span>
-<span class="nt">&lt;resources&gt;</span>
-     <span class="nt">&lt;resource&gt;</span>
-           <span class="nt">&lt;directory&gt;</span>${project.basedir}/src/main/resources/${env}<span class="nt">&lt;/directory&gt;</span>
-        <span class="nt">&lt;includes&gt;</span>
-             <span class="nt">&lt;include&gt;</span>application.properties<span class="nt">&lt;/include&gt;</span>
-        <span class="nt">&lt;/includes&gt;</span>
-      <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span><span class="c">&lt;!--这个相当重要，不加就不能动态构建不同资源了--&gt;</span>
-     <span class="nt">&lt;/resource&gt;</span>
- <span class="nt">&lt;/resources&gt;</span>
+<p><img src="../assets/images/image-20230614174711048.png" alt="image-20230614174711048" /></p>
 
+<p>名字自选，但是克隆的项目地址填写：https://github.com/yezilong9/tunnel.git</p>
 
+<blockquote>
+  <p>这是基于一个开源的项目 <a href="https://github.com/zizifn/edgetunnel">edgetunnel</a></p>
+</blockquote>
 
-<span class="c">&lt;!--构建的主要插件--&gt;</span>
- <span class="nt">&lt;plugins&gt;</span>
-      <span class="nt">&lt;plugin&gt;</span>
-         <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
-         <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-      <span class="nt">&lt;/plugin&gt;</span>
+<p><img src="../assets/images/image-20230614175635842.png" alt="image-20230614175635842" /></p>
 
- <span class="nt">&lt;plugin&gt;</span>
-      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-      <span class="nt">&lt;artifactId&gt;</span>maven-war-plugin<span class="nt">&lt;/artifactId&gt;</span>
-      <span class="nt">&lt;configuration&gt;</span>
-         <span class="nt">&lt;warName&gt;</span>tiles<span class="nt">&lt;/warName&gt;</span>
-       <span class="nt">&lt;archive&gt;</span>
-         <span class="nt">&lt;addMavenDescriptor&gt;</span>false<span class="nt">&lt;/addMavenDescriptor&gt;</span>
-       <span class="nt">&lt;/archive&gt;</span>
-   <span class="nt">&lt;webResources&gt;</span>
-       <span class="nt">&lt;resource&gt;</span>
-           <span class="nt">&lt;directory&gt;</span>src/main/resources/${env}/application.properties<span class="nt">&lt;/directory&gt;</span>
-           <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
-       <span class="nt">&lt;/resource&gt;</span>
-   <span class="nt">&lt;/webResources&gt;</span>
-       <span class="nt">&lt;/configuration&gt;</span>
- <span class="nt">&lt;/plugin&gt;</span>
+<p>点击begin import完成项目的导入</p>
 
- <span class="nt">&lt;/plugins&gt;</span>
-</code></pre></div></div>
-<p>大家请看插件中有war包的插件，这个就是最终构建成可发布版本时用到的。</p>
+<h2 id="回到cloudflare部署">回到cloudflare部署</h2>
 
-<p>当中webResources就是读取项目中的配置文件操作，请细看里面部分，directory就是读取的配置文件路径${env}大家应该都知道了，就是我们上面配置的项目环境的变量，当打包为test的时候，env = test。所以这样就能直接构建时动态读取需要的配置文件了。</p>
+<p>登录后台</p>
 
-<h3 id="最后的知识点重要">最后的知识点（重要）：</h3>
+<ol>
+  <li>点击左边栏Workers &amp; Pages</li>
+  <li>切换到Pages的tab上</li>
+  <li>点击中间Connect to Git</li>
+</ol>
 
-<pre><code class="language-Bash">这样我们就能打包时传入构建项目的目标环境了。。。
-命令如下：mvn clean package -P目标环境代码
-如我要配置到测试环境的，那就是mvn clean package -Ptest
-so：之后我会和大家探讨jenkins，那jenkins就可以约定好测试环境为test，生产是product来构建项目了。（后话）
-其他配置我就不写上去了，其他只不过就是项目的名称版本和所拥有的依赖。
+<p><img src="../assets/images/image-20230615101747261.png" alt="image-20230615101747261" /></p>
 
-</code></pre>
+<ol>
+  <li>点击后会进入新页面，这里选择我们刚刚建好的项目</li>
+</ol>
+
+<p><img src="../assets/images/image-20230615102033551.png" alt="image-20230615102033551" /></p>
+
+<ol>
+  <li>
+    <p>跳转页面后填入自己的项目名字（这里随便填，但是最好不要出现xray、vmess、vless、ss、trojan等等节点协议字眼），<strong>Production branch</strong> 选择<strong>online</strong></p>
+  </li>
+  <li>
+    <p>来到Build settings，参数固定如下图</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>参数</th>
+          <th>参数值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Build command</strong></td>
+          <td>npm run cf-page-vless</td>
+        </tr>
+        <tr>
+          <td><strong>Build output directory</strong></td>
+          <td>dist/apps/cf-page-vless</td>
+        </tr>
+        <tr>
+          <td>UUID</td>
+          <td>通过 <a href="https://1024tools.com/uuid">uuid工具</a>生成即可</td>
+        </tr>
+        <tr>
+          <td>NODE_VERSION</td>
+          <td>18</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><img src="../assets/images/image-20230615102826402.png" alt="image-20230615102826402" /></p>
+
+    <p>这个UUID需要大家记录一下，因为是作为你连接的password用的</p>
+  </li>
+  <li>
+    <p>最后点击Save and Deploy部署即可，需要等待3-5分钟左右，部署完成后会出现</p>
+
+    <p><img src="../assets/images/image-20230615103747166.png" alt="image-20230615103747166" /></p>
+  </li>
+  <li>
+    <p>这时回到Pages页面，复制项目链接到浏览器，即可访问</p>
+
+    <p><img src="../assets/images/image-20230615103844518.png" alt="image-20230615103844518" /></p>
+  </li>
+  <li>
+    <p>如果页面弹出用户名密码输入框，只需在用户名上填入生成的uuid就可以进入页面，点击分享V2ray生成vless节点连接</p>
+
+    <p><img src="../assets/images/image-20230615104146878.png" alt="image-20230615104146878" /></p>
+  </li>
+  <li>
+    <p>保存好连接地址，打开你的手机，打开支持vless协议的VPN工具快乐地科学上网吧</p>
+  </li>
+</ol>
+
+<p>说到这里部署流程已经完成了，免费的Cloudflare服务每个worker + pages 一共每天请求不能超过10万次，我感觉查查资料学习绝对是足够的，只要不是看视频</p>
+
+<h2 id="最后最后奉劝大家科学上网之余千万别把账号链接提供他人或作盈利之用这有可能触犯刑法后果严重">最后最后，奉劝大家科学上网之余千万别把账号、链接提供他人，或作盈利之用，这有可能触犯刑法，后果严重</h2>
 
 
         </section>
@@ -257,15 +275,15 @@ so：之后我会和大家探讨jenkins，那jenkins就可以约定好测试环�
 
             <section class="share">
                 <h4>Share this post</h4>
-                <a class="icon-twitter" href="http://twitter.com/share?text=maven构建不同环境读取不同的配置文件&amp;url=http://blog.lo168.com/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"
+                <a class="icon-twitter" href="http://twitter.com/share?text=cloudflare pages搭建永久免费vless节点&amp;url=http://blog.lo168.com/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9"
                     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>
                 </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.lo168.com/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.lo168.com/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9"
                     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <span class="hidden">Facebook</span>
                 </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.lo168.com/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.lo168.com/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9"
                    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <span class="hidden">Google+</span>
                 </a>
@@ -284,15 +302,27 @@ so：之后我会和大家探讨jenkins，那jenkins就可以约定好测试环�
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story no-cover" href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">
-            <section class="post">
-                <h2>twemproxy 部署文档</h2>
-                <p>### 简介 twemproxy 主要用于Redis 和 Memcached 的集群代理 ### 功能介绍 我们知道，无论是 Memcached 还是当前的 Redis，其本身都不具备分布式集群特性，当我们有大量 Redis 或...</p>
-            </section>
-        </a>
-    
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev no-cover" href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82">
+            <section class="post">
+                <h2>让SpringMVC接收PUT方法</h2>
+                <p>暂时只支持 application/x-www-form-urlencoded
+
+spring加入bean
+
+@Bean
+public Filter initializeHttpPutHandler(){
+	return new HttpPutFormContentFilter();
+}
+
+
+即可使springmvc程序接收put的form表单请求。暂时只支持application/x-www-form-urlencoded
+后续会开发form-data的方式
+</p>
+            </section>
+        </a>
     
     <!-- [[! /prev_post ]] -->
 </aside>
