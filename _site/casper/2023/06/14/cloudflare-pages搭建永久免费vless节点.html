@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>cloudflare pages搭建永久免费vless节点</title>
+    <meta name="description" content=" - Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/prettify.css" />
+
+    <!-- <script src="assets/js/jquery.min.js"></script> -->
+    <!-- <style>.hljs { background: none; }</style> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script> -->
+
+   <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+       <link rel="canonical" href="" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="page2/" />
+
+    <meta property="og:site_name" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:image:src" content="assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Finding The Way Home",
+    "url": "",
+    "image": "assets/images/cover1.jpg",
+    "description": "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="" href="feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">菜单</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">关闭</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="">主页</a></li>
+        <li class="nav-about " role="presentation"><a href="about">About</a></li>
+        <!-- <li class="nav-fables " role="presentation"><a href="tag/fables">Fables</a></li> -->
+        <!-- <li class="nav-speeches " role="presentation"><a href="tag/speeches">Speeches</a></li> -->
+        <!-- <li class="nav-fiction " role="presentation"><a href="tag/fiction">Fiction</a></li> -->
+        <li class="nav-author " role="presentation"><a href="author/casper">关于</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="feed.xml">订阅</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head"  style="background-image: url(assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
+        
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
+        
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</h2>
+        </div>
+    </div>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">cloudflare pages搭建永久免费vless节点</h1>
+            <!-- <a href=''></a> -->
+            <section class="post-meta">
+                
+                on
+                
+                    
+                       <a href='tag/utils'>Utils</a>
+                    
+                
+                
+                <time class="post-date" datetime="2023-06-14">2023-06-14</time>
+            </section>
+        </header>
+
+        <section class="post-content" style="margin-top: 40px;">
+
+            <p>[TOC]</p>
+
+<h2 id="注册cloudflare">注册cloudflare</h2>
+
+<blockquote>
+  <p>Cloudflare 是全球知名的CDN服务商，还有各种例如反代、内网穿透、ssl等功能，能够很好的帮助你的网站提升体验，个人免费的套餐就已经足够我们日常使用了</p>
+
+  <p>其中里面有worker和pages，pages可以帮助部署项目，比github pages更为强大，我们这次就是利用这个pages免费为我们搭建一个vless节点服务</p>
+</blockquote>
+
+<p>前往<a href="https://www.cloudflare-cn.com/plans/">cloudflare</a> 点击页面下方免费套餐</p>
+
+<p><img src="../assets/images/image-20230614174502783.png" alt="image-20230614174502783" /></p>
+
+<p>注册流程非常简单，这里不再作详细说明了，大家记得<strong>验证邮箱</strong></p>
+
+<h2 id="github导入项目">github导入项目</h2>
+
+<p>登录自己的github点击添加项目</p>
+
+<p><img src="../assets/images/image-20230614174711048.png" alt="image-20230614174711048" /></p>
+
+<p>名字自选，但是克隆的项目地址填写：https://github.com/yezilong9/tunnel.git</p>
+
+<blockquote>
+  <p>这是基于一个开源的项目 <a href="https://github.com/zizifn/edgetunnel">edgetunnel</a></p>
+</blockquote>
+
+<p><img src="../assets/images/image-20230614175635842.png" alt="image-20230614175635842" /></p>
+
+<p>点击begin import完成项目的导入</p>
+
+<h2 id="回到cloudflare部署">回到cloudflare部署</h2>
+
+<p>登录后台</p>
+
+<ol>
+  <li>点击左边栏Workers &amp; Pages</li>
+  <li>切换到Pages的tab上</li>
+  <li>点击中间Connect to Git</li>
+</ol>
+
+<p><img src="../assets/images/image-20230615101747261.png" alt="image-20230615101747261" /></p>
+
+<ol>
+  <li>点击后会进入新页面，这里选择我们刚刚建好的项目</li>
+</ol>
+
+<p><img src="../assets/images/image-20230615102033551.png" alt="image-20230615102033551" /></p>
+
+<ol>
+  <li>
+    <p>跳转页面后填入自己的项目名字（这里随便填，但是最好不要出现xray、vmess、vless、ss、trojan等等节点协议字眼），<strong>Production branch</strong> 选择<strong>online</strong></p>
+  </li>
+  <li>
+    <p>来到Build settings，参数固定如下图</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>参数</th>
+          <th>参数值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Build command</strong></td>
+          <td>npm run cf-page-vless</td>
+        </tr>
+        <tr>
+          <td><strong>Build output directory</strong></td>
+          <td>dist/apps/cf-page-vless</td>
+        </tr>
+        <tr>
+          <td>UUID</td>
+          <td>通过 <a href="https://1024tools.com/uuid">uuid工具</a>生成即可</td>
+        </tr>
+        <tr>
+          <td>NODE_VERSION</td>
+          <td>18</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><img src="../assets/images/image-20230615102826402.png" alt="image-20230615102826402" /></p>
+
+    <p>这个UUID需要大家记录一下，因为是作为你连接的password用的</p>
+  </li>
+  <li>
+    <p>最后点击Save and Deploy部署即可，需要等待3-5分钟左右，部署完成后会出现</p>
+
+    <p><img src="../assets/images/image-20230615103747166.png" alt="image-20230615103747166" /></p>
+  </li>
+  <li>
+    <p>这时回到Pages页面，复制项目链接到浏览器，即可访问</p>
+
+    <p><img src="../assets/images/image-20230615103844518.png" alt="image-20230615103844518" /></p>
+  </li>
+  <li>
+    <p>如果页面弹出用户名密码输入框，只需在用户名上填入生成的uuid就可以进入页面，点击分享V2ray生成vless节点连接</p>
+
+    <p><img src="../assets/images/image-20230615104146878.png" alt="image-20230615104146878" /></p>
+  </li>
+  <li>
+    <p>保存好连接地址，打开你的手机，打开支持vless协议的VPN工具快乐地科学上网吧</p>
+  </li>
+</ol>
+
+<p>说到这里部署流程已经完成了，免费的Cloudflare服务每个worker + pages 一共每天请求不能超过10万次，我感觉查查资料学习绝对是足够的，只要不是看视频</p>
+
+<h2 id="最后最后奉劝大家科学上网之余千万别把账号链接提供他人或作盈利之用这有可能触犯刑法后果严重">最后最后，奉劝大家科学上网之余千万别把账号、链接提供他人，或作盈利之用，这有可能触犯刑法，后果严重</h2>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+
+            <section class="author">
+                <h4><a href="author/"></a></h4>
+
+                
+                    <p>Read <a href="author/">more posts</a> by this author.</p>
+                
+                <div class="author-meta">
+                    
+                    <span class="author-link icon-link"><a href="http://localhost:4000"> </a></span>
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=cloudflare pages搭建永久免费vless节点&amp;url=http://localhost:4000casper20230614cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000casper20230614cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:4000casper20230614cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story no-cover" href="jekyllupdate20230615welcome-to-jekyll.html">
+            <section class="post">
+                <h2>Welcome to Jekyll!</h2>
+                <p>You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev no-cover" href="casper20150711%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82.html">
+            <section class="post">
+                <h2>让SpringMVC接收PUT方法</h2>
+                <p>暂时只支持 application/x-www-form-urlencoded
+
+spring加入bean
+
+@Bean
+public Filter initializeHttpPutHandler(){
+	return new HttpPutFormContentFilter();
+}
+
+
+即可使springmvc程序接收put的form表单请求。暂时只支持application/x-www-form-urlencoded
+后续会开发form-data的方式
+</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href=""></a> &copy; 2023</section>
+          <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
+      </footer>
+  </div>
+  <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- [[! The main JavaScript file for Casper ]] -->
+  <script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="assets/js/index.js"></script>
+    <script src="assets/js/prettify.js"></script>
+    <script>
+        $(window).load(function(){
+           $("pre").addClass("prettyprint");
+           prettyPrint();
+       })
+   </script>
+  <!-- Add Google Analytics  -->
+      <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', '', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+</body>
+</html>

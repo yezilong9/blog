@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</description>
+    <link>
+    http://localhost:4000</link>
+    
+      
+      <item>
+        <title>Welcome to Jekyll!</title>
+        
+          <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 15 Jun 2023 14:46:03 +0800</pubDate>
+        <link>
+        http://localhost:4000/jekyll/update/2023/06/15/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2023/06/15/welcome-to-jekyll.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>cloudflare pages搭建永久免费vless节点</title>
+        
+          <description>&lt;p&gt;[TOC]&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 14 Jun 2023 18:18:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/casper/2023/06/14/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9.html</link>
+        <guid isPermaLink="true">http://localhost:4000/casper/2023/06/14/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>让SpringMVC接收PUT方法</title>
+        
+          <description>&lt;p&gt;暂时只支持 application/x-www-form-urlencoded&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 11 Jul 2015 18:18:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/casper/2015/07/11/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82.html</link>
+        <guid isPermaLink="true">http://localhost:4000/casper/2015/07/11/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>使用netty构建简单的WebSocket</title>
+        
+          <description>&lt;p&gt;websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 07 Jul 2015 18:18:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/casper/2015/07/07/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket.html</link>
+        <guid isPermaLink="true">http://localhost:4000/casper/2015/07/07/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>设计模式之模板方法(java实现)</title>
+        
+          <description>&lt;p&gt;首先大家可以先想想一个场景，就是炮制饮料。
+我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 06 Apr 2015 18:18:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/casper/2015/04/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0).html</link>
+        <guid isPermaLink="true">http://localhost:4000/casper/2015/04/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0).html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>springboot用maven打独立应用的jar包</title>
+        
+          <description>&lt;p&gt;如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件–重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。
+以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 03 Mar 2015 18:18:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/casper/2015/03/03/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85.html</link>
+        <guid isPermaLink="true">http://localhost:4000/casper/2015/03/03/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>spring mvc mongo集群(xml和注解)</title>
+        
+          <description>&lt;p&gt;最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:)&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 02 Feb 2015 18:18:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/casper/2015/02/02/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3).html</link>
+        <guid isPermaLink="true">http://localhost:4000/casper/2015/02/02/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3).html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>twemproxy 部署文档</title>
+        
+          <description>&lt;h3 id=&quot;简介&quot;&gt;简介&lt;/h3&gt;
+&lt;p&gt;twemproxy 主要用于Redis 和 Memcached 的集群代理&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 04 Jan 2015 18:18:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/casper/2015/01/04/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/casper/2015/01/04/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>maven构建不同环境读取不同的配置文件</title>
+        
+          <description>&lt;p&gt;众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 01 Jan 2015 18:18:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/casper/2015/01/01/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html</link>
+        <guid isPermaLink="true">http://localhost:4000/casper/2015/01/01/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

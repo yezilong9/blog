@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>设计模式之模板方法(java实现)</title>
+    <meta name="description" content=" - Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/prettify.css" />
+
+    <!-- <script src="assets/js/jquery.min.js"></script> -->
+    <!-- <style>.hljs { background: none; }</style> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script> -->
+
+   <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+       <link rel="canonical" href="" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="page2/" />
+
+    <meta property="og:site_name" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:image:src" content="assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Finding The Way Home",
+    "url": "",
+    "image": "assets/images/cover1.jpg",
+    "description": "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="" href="feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">菜单</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">关闭</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="">主页</a></li>
+        <li class="nav-about " role="presentation"><a href="about">About</a></li>
+        <!-- <li class="nav-fables " role="presentation"><a href="tag/fables">Fables</a></li> -->
+        <!-- <li class="nav-speeches " role="presentation"><a href="tag/speeches">Speeches</a></li> -->
+        <!-- <li class="nav-fiction " role="presentation"><a href="tag/fiction">Fiction</a></li> -->
+        <li class="nav-author " role="presentation"><a href="author/casper">关于</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="feed.xml">订阅</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head"  style="background-image: url(assets/images/cover1.jpg)">
+    <nav class="main-nav overlay clearfix">
+        
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">菜单</span></a>
+        
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">
+                
+                <small class="page-description"> &nbsp; Java/Ruby/PHP/JS</small>
+            </h1>
+            <h2 class="page-description">Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</h2>
+        </div>
+    </div>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-fiction">
+
+        <header class="post-header">
+            <h1 class="post-title">设计模式之模板方法(java实现)</h1>
+            <!-- <a href=''></a> -->
+            <section class="post-meta">
+                
+                on
+                
+                    
+                       <a href='tag/java'>Java</a>
+                    
+                
+                
+                <time class="post-date" datetime="2015-04-06">2015-04-06</time>
+            </section>
+        </header>
+
+        <section class="post-content" style="margin-top: 40px;">
+
+            <p>首先大家可以先想想一个场景，就是炮制饮料。
+我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现</p>
+
+<p>新建一个模板类：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * 模板超类
+ */</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">RefreshBeverage</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">prepareBeverageTemplate</span><span class="o">(){</span>
+        <span class="n">boilWater</span><span class="o">();</span><span class="c1">//帮水煮沸</span>
+        <span class="n">brew</span><span class="o">();</span><span class="c1">//炮制饮料</span>
+        <span class="n">pourInCup</span><span class="o">();</span><span class="c1">//倒入杯子中</span>
+        <span class="n">addCondiments</span><span class="o">();</span><span class="c1">//加入调味料</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * 公共方法,private为了限制必须要遵从模板
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">boilWater</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"把水煮沸了！"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">pourInCup</span><span class="o">(){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"倒入杯子中了！"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+
+    <span class="cm">/**
+     * 以下是各自子类不同的方法实现
+     */</span>
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">brew</span><span class="o">();</span>
+
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">addCondiments</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>然后可以看到里面煮水和倒入杯子两个方法，放在任何饮料也是需要执行的，所以我们子类不需要实现，要实现的是其中需要变化的方法。例如加入该饮料的材料和炮制过程</p>
+
+<p>咖啡：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Coffee</span> <span class="kd">extends</span> <span class="nc">RefreshBeverage</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">brew</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"炮制咖啡"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">addCondiments</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"加入糖让咖啡更加甜"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>茶:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tea</span> <span class="kd">extends</span> <span class="nc">RefreshBeverage</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">brew</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"倒入茶叶"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">addCondiments</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"加入牛奶,变成奶茶"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>测试：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span>  <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="o">...</span><span class="na">arg</span><span class="o">){</span>
+        <span class="nc">RefreshBeverage</span> <span class="n">r1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coffee</span><span class="o">();</span>
+        <span class="n">r1</span><span class="o">.</span><span class="na">prepareBeverageTemplate</span><span class="o">();</span>
+
+        <span class="nc">RefreshBeverage</span> <span class="n">r2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tea</span><span class="o">();</span>
+        <span class="n">r2</span><span class="o">.</span><span class="na">prepareBeverageTemplate</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>ok，这里只是一个简单的实现，实际应用场景又会是怎么样的呢？
+这里叶子本人遇到了一个需求，就是阅读数。
+这个阅读数有分 文章阅读数和在微信的阅读数（在同一个表分别两个不同字段），以及分享之后的阅读数（不同表）
+这里就涉及两个model，一个是article类，一个是shared类</p>
+
+<p>模板:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ReadNumTemplate</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">ReadNumTemplate</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="no">TIME</span> <span class="o">=</span> <span class="mi">3600000</span><span class="n">l</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">redisKey</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">redisTimeKey</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Constant</span> <span class="n">constant</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">GenericMongoDao</span> <span class="n">genericMongoDao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isBuild</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">build</span><span class="o">(</span><span class="nc">String</span> <span class="n">redisKey</span><span class="o">,</span>
+                         <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">,</span>
+                         <span class="nc">Constant</span> <span class="n">constant</span><span class="o">,</span>
+                         <span class="nc">GenericMongoDao</span> <span class="n">genericMongoDao</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">redisKey</span> <span class="o">=</span> <span class="n">redisKey</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">redisService</span> <span class="o">=</span> <span class="n">redisService</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">redisTimeKey</span> <span class="o">=</span> <span class="n">redisKey</span> <span class="o">+</span> <span class="s">"_time"</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">constant</span> <span class="o">=</span> <span class="n">constant</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">genericMongoDao</span> <span class="o">=</span> <span class="n">genericMongoDao</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">isBuild</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="cm">/**
+     * 阅读数统一模板方法
+     * @return
+     */</span>
+    <span class="kd">protected</span> <span class="kd">final</span> <span class="nc">Long</span> <span class="nf">addReadNum</span><span class="o">(){</span>
+        <span class="k">if</span><span class="o">(!</span><span class="n">isBuild</span><span class="o">){</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"ReadNumTemplete is not build"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">redisService</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">redisService</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()));</span>
+        <span class="o">}</span>
+        <span class="nc">Long</span> <span class="n">count</span> <span class="o">=</span> <span class="n">redisService</span><span class="o">.</span><span class="na">incr</span><span class="o">(</span><span class="n">redisKey</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">isSave</span><span class="o">(</span><span class="n">count</span><span class="o">)){</span>
+            <span class="n">saveToDb</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="nf">syncho</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+    <span class="cm">/**
+     * 是否能保存
+     * @param count
+     * @return
+     */</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isSave</span><span class="o">(</span><span class="nc">Long</span> <span class="n">count</span><span class="o">){</span>
+        <span class="k">return</span> <span class="n">count</span> <span class="o">%</span> <span class="n">constant</span><span class="o">.</span><span class="na">MAX_READ_COUNT</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">arriveTime</span><span class="o">();</span>
+    <span class="o">}</span>
+
+
+    <span class="cm">/**
+     * 判断时间是否已经达到存入数据库的临界值
+     * @return
+     */</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">arriveTime</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">timeValue</span> <span class="o">=</span> <span class="n">redisService</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">redisService</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">))</span> <span class="o">{</span>
+            <span class="kt">long</span> <span class="n">time</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="nc">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">timeValue</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">time</span> <span class="o">&gt;</span> <span class="no">TIME</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">redisService</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">redisTimeKey</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()));</span>
+                <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="nc">MessageFormat</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">":{0}达到1小时，可以保存数据库"</span><span class="o">,</span> <span class="n">redisKey</span><span class="o">));</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * 同步方法
+     */</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="nf">syncho</span><span class="o">(</span><span class="nc">Long</span> <span class="n">redisCount</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Long</span> <span class="n">dbCount</span> <span class="o">=</span> <span class="n">getDbCount</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">dbCount</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">dbCount</span> <span class="o">=</span> <span class="mi">0</span><span class="n">l</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">redisCount</span> <span class="o">&lt;</span> <span class="n">dbCount</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">redisService</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">redisKey</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">dbCount</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">redisCount</span> <span class="o">%</span> <span class="n">constant</span><span class="o">.</span><span class="na">MAX_READ_COUNT</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span>  <span class="n">dbCount</span> <span class="o">+</span> <span class="n">constant</span><span class="o">.</span><span class="na">MAX_READ_COUNT</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span>  <span class="n">dbCount</span> <span class="o">&lt;</span> <span class="n">redisCount</span> <span class="o">?</span> <span class="n">redisCount</span> <span class="o">:</span> <span class="n">dbCount</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="nf">getRedisCount</span><span class="o">(){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">redisService</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">redisKey</span><span class="o">)){</span>
+            <span class="k">return</span> <span class="nc">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">redisService</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">redisKey</span><span class="o">));</span>
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+            <span class="k">return</span> <span class="mi">0L</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * 异步保存到数据库
+     */</span>
+    <span class="nd">@Async</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">saveToDb</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">genericMongoDao</span><span class="o">.</span><span class="na">updateDefindProperty</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">getId</span><span class="o">(),</span> <span class="n">getProperty</span><span class="o">(),</span> <span class="n">getRedisCount</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">();</span>
+
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">();</span>
+
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">Long</span> <span class="nf">getDbCount</span><span class="o">();</span>
+
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getProperty</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>代码还是比较烂，大家海涵。我先分析一下代码。这里有公共方法：</p>
+<ol>
+  <li>保存阅读数到数据库。</li>
+  <li>获取redis里面的阅读数。</li>
+  <li>判断是否能保存。(判断条件是是否已经到达200条，或者这个key是否保存在redis超过1小时)</li>
+  <li>保存该reidskey的时间（因为要用到判断是否已经达到1小时）</li>
+</ol>
+
+<p>其中文章阅读数:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArticleReadNumService</span> <span class="kd">extends</span> <span class="nc">ReadNumTemplate</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Article</span> <span class="n">article</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nf">ArticleReadNumService</span><span class="o">(){}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">ArticleReadNumService</span> <span class="nf">create</span><span class="o">(</span><span class="nc">Article</span> <span class="n">article</span><span class="o">,</span> <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">,</span> <span class="nc">Constant</span> <span class="n">constant</span><span class="o">,</span> <span class="nc">ArticleRepository</span> <span class="n">articleRepository</span><span class="o">){</span>
+        <span class="nc">ArticleReadNumService</span> <span class="n">articleReadNumService</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArticleReadNumService</span><span class="o">();</span>
+        <span class="n">articleReadNumService</span><span class="o">.</span><span class="na">article</span> <span class="o">=</span> <span class="n">article</span><span class="o">;</span>
+        <span class="n">articleReadNumService</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">constant</span><span class="o">.</span><span class="na">read_count_key</span> <span class="o">+</span> <span class="n">articleReadNumService</span><span class="o">.</span><span class="na">article</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span>
+                <span class="n">redisService</span><span class="o">,</span> <span class="n">constant</span><span class="o">,</span><span class="n">articleRepository</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">articleReadNumService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"文章阅读数"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">article</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">Long</span> <span class="nf">getDbCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">article</span><span class="o">.</span><span class="na">getRead_num</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getProperty</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"read_num"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>微站阅读数:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WzReadNumService</span> <span class="kd">extends</span> <span class="nc">ReadNumTemplate</span><span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Article</span> <span class="n">article</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">WzReadNumService</span> <span class="nf">create</span><span class="o">(</span><span class="nc">Article</span> <span class="n">article</span><span class="o">,</span> <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">,</span> <span class="nc">Constant</span> <span class="n">constant</span><span class="o">,</span><span class="nc">ArticleRepository</span> <span class="n">articleRepository</span><span class="o">){</span>
+        <span class="nc">WzReadNumService</span> <span class="n">wzReadNumService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WzReadNumService</span><span class="o">();</span>
+        <span class="n">wzReadNumService</span><span class="o">.</span><span class="na">article</span> <span class="o">=</span> <span class="n">article</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">redisKey</span> <span class="o">=</span> <span class="n">constant</span><span class="o">.</span><span class="na">weixin_read_count_key</span> <span class="o">+</span> <span class="n">article</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="n">wzReadNumService</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">redisKey</span><span class="o">,</span> <span class="n">redisService</span><span class="o">,</span> <span class="n">constant</span><span class="o">,</span> <span class="n">articleRepository</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">wzReadNumService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"微站阅读数"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">article</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">Long</span> <span class="nf">getDbCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">article</span><span class="o">.</span><span class="na">getWx_read_num</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getProperty</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"wx_read_num"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>分享阅读数:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SharedReadNumService</span> <span class="kd">extends</span> <span class="nc">ReadNumTemplate</span><span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">SharedRecord</span> <span class="n">sharedRecord</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">SharedReadNumService</span> <span class="nf">create</span><span class="o">(</span><span class="nc">SharedRecord</span> <span class="n">sharedRecord</span><span class="o">,</span> <span class="nc">RedisService</span> <span class="n">redisService</span><span class="o">,</span> <span class="nc">Constant</span> <span class="n">constant</span><span class="o">,</span> <span class="nc">SharedRecordRepository</span> <span class="n">sharedRecordRepository</span><span class="o">){</span>
+        <span class="nc">SharedReadNumService</span> <span class="n">sharedReadNumService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SharedReadNumService</span><span class="o">();</span>
+        <span class="n">sharedReadNumService</span><span class="o">.</span><span class="na">sharedRecord</span> <span class="o">=</span> <span class="n">sharedRecord</span><span class="o">;</span>
+        <span class="n">sharedReadNumService</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">constant</span><span class="o">.</span><span class="na">shared_read_count_key</span><span class="o">+</span><span class="n">sharedRecord</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span><span class="n">redisService</span><span class="o">,</span><span class="n">constant</span><span class="o">,</span><span class="n">sharedRecordRepository</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">sharedReadNumService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"分享阅读数"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">sharedRecord</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="o">}</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">Long</span> <span class="nf">getDbCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">sharedRecord</span><span class="o">.</span><span class="na">getReadNum</span><span class="o">().</span><span class="na">longValue</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getProperty</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"shared_record"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>可以看出来，里面各个子类需要做的东西已经是很少了，这样大大增加了可读性和维护。而公共方法的private就是为了限制这个模板只能是给差不多的类使用。
+唯一不满意就是里面一个build方法，因为需要把bean传进去给模板方法，不得而为之，如果各位小伙伴有更好的提议不妨给我留言。</p>
+
+<p>模板方法大致介绍完毕，如果各位小伙伴有更好的实际需求应用模板方法的，可以留言提出让叶子也多学习学习。</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+
+            <section class="author">
+                <h4><a href="author/"></a></h4>
+
+                
+                    <p>Read <a href="author/">more posts</a> by this author.</p>
+                
+                <div class="author-meta">
+                    
+                    <span class="author-link icon-link"><a href="http://localhost:4000"> </a></span>
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=设计模式之模板方法(java实现)&amp;url=http://localhost:4000casper20150406%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0).html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000casper20150406%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0).html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:4000casper20150406%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0).html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(http://7te9zv.com1.z0.glb.clouddn.com/QQ20150307-1@2x-1024x333.png)" href="casper20150707%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket.html">
+            <section class="post">
+                <h2>使用netty构建简单的WebSocket</h2>
+                <p>websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。
+
+因为只是demo，所以我这里不对其进行过多的代码分析和项目讲解，日后我会在这个demo进行项目构建，会是一个大型的聊天室？会是一个高性能的socket通讯系统？大家敬请期待吧！
+
+demo地址：[WebSocketDemo](https://github.com/yezilong9/WebSocketDemo)
+
+</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(http://7te9zv.com1.z0.glb.clouddn.com/images.png)" href="casper20150303springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85.html">
+            <section class="post">
+                <h2>springboot用maven打独立应用的jar包</h2>
+                <p>如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件–重启应用就达到想要的效果，必须又要重新打一个jar包。而lib依赖也是如此，很多时候都可以不变的，没必要发布都要打包吧。 以下内容你将会学到如何利用maven插件构建独立jar包，发布应用到正式环境的流程。 这里会使用到maven，如果不熟识的自行先去补习以下：） 假设你已经有了spring boot应用，你就可以执行以下操作 第一步：修改pom配置 我继续使用动态构建目标环境的配置，如果不熟识，可以先去maven构建不同环境读取不同的配置文件看看复习一下 配置部分: &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt;...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href=""></a> &copy; 2023</section>
+          <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
+      </footer>
+  </div>
+  <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- [[! The main JavaScript file for Casper ]] -->
+  <script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="assets/js/index.js"></script>
+    <script src="assets/js/prettify.js"></script>
+    <script>
+        $(window).load(function(){
+           $("pre").addClass("prettyprint");
+           prettyPrint();
+       })
+   </script>
+  <!-- Add Google Analytics  -->
+      <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', '', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+</body>
+</html>
