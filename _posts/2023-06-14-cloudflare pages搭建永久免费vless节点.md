@@ -10,7 +10,7 @@ navigation: True
 
 ---
 
-本教程主要用于学习如何搭建vless
+[TOC]
 
 ## 注册cloudflare
 
@@ -56,7 +56,7 @@ navigation: True
 
 ![image-20230615102033551](../assets/images/image-20230615102033551.png)
 
-5. 跳转页面后填入自己的项目名字（这里随便填，但是最好不要出现xray、vmess、vless、ss、trojan等等节点协议字眼），**Production branch** 选择**online**
+5. 跳转页面后填入自己的项目名字（这里随便填，但是最好不要出现xray、vmess、vless、ss、trojan等等节点协议字眼），**Production branch** 选择**online**，记得选择**online**分支不然启动会失败
 
 6. 来到Build settings，参数固定如下图
 
@@ -81,7 +81,7 @@ navigation: True
 
 9. 如果页面弹出用户名密码输入框，只需在用户名上填入生成的uuid就可以进入页面，点击分享V2ray生成vless节点连接
 
-   ![image-20230615104146878](../assets/images/image-20230615104146878.png)
+   ![image-20230616101017686](../assets/images/image-20230616101017686.png)
 
 10. 保存好连接地址，打开你的手机，打开支持vless协议的VPN工具快乐地科学上网吧
 
