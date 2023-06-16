@@ -10,7 +10,7 @@ navigation: True
 
 ---
 
-[TOC]
+本教程主要用于cludflare学习搭建，非盈利性质
 
 ## 注册cloudflare
 
