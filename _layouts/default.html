@@ -32,7 +32,7 @@
    {% include head.html %}
 
 </head>
-<body class="{% if paginator.page > 1 %}paged archive-template{% elsif page.class %}{{ page.class }}{% else %}home-template{% endif %} nav-closed">
+<body class="{% if paginator.page > 1 %}paged archive-template{% elsif page.class %}{{ page.class }}{% elsif layout.class %}{{ layout.class }}{% else %}home-template{% endif %} nav-closed">
 
     {% include navigation.html %}
 
@@ -51,6 +51,10 @@
   <!-- [[! The main JavaScript file for Casper ]] -->
   <script type="text/javascript" src="{{ site.baseurl }}assets/js/jquery.fitvids.js"></script>
   <script type="text/javascript" src="{{ site.baseurl }}assets/js/index.js"></script>
+  {% if page.layout == 'post' or layout.class == 'post-template' %}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
+  <script type="text/javascript" src="{{ site.baseurl }}assets/js/qzq-falling-title.js?v=20260606-hover3"></script>
+  {% endif %}
     <script src="{{ site.baseurl }}assets/js/prettify.js"></script>
     <script>
         $(window).load(function(){

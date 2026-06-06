@@ -1,0 +1,39 @@
+- name: Java / Spring
+  level: 8
+  description: "Backend main stack for building scalable e-commerce systems, clean APIs, business models, and maintainable services."
+
+- name: Data Sources
+  level: 8
+  description: "Experienced with Redis, MySQL, TiDB, and Elasticsearch for data storage, search, caching, and performance optimization."
+
+- name: Docker / Kubernetes
+  level: 6
+  description: "Capable of handling CI/CD, deployment, service maintenance, and environment management with Docker and Kubernetes."
+
+- name: Netty
+  level: 6
+  description: "Familiar with WebSocket, connection management, event-driven models, and network programming."
+
+- name: JavaScript
+  level: 6
+  description: "Able to build practical frontend interactions and combine them with backend skills for full-stack delivery."
+
+- name: Linux / Git
+  level: 7
+  description: "Comfortable with command-line operations, deployment troubleshooting, Git workflows, and automation scripts."
+
+- name: Ruby / PHP
+  level: 5
+  description: "Experienced in maintaining and improving legacy business systems when stability matters more than trends."
+
+- name: Data Structures / Algorithms
+  level: 5
+  description: "Solid fundamentals for understanding performance, complexity, and technical trade-offs."
+
+- name: AI
+  level: 5
+  description: "Actively learning AI technologies and exploring how they can improve productivity, products, and business value."
+
+- name: English
+  level: 4
+  description: "Improving English communication skills to support international collaboration and global product development."

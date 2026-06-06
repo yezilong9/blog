@@ -1,6 +1,6 @@
 ---
 layout: post
-title: cloudflare pages搭建永久免费vless节点
+title: Cloudflare Pages 搭建永久免费 VLESS 节点
 date:   2023-06-14 10:18:00
 tags: utils
 cover: ../assets/images/image-20230615105617585.png
@@ -10,9 +10,9 @@ navigation: True
 
 ---
 
-本教程主要用于cludflare学习搭建，非盈利性质
+本教程主要用于 Cloudflare 学习搭建，非盈利性质
 
-## 注册cloudflare
+## 注册 Cloudflare
 
 > Cloudflare 是全球知名的CDN服务商，还有各种例如反代、内网穿透、ssl等功能，能够很好的帮助你的网站提升体验，个人免费的套餐就已经足够我们日常使用了
 >

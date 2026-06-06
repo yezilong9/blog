@@ -73,4 +73,5 @@ exclude:
   - changelog.md
   - "*.Rmd"
   - vendor
+  - reference
   - .travis.yml
