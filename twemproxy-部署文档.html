@@ -1,5 +1,7 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <!-- [[! Document Settings ]] -->
     <meta charset="utf-8" />
@@ -7,7 +9,13 @@
 
     <!-- [[! Page Meta ]] -->
     <title>twemproxy 部署文档</title>
-    <meta name="description" content="叶子的博客 - 遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
+    <meta name="description" content="简介 twemproxy 主要用于Redis 和 Memcached 的集群代理" />
+    <link rel="alternate" hreflang="zh-CN" href="https://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">
+<link rel="alternate" hreflang="en" href="https://blog.lo168.com/en/twemproxy-deployment/">
+<link rel="canonical" href="https://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3">
+<meta name="blog-home" content="/">
+<script src="/assets/js/language.js" defer></script>
+
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,8 +24,7 @@
 
     <!-- [[! Styles'n'Scripts ]] -->
     <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css"
-    href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="/assets/css/language.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
 
     <!-- [[! highlight.js ]] -->
@@ -29,35 +36,33 @@
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script> -->
 
    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
-       <link rel="canonical" href="/" />
-    <meta name="referrer" content="origin" />
-    <link rel="next" href="/page2/" />
+       <meta name="referrer" content="origin" />
 
     <meta property="og:site_name" content="叶子的博客" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="叶子的博客" />
-    <meta property="og:description" content="遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
-    <meta property="og:url" content="/" />
+    <meta property="og:title" content="twemproxy 部署文档" />
+    <meta property="og:description" content="记录技术、产品和生活，分享一个后端工程师的学习笔记。" />
+    <meta property="og:url" content="https://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3" />
     <meta property="og:image" content="/assets/images/cover1.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="叶子的博客" />
-    <meta name="twitter:description" content="遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多" />
-    <meta name="twitter:url" content="/" />
+    <meta name="twitter:title" content="twemproxy 部署文档" />
+    <meta name="twitter:description" content="记录技术、产品和生活，分享一个后端工程师的学习笔记。" />
+    <meta name="twitter:url" content="https://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3" />
     <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
 
     <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
-    "@type": "Website",
-    "publisher": "Finding The Way Home",
-    "url": "/",
-    "image": "/assets/images/cover1.jpg",
-    "description": "遇到问题时冷静对待，这或许不能解决问题<br>但能使你收获更多"
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "twemproxy 部署文档",
+    "inLanguage": "zh-CN",
+    "url": "https://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3",
+    "description": "记录技术、产品和生活，分享一个后端工程师的学习笔记。"
 }
     </script>
 
-    <meta name="generator" content="Jekyll 3.0.0" />
+    <meta name="generator" content="Jekyll 4.3.2" />
     <link rel="alternate" type="application/rss+xml" title="叶子的博客" href="/feed.xml" />
 
 
@@ -70,7 +75,7 @@
         <span class="hidden">关闭</span>
     </a>
     <ul>
-        <li class="nav-home " role="presentation"><a href="/">主页</a></li>
+        <li class="nav-home " role="presentation"><a href="/">首页</a></li>
         <!-- <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li> -->
         <!-- <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li> -->
         <!-- <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li> -->
@@ -83,7 +88,10 @@
     <div class="site-wrapper">
 
         <!-- [[! Everything else gets inserted here ]] -->
-        <!-- < default -->
+        
+
+
+<!-- < default -->
 
 <!-- The comment above "< default" means - insert everything in this file into -->
     <!-- the [body] of the default.hbs template, which contains our header/footer. -->
@@ -112,21 +120,30 @@
         <div class="site-header-inner">
             <div class="site-nav">
                 <a class="brand fantasy mobile-brand" href="/#home">Harry</a>
-                <a href="/#articles">Articles</a>
-                <a href="/#code">Code</a>
-                <a href="/#works">Works</a>
-                <a href="/#statistics">Time</a>
+                <a href="/#articles">文章</a>
+                <a href="/#code">技术</a>
+                <a href="/#works">作品</a>
+                <a href="/#statistics">时间</a>
             </div>
-            <div class="site-social contact-icons" aria-label="contact links">
-                <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
-                <a class="contact-icon" href="mailto:ye363062816@qq.com" title="Email"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
-                <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
-                <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
+            <div class="header-actions">
+                <div class="site-social contact-icons" aria-label="联系方式">
+                    <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
+                    <a class="contact-icon" href="mailto:ye363062816@qq.com" title="邮箱"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
+                    <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
+                    <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
+                </div>
+                <nav class="language-switch" aria-label="选择语言">
+    <a href="/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3" lang="zh-CN" hreflang="zh-CN" data-language="zh-CN" aria-current="true" title="切换为中文">中</a>
+    
+    <a href="/en/twemproxy-deployment/" lang="en" hreflang="en" data-language="en" title="Read in English">EN</a>
+    
+</nav>
+
             </div>
         </div>
     </nav>
     <div class="qzq-post-hero">
-        <a class="qzq-post-back" href="/#articles">Back to Articles</a>
+        <a class="qzq-post-back" href="/#articles">返回文章</a>
         <div class="qzq-post-title-stage" data-qzq-falling-stage aria-label="redis twemproxy 部署文档 叶子 2015-01-04">
             <p class="qzq-post-kicker" data-qzq-falling-line>redis</p>
             <h1 class="qzq-post-title" data-qzq-falling-line>twemproxy 部署文档</h1>
@@ -146,10 +163,9 @@
             <h1 class="post-title">twemproxy 部署文档</h1>
             <section class="post-meta">
                 
-                on
                 
                     
-                       <a href='/tag/redis'>Redis</a>
+                       <a href='/#articles'>Redis</a>
                     
                 
                 
@@ -262,32 +278,32 @@ get key1
 
             
             <figure class="author-image">
-                <a class="img" href="/author/casper" style="background-image: url(/assets/images/casper.png)"><span class="hidden">'s Picture</span></a>
+                <a class="img" href="/#home" style="background-image: url(/assets/images/casper.png)"><span class="hidden">Harry</span></a>
             </figure>
             
 
             <section class="author">
-                <h4><a href="/author/casper">叶子</a></h4>
+                <h4><a href="/#home">叶子</a></h4>
 
                 <div class="author-meta">
-                    <span class="author-location icon-location"> 广东 广州</span>
-                    <span class="author-link icon-link"><a href="http://blog.lo168.com/"> http://blog.lo168.com/</a></span>
+                    <span class="author-location icon-location"> 广东广州</span>
+                    <span class="author-link icon-link"><a href="https://blog.lo168.com"> http://blog.lo168.com/</a></span>
                 </div>
             </section>
 
             <!-- /author  -->
 
             <section class="share">
-                <h4>Share this post</h4>
-                <a class="icon-twitter" href="http://twitter.com/share?text=twemproxy 部署文档&amp;url=http://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3"
+                <h4>分享文章</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=twemproxy+%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3&amp;url=https%3A%2F%2Fblog.lo168.com%2Ftwemproxy-%25E9%2583%25A8%25E7%25BD%25B2%25E6%2596%2587%25E6%25A1%25A3"
                     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>
                 </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3"
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.lo168.com%2Ftwemproxy-%25E9%2583%25A8%25E7%25BD%25B2%25E6%2596%2587%25E6%25A1%25A3"
                     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <span class="hidden">Facebook</span>
                 </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://blog.lo168.com/twemproxy-%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3"
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https%3A%2F%2Fblog.lo168.com%2Ftwemproxy-%25E9%2583%25A8%25E7%25BD%25B2%25E6%2596%2587%25E6%25A1%25A3"
                    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <span class="hidden">Google+</span>
                 </a>
@@ -304,22 +320,21 @@ get key1
 
 <aside class="read-next qzq-read-next">
 
-    <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/mongo.png)" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">
-            <section class="post">
+        <a class="read-next-story " style="background-image: url(http://7te9zv.com1.z0.glb.clouddn.com/mongo.png)" href="/spring-mvc-mongo%E9%9B%86%E7%BE%A4(xml%E5%92%8C%E6%B3%A8%E8%A7%A3)">
+            <section class="post" data-read-label="接着读这一篇">
                 <h2>spring mvc mongo集群(xml和注解)</h2>
-                <p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:) 以下内容你将会学到如何使用spring xml和注解方式集群配置mongodb，以及简单的mongoTemplate源码学习 注意：前提是mongodb本身配置好主从模式！ 在数据越来越最求读取性能的时候，mongodb必须是大家非常喜爱的nosql数据库。spring对mongodb数据库的支持也是非常友好，既有jpa方式的操作，也有template方式操作。这里重点讲template，其spring工具类是mongoTemplate，里面包括所有的mongo操作。当然了，大家还是需要基于这个工具类去封装一层更加便于自己操作的类，下面会介绍到。。。 叶子是以spring boot来讲解的。例如springmvc，ssh等xml配置都是差不多的 ### 首先我们来添加pom文件依赖 ```xml spring-boot-starter-data-mongodb org.springframework.boot ``` 这个依赖大家可以进去看看，里面已经包括了driver和data的包，不是spring-boot的话是要添加以下这两个包了 ```xml...</p>
+                <p>最新实在太忙，公司每晚加班，都没时间更新博客让大家吸收营养了。所以赶紧出点干货给大家:)</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/http://7te9zv.com1.z0.glb.clouddn.com/images.png)" href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">
-            <section class="post">
+        <a class="read-next-story prev " style="background-image: url(http://7te9zv.com1.z0.glb.clouddn.com/images.png)" href="/maven%E6%9E%84%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E8%AF%BB%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">
+            <section class="post" data-read-label="你可能也喜欢">
                 <h2>maven构建不同环境读取不同的配置文件</h2>
-                <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。 首先，我已一个spring-boot项目为例子讲解，举一反三，其他项目也是同样原理的，或者有部分配置不同而已。 pom.xml代码: 在project根下加入 &lt;profiles&gt; &lt;!-- 开发环境，默认激活 --&gt; &lt;profile&gt; &lt;id&gt;dev&lt;/id&gt; &lt;properties&gt; &lt;env&gt;dev&lt;/env&gt; &lt;/properties&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;...</p>
+                <p>众所周知maven是java开发的利器，他的强大之处不同我多说了。这次为大家带来的就是maven对应不同环境的部署，以及未来给各位介绍jenkins构建项目做铺垫。</p>
             </section>
         </a>
     
@@ -335,7 +350,7 @@ get key1
       </footer>
   </div>
   <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
   <!-- [[! The main JavaScript file for Casper ]] -->
   <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
   <script type="text/javascript" src="/assets/js/index.js"></script>

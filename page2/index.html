@@ -1,11 +1,21 @@
+
+
 <!doctype html>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>叶子的博客</title>
-    <meta name="description" content="遇到问题时冷静对待，这或许不能解决问题但能使你收获更多">
+    <meta name="description" content="记录技术、产品和生活，分享一个后端工程师的学习笔记。">
+    <link rel="alternate" hreflang="zh-CN" href="https://blog.lo168.com/">
+<link rel="alternate" hreflang="en" href="https://blog.lo168.com/en/">
+<link rel="canonical" href="https://blog.lo168.com/page2/">
+<meta name="blog-home" content="/">
+<script src="/assets/js/language.js" defer></script>
+
+    <link rel="stylesheet" href="/assets/css/language.css">
     <meta name="theme-color" content="#2dd4bf">
+    <link rel="icon" href="/assets/images/favicon.ico">
     <script>
         (function () {
             var root = document.documentElement;
@@ -1573,16 +1583,25 @@
             <div class="site-header-inner">
                 <nav class="site-nav">
                     <a class="brand fantasy mobile-brand" href="#home">Harry</a>
-                    <a href="#articles">Articles</a>
-                    <a href="#code">Code</a>
-                    <a href="#works">Works</a>
-                    <a href="#statistics">Time</a>
+                    <a href="#articles">文章</a>
+                    <a href="#code">技术</a>
+                    <a href="#works">作品</a>
+                    <a href="#statistics">时间</a>
                 </nav>
-                <div class="site-social contact-icons" aria-label="contact links">
-                    <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
-                    <a class="contact-icon" href="mailto:ye363062816@qq.com" title="Email"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
-                    <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
-                    <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
+                <div class="header-actions">
+                    <div class="site-social contact-icons" aria-label="联系方式">
+                        <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
+                        <a class="contact-icon" href="mailto:ye363062816@qq.com" title="邮箱"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
+                        <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
+                        <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
+                    </div>
+                    <nav class="language-switch" aria-label="选择语言">
+    <a href="/" lang="zh-CN" hreflang="zh-CN" data-language="zh-CN" aria-current="true" title="切换为中文">中</a>
+    
+    <a href="/en/" lang="en" hreflang="en" data-language="en" title="Read in English">EN</a>
+    
+</nav>
+
                 </div>
             </div>
         </header>
@@ -1592,27 +1611,27 @@
         </div>
 
         <section class="mobile-hint">
-            <p>View on desktop for better experience.</p>
+            <p>在桌面端浏览，体验更好。</p>
         </section>
 
         <section id="home" class="home section-pad">
             <div class="hero-orbit" data-tilt-area>
                 <div class="identity-wrap">
                     <article class="identity-card">
-                        <p class="small-title">My name is:</p>
+                        <p class="small-title">我的名字是：</p>
                         <h1 class="name-line fantasy">
                             <span class="name-set name-set-en" aria-hidden="true"><span>H</span><span>a</span><span>r</span><span>r</span><span>y</span></span>
                             <span class="name-set name-set-cn" aria-hidden="true"><span>叶</span><span>子</span></span>
                             <span class="sr-only">Harry / 叶子</span>
                         </h1>
                         <div class="role-list">
-                            <p class="small-title">I'm a:</p>
-                            <a href="#articles">Blog Writer</a>
-                            <a href="#code">Former Backend Leader</a>
-                            <a href="#code">AI Learner, Still Loading</a>
-                            <a href="#code">Java Survivor</a>
-                            <a href="#works">Product Idealist With Too Many Notes</a>
-                            <a href="#statistics">Guangzhou Local in Guangdong</a>
+                            <p class="small-title">我是一个：</p>
+                            <a href="#articles">博客写作者</a>
+                            <a href="#code">曾经的后端负责人</a>
+                            <a href="#code">AI 学习者，仍在加载中</a>
+                            <a href="#code">Java 幸存者</a>
+                            <a href="#works">笔记太多的产品理想主义者</a>
+                            <a href="#statistics">广东广州本地人</a>
                         </div>
                         <span class="orange-bubble"></span>
                     </article>
@@ -1641,246 +1660,280 @@
 
         <section id="articles" class="story section-pad breath-section">
             <p class="story-copy">
-                I write about <strong>frontend</strong>, <strong>backend</strong>, <strong>architecture</strong>, <strong>microservices</strong>, <strong>AI</strong>, <strong>life</strong>, and <strong>books</strong> that occasionally make me rethink all of the above.<br>
-                This blog has collected <strong>11</strong> notes so far.<br>
-                <span class="mark-line">Mostly technical, sometimes personal, always written after the bug has calmed down.</span>
+                我记录关于 <strong>前端</strong>、<strong>后端</strong>、<strong>架构</strong>、<strong>微服务</strong>、<strong>AI</strong> 和 <strong>生活</strong> 的故事，也读一些让我重新思考这些事情的 <strong>书</strong>。<br>
+                这个博客已经留下 <strong>12</strong> 篇笔记。<br>
+                <span class="mark-line">大多聊技术，偶尔聊生活，通常等 Bug 冷静下来才动笔。</span>
             </p>
 
-            <div class="scroller" aria-label="recent articles">
+            <div class="scroller" aria-label="最新文章">
                 <div class="scroll-track">
                     
-                        
-                        
-                        
-                        <a class="article-link" href="/%E5%88%AB%E5%86%8D%E7%9E%8E%E7%8C%9CAI%E9%BB%91%E8%AF%9D%E4%BA%86-MCP%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%9B%9E%E4%BA%8B%E5%84%BF">
-                            <article class="article-card bg-indigo">
-                                <div class="article-head">
-                                    <h2 class="article-title">别再瞎猜AI黑话了！MCP其实就是这么回事儿</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">以前的AI，像一个读过很多书的高材生。你问它问题，它能侃侃而谈；但你让它查一下公司的订单、读取电脑里的文件，或者获取最新的足球比赛数据，它可能就两手一摊了。</p>
-                                <span class="article-thumb"><img src="../assets/images/image-mcp.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%BA%E5%95%A5%E8%A6%81%E5%81%B7%E5%81%B7%E7%BF%BB%E5%B0%8F%E6%8A%84-%E5%B8%A6%E4%BD%A0%E7%9C%8B%E6%87%82RAG%E6%98%AF%E4%BB%80%E4%B9%88">
+        <article class="article-card bg-pink">
+            <div class="article-head">
+                <h2 class="article-title">大模型为啥要偷偷翻小抄？带你看懂RAG是什么</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">今天我们来聊一个AI应用开发中非常重要的技术——RAG（检索增强生成）。</p>
+            <span class="article-thumb"><img src="/assets/images/image-rag.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E5%88%AB%E5%86%8D%E7%9E%8E%E7%8C%9CAI%E9%BB%91%E8%AF%9D%E4%BA%86-MCP%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%9B%9E%E4%BA%8B%E5%84%BF">
+        <article class="article-card bg-indigo">
+            <div class="article-head">
+                <h2 class="article-title">别再瞎猜AI黑话了！MCP其实就是这么回事儿</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">以前的AI，像一个读过很多书的高材生。你问它问题，它能侃侃而谈；但你让它查一下公司的订单、读取电脑里的文件，或者获取最新的足球比赛数据，它可能就两手一摊了。</p>
+            <span class="article-thumb"><img src="/assets/images/image-mcp.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E4%BB%8ERNN%E5%88%B0Transformer-AI%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%BC%9A%E7%90%86%E8%A7%A3%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%9A%84">
+        <article class="article-card bg-green">
+            <div class="article-head">
+                <h2 class="article-title">从RNN到Transformer——AI是如何学会理解一句话的？</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">ChatGPT为什么能听懂人话？ 为什么我让它写一封邮件，它不会理解成让我写一封“辞职信”？ 为什么AI知道“苹果”有时候是水果，有时候是一部手机？</p>
+            <span class="article-thumb"><img src="/assets/images/image-rnn.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%E7%AC%AC%E4%BA%8C%E5%BC%B9">
+        <article class="article-card bg-purple">
+            <div class="article-head">
+                <h2 class="article-title">Cloudflare Pages 搭建永久免费节点第二弹</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">本教程主要用于 Cloudflare 学习搭建，非盈利性质</p>
+            <span class="article-thumb"><img src="/assets/images/image-20230615105617585.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9">
+        <article class="article-card bg-teal">
+            <div class="article-head">
+                <h2 class="article-title">Cloudflare Pages 搭建永久免费 VLESS 节点</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">本教程主要用于 Cloudflare 学习搭建，非盈利性质</p>
+            <span class="article-thumb"><img src="/assets/images/image-20230615105617585.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82">
+        <article class="article-card bg-pink">
+            <div class="article-head">
+                <h2 class="article-title">让SpringMVC接收PUT方法</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">暂时只支持 application/x-www-form-urlencoded</p>
+            <span class="article-thumb"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket">
+        <article class="article-card bg-indigo">
+            <div class="article-head">
+                <h2 class="article-title">使用netty构建简单的WebSocket</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。</p>
+            <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/QQ20150307-1@2x-1024x333.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">
+        <article class="article-card bg-green">
+            <div class="article-head">
+                <h2 class="article-title">设计模式之模板方法(java实现)</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现</p>
+            <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/45C491F2-E299-4DFA-A69E-9A7B480808F5.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+
                     
-                        
-                        
-                        
-                        <a class="article-link" href="/%E4%BB%8ERNN%E5%88%B0Transformer-AI%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%BC%9A%E7%90%86%E8%A7%A3%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%9A%84">
-                            <article class="article-card bg-green">
-                                <div class="article-head">
-                                    <h2 class="article-title">从RNN到Transformer——AI是如何学会理解一句话的？</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">ChatGPT为什么能听懂人话？ 为什么我让它写一封邮件，它不会理解成让我写一封“辞职信”？ 为什么AI知道“苹果”有时候是水果，有时候是一部手机？</p>
-                                <span class="article-thumb"><img src="../assets/images/image-rnn.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%E7%AC%AC%E4%BA%8C%E5%BC%B9">
-                            <article class="article-card bg-purple">
-                                <div class="article-head">
-                                    <h2 class="article-title">Cloudflare Pages 搭建永久免费节点第二弹</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">本教程主要用于 Cloudflare 学习搭建，非盈利性质</p>
-                                <span class="article-thumb"><img src="../assets/images/image-20230615105617585.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9">
-                            <article class="article-card bg-teal">
-                                <div class="article-head">
-                                    <h2 class="article-title">Cloudflare Pages 搭建永久免费 VLESS 节点</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">本教程主要用于 Cloudflare 学习搭建，非盈利性质</p>
-                                <span class="article-thumb"><img src="../assets/images/image-20230615105617585.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82">
-                            <article class="article-card bg-pink">
-                                <div class="article-head">
-                                    <h2 class="article-title">让SpringMVC接收PUT方法</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">暂时只支持 application/x-www-form-urlencoded</p>
-                                <span class="article-thumb"><img src="" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket">
-                            <article class="article-card bg-indigo">
-                                <div class="article-head">
-                                    <h2 class="article-title">使用netty构建简单的WebSocket</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。</p>
-                                <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/QQ20150307-1@2x-1024x333.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)">
-                            <article class="article-card bg-green">
-                                <div class="article-head">
-                                    <h2 class="article-title">设计模式之模板方法(java实现)</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板...</p>
-                                <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/45C491F2-E299-4DFA-A69E-9A7B480808F5.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85">
-                            <article class="article-card bg-purple">
-                                <div class="article-head">
-                                    <h2 class="article-title">springboot用maven打独立应用的jar包</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件–重启应用就达到想要的效果，必须又要重新打一个jar包...</p>
-                                <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/images.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/%E5%88%AB%E5%86%8D%E7%9E%8E%E7%8C%9CAI%E9%BB%91%E8%AF%9D%E4%BA%86-MCP%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%9B%9E%E4%BA%8B%E5%84%BF" aria-hidden="true" tabindex="-1">
-                            <article class="article-card bg-teal">
-                                <div class="article-head">
-                                    <h2 class="article-title">别再瞎猜AI黑话了！MCP其实就是这么回事儿</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">以前的AI，像一个读过很多书的高材生。你问它问题，它能侃侃而谈；但你让它查一下公司的订单、读取电脑里的文件，或者获取最新的足球比赛数据，它可能就两手一摊了。</p>
-                                <span class="article-thumb"><img src="../assets/images/image-mcp.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/%E4%BB%8ERNN%E5%88%B0Transformer-AI%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%BC%9A%E7%90%86%E8%A7%A3%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%9A%84" aria-hidden="true" tabindex="-1">
-                            <article class="article-card bg-pink">
-                                <div class="article-head">
-                                    <h2 class="article-title">从RNN到Transformer——AI是如何学会理解一句话的？</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">ChatGPT为什么能听懂人话？ 为什么我让它写一封邮件，它不会理解成让我写一封“辞职信”？ 为什么AI知道“苹果”有时候是水果，有时候是一部手机？</p>
-                                <span class="article-thumb"><img src="../assets/images/image-rnn.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%E7%AC%AC%E4%BA%8C%E5%BC%B9" aria-hidden="true" tabindex="-1">
-                            <article class="article-card bg-indigo">
-                                <div class="article-head">
-                                    <h2 class="article-title">Cloudflare Pages 搭建永久免费节点第二弹</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">本教程主要用于 Cloudflare 学习搭建，非盈利性质</p>
-                                <span class="article-thumb"><img src="../assets/images/image-20230615105617585.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9" aria-hidden="true" tabindex="-1">
-                            <article class="article-card bg-green">
-                                <div class="article-head">
-                                    <h2 class="article-title">Cloudflare Pages 搭建永久免费 VLESS 节点</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">本教程主要用于 Cloudflare 学习搭建，非盈利性质</p>
-                                <span class="article-thumb"><img src="../assets/images/image-20230615105617585.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82" aria-hidden="true" tabindex="-1">
-                            <article class="article-card bg-purple">
-                                <div class="article-head">
-                                    <h2 class="article-title">让SpringMVC接收PUT方法</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">暂时只支持 application/x-www-form-urlencoded</p>
-                                <span class="article-thumb"><img src="" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket" aria-hidden="true" tabindex="-1">
-                            <article class="article-card bg-teal">
-                                <div class="article-head">
-                                    <h2 class="article-title">使用netty构建简单的WebSocket</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。</p>
-                                <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/QQ20150307-1@2x-1024x333.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)" aria-hidden="true" tabindex="-1">
-                            <article class="article-card bg-pink">
-                                <div class="article-head">
-                                    <h2 class="article-title">设计模式之模板方法(java实现)</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板...</p>
-                                <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/45C491F2-E299-4DFA-A69E-9A7B480808F5.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
-                        
-                        
-                        
-                        <a class="article-link" href="/springboot%E5%88%A9%E7%94%A8maven%E6%89%93%E7%8B%AC%E7%AB%8B%E5%BA%94%E7%94%A8jar%E5%8C%85" aria-hidden="true" tabindex="-1">
-                            <article class="article-card bg-indigo">
-                                <div class="article-head">
-                                    <h2 class="article-title">springboot用maven打独立应用的jar包</h2>
-                                    <span class="article-platform">Blog</span>
-                                </div>
-                                <p class="article-excerpt">如果用过spring boot的都知道，其引入了嵌入式web容器运行的。但是如果打包成jar包，方便是方便，但是无法通过修改配置文件–重启应用就达到想要的效果，必须又要重新打一个jar包...</p>
-                                <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/images.png" alt="" onerror="this.remove()"></span>
-                            </article>
-                        </a>
-                    
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%BA%E5%95%A5%E8%A6%81%E5%81%B7%E5%81%B7%E7%BF%BB%E5%B0%8F%E6%8A%84-%E5%B8%A6%E4%BD%A0%E7%9C%8B%E6%87%82RAG%E6%98%AF%E4%BB%80%E4%B9%88" aria-hidden="true" tabindex="-1">
+        <article class="article-card bg-pink">
+            <div class="article-head">
+                <h2 class="article-title">大模型为啥要偷偷翻小抄？带你看懂RAG是什么</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">今天我们来聊一个AI应用开发中非常重要的技术——RAG（检索增强生成）。</p>
+            <span class="article-thumb"><img src="/assets/images/image-rag.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E5%88%AB%E5%86%8D%E7%9E%8E%E7%8C%9CAI%E9%BB%91%E8%AF%9D%E4%BA%86-MCP%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%9B%9E%E4%BA%8B%E5%84%BF" aria-hidden="true" tabindex="-1">
+        <article class="article-card bg-indigo">
+            <div class="article-head">
+                <h2 class="article-title">别再瞎猜AI黑话了！MCP其实就是这么回事儿</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">以前的AI，像一个读过很多书的高材生。你问它问题，它能侃侃而谈；但你让它查一下公司的订单、读取电脑里的文件，或者获取最新的足球比赛数据，它可能就两手一摊了。</p>
+            <span class="article-thumb"><img src="/assets/images/image-mcp.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E4%BB%8ERNN%E5%88%B0Transformer-AI%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%BC%9A%E7%90%86%E8%A7%A3%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%9A%84" aria-hidden="true" tabindex="-1">
+        <article class="article-card bg-green">
+            <div class="article-head">
+                <h2 class="article-title">从RNN到Transformer——AI是如何学会理解一句话的？</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">ChatGPT为什么能听懂人话？ 为什么我让它写一封邮件，它不会理解成让我写一封“辞职信”？ 为什么AI知道“苹果”有时候是水果，有时候是一部手机？</p>
+            <span class="article-thumb"><img src="/assets/images/image-rnn.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%E7%AC%AC%E4%BA%8C%E5%BC%B9" aria-hidden="true" tabindex="-1">
+        <article class="article-card bg-purple">
+            <div class="article-head">
+                <h2 class="article-title">Cloudflare Pages 搭建永久免费节点第二弹</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">本教程主要用于 Cloudflare 学习搭建，非盈利性质</p>
+            <span class="article-thumb"><img src="/assets/images/image-20230615105617585.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/cloudflare-pages%E6%90%AD%E5%BB%BA%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9vless%E8%8A%82%E7%82%B9" aria-hidden="true" tabindex="-1">
+        <article class="article-card bg-teal">
+            <div class="article-head">
+                <h2 class="article-title">Cloudflare Pages 搭建永久免费 VLESS 节点</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">本教程主要用于 Cloudflare 学习搭建，非盈利性质</p>
+            <span class="article-thumb"><img src="/assets/images/image-20230615105617585.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E8%AE%A9springMVC%E6%8E%A5%E6%94%B6PUT%E8%AF%B7%E6%B1%82" aria-hidden="true" tabindex="-1">
+        <article class="article-card bg-pink">
+            <div class="article-head">
+                <h2 class="article-title">让SpringMVC接收PUT方法</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">暂时只支持 application/x-www-form-urlencoded</p>
+            <span class="article-thumb"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E4%BD%BF%E7%94%A8netty%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84WebSocket" aria-hidden="true" tabindex="-1">
+        <article class="article-card bg-indigo">
+            <div class="article-head">
+                <h2 class="article-title">使用netty构建简单的WebSocket</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">websocket客户端可以有很多种，一种是网页实现socket.io,一种使用html5直接新建websocket。我这里使用了html5本身的websocket api。</p>
+            <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/QQ20150307-1@2x-1024x333.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+    
+    
+    
+    
+    
+    <a class="article-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95(java%E5%AE%9E%E7%8E%B0)" aria-hidden="true" tabindex="-1">
+        <article class="article-card bg-green">
+            <div class="article-head">
+                <h2 class="article-title">设计模式之模板方法(java实现)</h2>
+                <span class="article-platform">博客</span>
+            </div>
+            <p class="article-excerpt">首先大家可以先想想一个场景，就是炮制饮料。 我们第一步需要把水煮好，然后倒入相应的材料，倒入杯子中，然后加入该饮料一些添加剂。这里4个步骤换成别的饮料也是一样需要执行。所以我们写一个模板，让饮料们来继承实现</p>
+            <span class="article-thumb"><img src="http://7te9zv.com1.z0.glb.clouddn.com/45C491F2-E299-4DFA-A69E-9A7B480808F5.png" alt="" onerror="this.remove()"></span>
+        </article>
+    </a>
+
+
                 </div>
             </div>
         </section>
 
         <section id="code" class="content-section section-pad breath-section">
             <p class="section-lead">
-                I build <strong class="orange-word">frontend</strong>, <strong class="orange-word">backend</strong>, <strong class="orange-word">architecture</strong>, <strong class="orange-word">microservices</strong>, and <strong class="orange-word">AI</strong> systems that make messy problems behave.
+                我用 <strong class="orange-word">前端</strong>、<strong class="orange-word">后端</strong>、<strong class="orange-word">架构</strong>、<strong class="orange-word">微服务</strong> 和 <strong class="orange-word">AI</strong>，让复杂的问题变得有条理。
             </p>
             <div class="skills-board">
                 <div class="skills-row">
@@ -1890,15 +1943,15 @@
                                 <h3>Java / Spring</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 80%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Backend main stack for building scalable e-commerce systems, clean APIs, business models, and maintainable services.</p></div>
+                            <div class="skill-overlay"><p>后端主力技术栈，用于构建可扩展的电商系统、清晰的 API、业务模型和易维护的服务。</p></div>
                         </article>
                     
                         <article class="skill-card content-card accent-white" tabindex="0">
                             <div class="skill-card-main">
-                                <h3>Data Sources</h3>
+                                <h3>数据存储</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 80%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Experienced with Redis, MySQL, TiDB, and Elasticsearch for data storage, search, caching, and performance optimization.</p></div>
+                            <div class="skill-overlay"><p>熟悉 Redis、MySQL、TiDB 和 Elasticsearch，关注数据存储、搜索、缓存与性能优化。</p></div>
                         </article>
                     
                         <article class="skill-card content-card accent-white" tabindex="0">
@@ -1906,7 +1959,7 @@
                                 <h3>Docker / Kubernetes</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 60%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Capable of handling CI/CD, deployment, service maintenance, and environment management with Docker and Kubernetes.</p></div>
+                            <div class="skill-overlay"><p>能够使用 Docker 和 Kubernetes 处理 CI/CD、部署、服务维护与环境管理。</p></div>
                         </article>
                     
                         <article class="skill-card content-card accent-white" tabindex="0">
@@ -1914,7 +1967,7 @@
                                 <h3>Netty</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 60%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Familiar with WebSocket, connection management, event-driven models, and network programming.</p></div>
+                            <div class="skill-overlay"><p>熟悉 WebSocket、连接管理、事件驱动模型和网络编程。</p></div>
                         </article>
                     
                 </div>
@@ -1925,7 +1978,7 @@
                                 <h3>JavaScript</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 60%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Able to build practical frontend interactions and combine them with backend skills for full-stack delivery.</p></div>
+                            <div class="skill-overlay"><p>能实现实用的前端交互，并结合后端经验完成全栈交付。</p></div>
                         </article>
                     
                         <article class="skill-card content-card accent-white" tabindex="0">
@@ -1933,7 +1986,7 @@
                                 <h3>Linux / Git</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 70%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Comfortable with command-line operations, deployment troubleshooting, Git workflows, and automation scripts.</p></div>
+                            <div class="skill-overlay"><p>熟悉命令行操作、部署排障、Git 工作流与自动化脚本。</p></div>
                         </article>
                     
                         <article class="skill-card content-card accent-white" tabindex="0">
@@ -1941,15 +1994,15 @@
                                 <h3>Ruby / PHP</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 50%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Experienced in maintaining and improving legacy business systems when stability matters more than trends.</p></div>
+                            <div class="skill-overlay"><p>有维护和改进既有业务系统的经验，比起追逐潮流，更在意系统的稳定性。</p></div>
                         </article>
                     
                         <article class="skill-card content-card accent-white" tabindex="0">
                             <div class="skill-card-main">
-                                <h3>Data Structures / Algorithms</h3>
+                                <h3>数据结构 / 算法</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 50%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Solid fundamentals for understanding performance, complexity, and technical trade-offs.</p></div>
+                            <div class="skill-overlay"><p>用扎实的基础理解性能、复杂度，以及不同技术方案之间的取舍。</p></div>
                         </article>
                     
                 </div>
@@ -1960,19 +2013,19 @@
                                 <h3>AI</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 50%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Actively learning AI technologies and exploring how they can improve productivity, products, and business value.</p></div>
+                            <div class="skill-overlay"><p>持续学习 AI 技术，探索它如何提高生产力、改善产品并创造业务价值。</p></div>
                         </article>
                     
                     <article class="skill-title-card content-card accent-dark">
-                        <h2 class="fantasy">Skills</h2>
+                        <h2 class="fantasy">技能</h2>
                     </article>
                     
                         <article class="skill-card content-card accent-white" tabindex="0">
                             <div class="skill-card-main">
-                                <h3>English</h3>
+                                <h3>英语</h3>
                                 <div class="skill-meter" aria-hidden="true"><span class="skill-fill" style="--fill: 40%"></span><span class="skill-rest"></span></div>
                             </div>
-                            <div class="skill-overlay"><p>Improving English communication skills to support international collaboration and global product development.</p></div>
+                            <div class="skill-overlay"><p>正在提升英语沟通能力，为国际协作和面向全球的产品开发做准备。</p></div>
                         </article>
                     
                 </div>
@@ -1983,30 +2036,30 @@
             <div class="works-layout">
                 <div class="works-left-stack">
                     <article class="works-panel content-card accent-white">
-                        <h2 class="fantasy"><span class="orange-word">Personal</span> Works</h2>
+                        <h2 class="fantasy"><span class="orange-word">个人</span> 作品</h2>
                         <div class="personal-works-stack">
                             <a class="work-card" href="https://bopdash.com" target="_blank" rel="noreferrer">
-                                <img src="/assets/images/reference/bopdash.png" alt="BopDash free browser games website">
+                                <img src="/assets/images/reference/bopdash.png" alt="BopDash 免费网页游戏">
                                 <span class="work-overlay">
                                     <h3>BopDash</h3>
-                                    <p>A free browser-games hub with colorful categories, saved games, daily puzzles, and quick-play favorites for short breaks.</p>
-                                    <span class="work-link-hint">Open project</span>
+                                    <p>免费的网页游戏集合，提供游戏分类、收藏和每日益智挑战，让碎片时间随时开玩。</p>
+                                    <span class="work-link-hint">访问作品</span>
                                 </span>
                             </a>
                             <a class="work-card" href="https://hulava.com" target="_blank" rel="noreferrer">
-                                <img src="/assets/images/reference/hulava.png" alt="Hulava football prediction platform">
+                                <img src="/assets/images/reference/hulava.png" alt="Hulava 足球预测平台">
                                 <span class="work-overlay">
                                     <h3>Hulava</h3>
-                                    <p>An AI-powered football prediction platform designed to provide match insights, data analysis, and smarter decision support for football fans.</p>
-                                    <span class="work-link-hint">Open project</span>
+                                    <p>AI 驱动的足球预测平台，为球迷提供比赛洞察、数据分析和更有依据的决策参考。</p>
+                                    <span class="work-link-hint">访问作品</span>
                                 </span>
                             </a>
                             <a class="work-card" href="https://zvein.com" target="_blank" rel="noreferrer">
-                                <img src="/assets/images/reference/zvein.png" alt="Zvein AI aggregation platform">
+                                <img src="/assets/images/reference/zvein.png" alt="Zvein AI 聚合平台">
                                 <span class="work-overlay">
                                     <h3>Zvein</h3>
-                                    <p>An AI aggregation platform that helps users access AI models and tools to improve productivity, creativity, and workflow efficiency.</p>
-                                    <span class="work-link-hint">Open project</span>
+                                    <p>聚合 AI 模型和工具，帮助用户提升效率、释放创意，让工作流程更顺畅。</p>
+                                    <span class="work-link-hint">访问作品</span>
                                 </span>
                             </a>
                         </div>
@@ -2014,26 +2067,26 @@
                 </div>
                 <div class="works-right-stack">
                     <article class="works-panel content-card accent-white">
-                        <h2 class="fantasy"><span class="orange-word">Company</span> Works</h2>
+                        <h2 class="fantasy"><span class="orange-word">公司</span> 作品</h2>
                         <div class="company-works-grid">
                             <article class="work-card" tabindex="0">
-                                <img src="/assets/images/reference/watsons-portrait.png" alt="Watsons E-commerce Platform">
+                                <img src="/assets/images/reference/watsons-portrait.png" alt="屈臣氏电商平台">
                                 <span class="work-overlay">
-                                    <h3>Watsons E-commerce Platform</h3>
-                                    <p>Served as the trading team leader, responsible for building a complete order transaction loop, covering order creation, payment, fulfillment, and after-sales processes.</p>
+                                    <h3>屈臣氏电商平台</h3>
+                                    <p>担任交易团队负责人，搭建从下单、支付到履约、售后的完整订单交易闭环。</p>
                                 </span>
                             </article>
                             <article class="work-card" tabindex="0">
-                                <img src="/assets/images/reference/netease-portrait.png" alt="NetEase E-commerce Platform">
+                                <img src="/assets/images/reference/netease-portrait.png" alt="网易电商平台">
                                 <span class="work-overlay">
-                                    <h3>NetEase E-commerce Platform</h3>
-                                    <p>Served as the trading team leader, applying DDD-driven architecture to design and develop order-related systems with a focus on high concurrency, performance, and scalability.</p>
+                                    <h3>网易电商平台</h3>
+                                    <p>担任交易团队负责人，以 DDD 为架构方法设计和开发订单相关系统，关注高并发、性能和可扩展性。</p>
                                 </span>
                             </article>
                         </div>
                     </article>
                     <article class="works-title-card content-card accent-dark">
-                        <h2 class="fantasy"><span class="orange-word">Works</span> + Product</h2>
+                        <h2 class="fantasy"><span class="orange-word">作品</span> + 产品</h2>
                     </article>
                 </div>
             </div>
@@ -2042,16 +2095,16 @@
         <section id="statistics" class="content-section section-pad breath-section">
             <div class="time-space-grid">
                 <article class="time-panel content-card accent-white">
-                    <h2 class="fantasy">Time</h2>
-                    <p>This is how I spend my time. My biggest hobby is learning, as I am curious about almost everything.</p>
-                    <div class="area-chart-wrap" aria-label="time distribution chart">
+                    <h2 class="fantasy">时间</h2>
+                    <p>这就是我分配时间的方式。我最大的爱好是学习，因为我对几乎所有事物都充满好奇。</p>
+                    <div class="area-chart-wrap" aria-label="时间分配：学习、游戏、编程、音乐与亲友">
                         <svg class="area-chart" viewBox="0 0 500 300" role="img" aria-labelledby="time-chart-title">
-                            <title id="time-chart-title">Time distribution: study, game, coding, music and social life</title>
-                            <path class="time-layer" data-area="study" tabindex="0" aria-label="Study" d="M0,300 L2.976,300 C5.952,300 11.905,300 32.738,270 C53.571,240 89.286,180 116.071,160 C142.857,140 160.714,160 196.429,175 C232.143,190 285.714,200 327.381,210 C369.048,220 398.81,230 419.643,235 C440.476,240 452.381,240 464.286,235 C476.19,230 488.095,220 494.048,215 L500,300 L494.048,300 C488.095,300 476.19,300 464.286,300 C452.381,300 440.476,300 419.643,300 C398.81,300 369.048,300 327.381,300 C285.714,300 232.143,300 196.429,300 C160.714,300 142.857,300 116.071,300 C89.286,300 53.571,300 32.738,300 C11.905,300 5.952,300 2.976,300 Z" fill="#bfdbfe"></path>
-                            <path class="time-layer" data-area="music" tabindex="0" aria-label="Music" d="M0,300 L2.976,300 C5.952,300 11.905,300 32.738,270 C53.571,240 89.286,180 116.071,160 C142.857,140 160.714,160 196.429,175 C232.143,190 285.714,200 327.381,205 C369.048,210 398.81,210 419.643,210 C440.476,210 452.381,210 464.286,210 C476.19,210 488.095,210 494.048,210 L500,210 L494.048,215 C488.095,220 476.19,230 464.286,235 C452.381,240 440.476,240 419.643,235 C398.81,230 369.048,220 327.381,210 C285.714,200 232.143,190 196.429,175 C160.714,160 142.857,140 116.071,160 C89.286,180 53.571,240 32.738,270 C11.905,300 5.952,300 2.976,300 Z" fill="#bae6fd"></path>
-                            <path class="time-layer" data-area="game" tabindex="0" aria-label="Game" d="M0,300 L2.976,300 C5.952,300 11.905,300 32.738,270 C53.571,240 89.286,180 116.071,145 C142.857,110 160.714,100 196.429,105 C232.143,110 285.714,130 327.381,140 C369.048,150 398.81,150 419.643,150 C440.476,150 452.381,150 464.286,155 C476.19,160 488.095,170 494.048,175 L500,210 L494.048,210 C488.095,210 476.19,210 464.286,210 C452.381,210 440.476,210 419.643,210 C398.81,210 369.048,210 327.381,205 C285.714,200 232.143,190 196.429,175 C160.714,160 142.857,140 116.071,160 C89.286,180 53.571,240 32.738,270 C11.905,300 5.952,300 2.976,300 Z" fill="#a5f3fc"></path>
-                            <path class="time-layer" data-area="coding" tabindex="0" aria-label="Coding" d="M0,300 L2.976,300 C5.952,300 11.905,300 32.738,270 C53.571,240 89.286,180 116.071,145 C142.857,110 160.714,100 196.429,90 C232.143,80 285.714,70 327.381,65 C369.048,60 398.81,60 419.643,60 C440.476,60 452.381,60 464.286,60 C476.19,60 488.095,60 494.048,60 L500,180 L494.048,175 C488.095,170 476.19,160 464.286,155 C452.381,150 440.476,150 419.643,150 C398.81,150 369.048,150 327.381,140 C285.714,130 232.143,110 196.429,105 C160.714,100 142.857,110 116.071,145 C89.286,180 53.571,240 32.738,270 C11.905,300 5.952,300 2.976,300 Z" fill="#99f6e4"></path>
-                            <path class="time-layer" data-area="social" tabindex="0" aria-label="Social or Family" d="M0,0 L2.976,0 C5.952,0 11.905,0 32.738,0 C53.571,0 89.286,0 116.071,0 C142.857,0 160.714,0 196.429,0 C232.143,0 285.714,0 327.381,0 C369.048,0 398.81,0 419.643,0 C440.476,0 452.381,0 464.286,0 C476.19,0 488.095,0 494.048,0 L500,60 L494.048,60 C488.095,60 476.19,60 464.286,60 C452.381,60 440.476,60 419.643,60 C398.81,60 369.048,60 327.381,65 C285.714,70 232.143,80 196.429,90 C160.714,100 142.857,110 116.071,145 C89.286,180 53.571,240 32.738,270 C11.905,300 5.952,300 2.976,300 Z" fill="#a7f3d0"></path>
+                            <title id="time-chart-title">时间分配：学习、游戏、编程、音乐与亲友</title>
+                            <path class="time-layer" data-area="study" tabindex="0" aria-label="学习" d="M0,300 L2.976,300 C5.952,300 11.905,300 32.738,270 C53.571,240 89.286,180 116.071,160 C142.857,140 160.714,160 196.429,175 C232.143,190 285.714,200 327.381,210 C369.048,220 398.81,230 419.643,235 C440.476,240 452.381,240 464.286,235 C476.19,230 488.095,220 494.048,215 L500,300 L494.048,300 C488.095,300 476.19,300 464.286,300 C452.381,300 440.476,300 419.643,300 C398.81,300 369.048,300 327.381,300 C285.714,300 232.143,300 196.429,300 C160.714,300 142.857,300 116.071,300 C89.286,300 53.571,300 32.738,300 C11.905,300 5.952,300 2.976,300 Z" fill="#bfdbfe"></path>
+                            <path class="time-layer" data-area="music" tabindex="0" aria-label="音乐" d="M0,300 L2.976,300 C5.952,300 11.905,300 32.738,270 C53.571,240 89.286,180 116.071,160 C142.857,140 160.714,160 196.429,175 C232.143,190 285.714,200 327.381,205 C369.048,210 398.81,210 419.643,210 C440.476,210 452.381,210 464.286,210 C476.19,210 488.095,210 494.048,210 L500,210 L494.048,215 C488.095,220 476.19,230 464.286,235 C452.381,240 440.476,240 419.643,235 C398.81,230 369.048,220 327.381,210 C285.714,200 232.143,190 196.429,175 C160.714,160 142.857,140 116.071,160 C89.286,180 53.571,240 32.738,270 C11.905,300 5.952,300 2.976,300 Z" fill="#bae6fd"></path>
+                            <path class="time-layer" data-area="game" tabindex="0" aria-label="游戏" d="M0,300 L2.976,300 C5.952,300 11.905,300 32.738,270 C53.571,240 89.286,180 116.071,145 C142.857,110 160.714,100 196.429,105 C232.143,110 285.714,130 327.381,140 C369.048,150 398.81,150 419.643,150 C440.476,150 452.381,150 464.286,155 C476.19,160 488.095,170 494.048,175 L500,210 L494.048,210 C488.095,210 476.19,210 464.286,210 C452.381,210 440.476,210 419.643,210 C398.81,210 369.048,210 327.381,205 C285.714,200 232.143,190 196.429,175 C160.714,160 142.857,140 116.071,160 C89.286,180 53.571,240 32.738,270 C11.905,300 5.952,300 2.976,300 Z" fill="#a5f3fc"></path>
+                            <path class="time-layer" data-area="coding" tabindex="0" aria-label="编程" d="M0,300 L2.976,300 C5.952,300 11.905,300 32.738,270 C53.571,240 89.286,180 116.071,145 C142.857,110 160.714,100 196.429,90 C232.143,80 285.714,70 327.381,65 C369.048,60 398.81,60 419.643,60 C440.476,60 452.381,60 464.286,60 C476.19,60 488.095,60 494.048,60 L500,180 L494.048,175 C488.095,170 476.19,160 464.286,155 C452.381,150 440.476,150 419.643,150 C398.81,150 369.048,150 327.381,140 C285.714,130 232.143,110 196.429,105 C160.714,100 142.857,110 116.071,145 C89.286,180 53.571,240 32.738,270 C11.905,300 5.952,300 2.976,300 Z" fill="#99f6e4"></path>
+                            <path class="time-layer" data-area="social" tabindex="0" aria-label="亲友相聚" d="M0,0 L2.976,0 C5.952,0 11.905,0 32.738,0 C53.571,0 89.286,0 116.071,0 C142.857,0 160.714,0 196.429,0 C232.143,0 285.714,0 327.381,0 C369.048,0 398.81,0 419.643,0 C440.476,0 452.381,0 464.286,0 C476.19,0 488.095,0 494.048,0 L500,60 L494.048,60 C488.095,60 476.19,60 464.286,60 C452.381,60 440.476,60 419.643,60 C398.81,60 369.048,60 327.381,65 C285.714,70 232.143,80 196.429,90 C160.714,100 142.857,110 116.071,145 C89.286,180 53.571,240 32.738,270 C11.905,300 5.952,300 2.976,300 Z" fill="#a7f3d0"></path>
                             <g aria-hidden="true">
                                 <line class="area-axis" x1="0" y1="300" x2="500" y2="300"></line>
                                 <line class="area-axis" x1="0" y1="60" x2="7" y2="60"></line>
@@ -2075,26 +2128,26 @@
                             <text x="10" y="125" font-size="11">60%</text>
                             <text x="10" y="185" font-size="11">40%</text>
                             <text x="10" y="245" font-size="11">20%</text>
-                            <text class="area-label" data-area="social" transform="translate(72,72) scale(1.08)">Social or Family</text>
-                            <text class="area-label" data-area="coding" transform="translate(348,116) scale(1.08)">Coding</text>
-                            <text class="area-label" data-area="game" transform="translate(204,154) scale(1.08)">Game</text>
-                            <text class="area-label" data-area="study" transform="translate(118,238) scale(1.08)">Study</text>
-                            <text class="area-label" data-area="music" transform="translate(418,232) scale(1)">Music</text>
+                            <text class="area-label" data-area="social" transform="translate(72,72) scale(1.08)">亲友相聚</text>
+                            <text class="area-label" data-area="coding" transform="translate(348,116) scale(1.08)">编程</text>
+                            <text class="area-label" data-area="game" transform="translate(204,154) scale(1.08)">游戏</text>
+                            <text class="area-label" data-area="study" transform="translate(118,238) scale(1.08)">学习</text>
+                            <text class="area-label" data-area="music" transform="translate(418,232) scale(1)">音乐</text>
                         </svg>
                     </div>
                 </article>
                 <div class="space-column">
                     <article class="space-panel content-card accent-white">
-                        <h2 class="fantasy">Space</h2>
-                        <p>This is my footprint. And currently I'm living in 广东 广州.</p>
+                        <h2 class="fantasy">足迹</h2>
+                        <p>这是我走过的一些地方。目前，我住在中国广东广州。</p>
                         <div class="space-map">
-                            <img class="map-image" src="/assets/images/reference/guangzhou-map-crop.png" alt="Guangzhou, China">
+                            <img class="map-image" src="/assets/images/reference/guangzhou-map-crop.png" alt="广东广州">
                             <span class="map-location-pulse" aria-hidden="true"></span>
                             <span class="map-location-ring" aria-hidden="true"></span>
                         </div>
                     </article>
                     <article class="statistics-card content-card accent-dark">
-                        <h2 class="fantasy">Statistics</h2>
+                        <h2 class="fantasy">统计</h2>
                     </article>
                 </div>
             </div>
@@ -2102,16 +2155,16 @@
 
         <section id="contact" class="contact-section section-pad breath-section">
             <p class="contact-copy">
-                I'm open to conversations about backend systems, useful products, and small tools that make daily work easier.
-                <span class="mark-line">Feel free to contact me.</span>
+                欢迎聊聊后端系统、实用的产品，以及那些能让日常工作轻松一点的小工具。
+                <span class="mark-line">随时联系我。</span>
             </p>
         </section>
 
         <footer class="site-footer fantasy breath-section">
-            <div>叶子的博客 · 广东 广州</div>
-            <div class="footer-social contact-icons" aria-label="contact links">
+            <div>叶子的博客 · 广东广州</div>
+            <div class="footer-social contact-icons" aria-label="联系方式">
                 <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
-                <a class="contact-icon" href="mailto:ye363062816@qq.com" title="Email"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
+                <a class="contact-icon" href="mailto:ye363062816@qq.com" title="邮箱"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
                 <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
                 <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
             </div>

@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Why Language Models Need a Cheat Sheet: RAG Explained</title>
+    <meta name="description" content="RAG turns a closed-book answer into an open-book one: retrieve useful information, add context, then generate a grounded response." />
+    <link rel="alternate" hreflang="zh-CN" href="https://blog.lo168.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%BA%E5%95%A5%E8%A6%81%E5%81%B7%E5%81%B7%E7%BF%BB%E5%B0%8F%E6%8A%84-%E5%B8%A6%E4%BD%A0%E7%9C%8B%E6%87%82RAG%E6%98%AF%E4%BB%80%E4%B9%88">
+<link rel="alternate" hreflang="en" href="https://blog.lo168.com/en/rag-explained/">
+<link rel="canonical" href="https://blog.lo168.com/en/rag-explained/">
+<meta name="blog-home" content="/en/">
+<script src="/assets/js/language.js" defer></script>
+
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" href="/assets/css/language.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/prettify.css" />
+
+    <!-- <script src="/assets/js/jquery.min.js"></script> -->
+    <!-- <style>.hljs { background: none; }</style> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script> -->
+
+   <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+       <meta name="referrer" content="origin" />
+
+    <meta property="og:site_name" content="Harry's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Language Models Need a Cheat Sheet: RAG Explained" />
+    <meta property="og:description" content="Notes on technology, products, and life from a backend engineer who keeps learning." />
+    <meta property="og:url" content="https://blog.lo168.com/en/rag-explained/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Why Language Models Need a Cheat Sheet: RAG Explained" />
+    <meta name="twitter:description" content="Notes on technology, products, and life from a backend engineer who keeps learning." />
+    <meta name="twitter:url" content="https://blog.lo168.com/en/rag-explained/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Why Language Models Need a Cheat Sheet: RAG Explained",
+    "inLanguage": "en",
+    "url": "https://blog.lo168.com/en/rag-explained/",
+    "description": "Notes on technology, products, and life from a backend engineer who keeps learning."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 4.3.2" />
+    <link rel="alternate" type="application/rss+xml" title="Harry's Blog" href="/en/feed.xml" />
+
+
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/en/">Home</a></li>
+        <!-- <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li> -->
+        <!-- <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li> -->
+        <!-- <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li> -->
+    </ul>
+    <a class="subscribe-button icon-feed" href="/en/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        
+
+
+<!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<svg class="icon-sprite qzq-icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-github" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 0.8a11.2 11.2 0 0 0-3.54 21.82c0.56 0.1 0.77-0.24 0.77-0.54v-2.1c-3.14 0.68-3.8-1.34-3.8-1.34-0.51-1.3-1.25-1.64-1.25-1.64-1.02-0.7 0.08-0.68 0.08-0.68 1.13 0.08 1.72 1.16 1.72 1.16 1 1.71 2.62 1.22 3.26 0.93 0.1-0.72 0.39-1.22 0.71-1.5-2.5-0.29-5.14-1.25-5.14-5.58 0-1.23 0.44-2.24 1.16-3.03-0.12-0.28-0.5-1.43 0.11-2.98 0 0 0.95-0.3 3.1 1.16a10.7 10.7 0 0 1 5.64 0c2.15-1.46 3.09-1.16 3.09-1.16 0.62 1.55 0.23 2.7 0.12 2.98 0.72 0.79 1.15 1.8 1.15 3.03 0 4.34-2.64 5.29-5.16 5.57 0.4 0.35 0.76 1.04 0.76 2.1v3.1c0 0.3 0.2 0.65 0.78 0.54A11.2 11.2 0 0 0 12 0.8Z"></path>
+    </symbol>
+    <symbol id="icon-email" viewBox="0 0 24 24">
+        <path d="M4.5 6.5h15a1.8 1.8 0 0 1 1.8 1.8v7.4a1.8 1.8 0 0 1-1.8 1.8h-15a1.8 1.8 0 0 1-1.8-1.8V8.3a1.8 1.8 0 0 1 1.8-1.8Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="m4 8 8 5.4L20 8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
+    </symbol>
+    <symbol id="icon-telegram" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M21.7 4.15 18.5 19.4c-0.24 1.08-0.87 1.35-1.76 0.84l-4.88-3.6-2.36 2.27c-0.26 0.26-0.48 0.48-0.98 0.48l0.35-4.96 9.03-8.16c0.39-0.35-0.09-0.55-0.61-0.2L6.14 13.1 1.34 11.6c-1.04-0.33-1.06-1.04 0.22-1.54l18.78-7.24c0.87-0.32 1.63 0.2 1.36 1.33Z"></path>
+    </symbol>
+    <symbol id="icon-discord" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M19.5 5.05A16.2 16.2 0 0 0 15.42 3.8l-0.2 0.39c1.49 0.45 2.19 1.08 2.19 1.08A13.45 13.45 0 0 0 12 4.25c-2.17 0-4.1 0.51-5.41 1.02 0 0 0.72-0.67 2.31-1.12L8.72 3.8A16.02 16.02 0 0 0 4.63 5.05C2.05 8.9 1.35 12.65 1.7 16.34A16.45 16.45 0 0 0 6.7 18.9l0.94-1.24a10.64 10.64 0 0 1-1.48-0.71l0.35-0.27c2.86 1.34 5.96 1.34 8.78 0l0.36 0.27c-0.47 0.28-0.97 0.52-1.49 0.71l0.94 1.24a16.36 16.36 0 0 0 5-2.56c0.43-4.28-0.73-7.99-2.6-11.29ZM8.55 14.05c-0.98 0-1.77-0.91-1.77-2.02 0-1.12 0.78-2.03 1.77-2.03 0.98 0 1.79 0.91 1.77 2.03 0 1.11-0.79 2.02-1.77 2.02Zm6.9 0c-0.98 0-1.77-0.91-1.77-2.02 0-1.12 0.78-2.03 1.77-2.03 0.98 0 1.79 0.91 1.77 2.03 0 1.11-0.79 2.02-1.77 2.02Z"></path>
+    </symbol>
+</svg>
+
+<header class="qzq-post-header">
+    <nav class="site-header qzq-post-site-header" aria-label="Article navigation">
+        <div class="site-header-inner">
+            <div class="site-nav">
+                <a class="brand fantasy mobile-brand" href="/en/#home">Harry</a>
+                <a href="/en/#articles">Articles</a>
+                <a href="/en/#code">Code</a>
+                <a href="/en/#works">Works</a>
+                <a href="/en/#statistics">Time</a>
+            </div>
+            <div class="header-actions">
+                <div class="site-social contact-icons" aria-label="Contact links">
+                    <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
+                    <a class="contact-icon" href="mailto:ye363062816@qq.com" title="Email"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
+                    <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
+                    <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
+                </div>
+                <nav class="language-switch" aria-label="Choose language">
+    <a href="/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%BA%E5%95%A5%E8%A6%81%E5%81%B7%E5%81%B7%E7%BF%BB%E5%B0%8F%E6%8A%84-%E5%B8%A6%E4%BD%A0%E7%9C%8B%E6%87%82RAG%E6%98%AF%E4%BB%80%E4%B9%88" lang="zh-CN" hreflang="zh-CN" data-language="zh-CN" title="切换为中文">中</a>
+    
+    <a href="/en/rag-explained/" lang="en" hreflang="en" data-language="en" aria-current="true" title="Read in English">EN</a>
+    
+</nav>
+
+            </div>
+        </div>
+    </nav>
+    <div class="qzq-post-hero">
+        <a class="qzq-post-back" href="/en/#articles">Back to Articles</a>
+        <div class="qzq-post-title-stage" data-qzq-falling-stage aria-label="AI Why Language Models Need a Cheat Sheet: RAG Explained 叶子 2026-10-27">
+            <p class="qzq-post-kicker" data-qzq-falling-line>AI</p>
+            <h1 class="qzq-post-title" data-qzq-falling-line>Why Language Models Need a Cheat Sheet: RAG Explained</h1>
+            <p class="qzq-post-meta">
+                <span data-qzq-falling-line>Harry</span>
+                <time data-qzq-falling-line datetime="2026-10-27">2026-10-27</time>
+            </p>
+        </div>
+    </div>
+</header>
+
+<main class="content qzq-post-main" role="main">
+
+    <article class="post tag-fiction qzq-post-card">
+
+        <header class="post-header qzq-post-card-header">
+            <h1 class="post-title">Why Language Models Need a Cheat Sheet: RAG Explained</h1>
+            <section class="post-meta">
+                
+                
+                    
+                       <a href='/en/#articles'>Ai</a>
+                    
+                
+                
+                <time class="post-date" datetime="2026-10-27">2026-10-27</time>
+            </section>
+        </header>
+
+        <section class="post-content qzq-post-content">
+
+            <p>Today, let’s talk about an important technique in AI application development: <strong>RAG, or Retrieval-Augmented Generation</strong>.</p>
+
+<p>The name sounds grand, but the core idea is simple: <strong>don’t know an exam answer? Open the book, find relevant material, then explain it in your own words.</strong></p>
+
+<p>RAG turns the model’s closed-book exam into an open-book exam.</p>
+
+<h2 id="1-if-language-models-are-so-smart-why-do-they-need-rag">1. If language models are so smart, why do they need RAG?</h2>
+
+<p>Imagine hiring a brilliant graduate as a customer-support agent. They know science, write code, draft articles, and can even help the boss with an annual report.</p>
+
+<p>On the first day, a customer asks:</p>
+
+<blockquote>
+  <p>I’m a VIP member. Can I return a purchase after seven days?</p>
+</blockquote>
+
+<p>The graduate thinks for a moment: “Usually, there is a seven-day return window. After that, a refund may not be possible.”</p>
+
+<p>The boss nearly explodes. <strong>Our company gives VIP members fifteen days! Why are you making things up?</strong></p>
+
+<p>The graduate is not unintelligent. They simply have never read the company’s policies.</p>
+
+<p>Language models face the same problem. Learning from vast amounts of training data does not mean knowing your company’s internal rules or its latest business information.</p>
+
+<p>Worse, a model may sound confident even when it does not know. That is the familiar problem of <strong>AI hallucination</strong>.</p>
+
+<p>Do we have to retrain the model whenever the refund policy changes? No. We can provide an up-to-date business handbook and retrieve the relevant material before answering.</p>
+
+<p><strong>That is why RAG exists.</strong></p>
+
+<h2 id="2-rag-is-like-giving-ai-a-research-assistant">2. RAG is like giving AI a research assistant</h2>
+
+<p>Break the term down:</p>
+
+<ul>
+  <li><strong>Retrieval:</strong> find relevant information.</li>
+  <li><strong>Augmented:</strong> give that information to the model.</li>
+  <li><strong>Generation:</strong> use it to formulate a response.</li>
+</ul>
+
+<p>So: <strong>RAG = look things up + provide context + generate an answer.</strong></p>
+
+<p>A user asks, “I’m a VIP. Can I return something I bought ten days ago?”</p>
+
+<p>Without RAG, the model may guess from general knowledge. With RAG, the system first retrieves the policy:</p>
+
+<blockquote>
+  <p>VIP members have a fifteen-day no-questions-asked return window, excluding special product categories.</p>
+</blockquote>
+
+<p>The model can then explain: “If your purchase is not in an excluded category, ten days is still within the return period.”</p>
+
+<p>An important point: <strong>RAG does not retrain the model or change its parameters.</strong> It temporarily adds retrieved information to the context for this request.</p>
+
+<p>It is like handing the graduate a reference book. Of course, an open-book exam does not guarantee a perfect score. Open the wrong book or find the wrong page, and you can still get the answer wrong.</p>
+
+<h2 id="3-how-does-rag-work">3. How does RAG work?</h2>
+
+<p>Suppose the company has 100,000 PDF, Word, and Excel documents. We cannot reasonably send all of them to the model for every question. That would be a reading marathon, not a support request.</p>
+
+<p>RAG therefore builds a searchable knowledge base in advance. The process has two stages.</p>
+
+<p><strong>Stage one: prepare the knowledge base.</strong> Read the documents, split long documents into meaningful chunks, turn text into vectors with an embedding model, and store those vectors in a searchable database.</p>
+
+<p><strong>Stage two: answer a question.</strong> Encode the question, retrieve related material, filter or rerank it when needed, and pass the selected context to the language model to generate a response.</p>
+
+<p>Here is the overall workflow:</p>
+
+<p><img src="/assets/images/image-rag-flow.png" alt="RAG workflow; diagram labels are from the Chinese original" /></p>
+
+<p>The diagram has three key roles.</p>
+
+<p><strong>1. Chunking: divide documents into useful pieces.</strong></p>
+
+<p>Split a thick business handbook into smaller, meaningful sections that can be retrieved.</p>
+
+<p>But don’t cut blindly. If “VIP members can return items within fifteen days” is separated from “fresh food is excluded”, retrieval may find only half the rule and produce a wrong answer.</p>
+
+<p><strong>2. Embeddings: represent text as vectors.</strong></p>
+
+<p>A user may ask about “premium member returns” while the document says “VIP refund policy”. The wording differs, but the meanings are related.</p>
+
+<p>An embedding model helps the system find this semantic relationship. That does not mean it can reliably distinguish every year, monetary amount, or business condition without other checks.</p>
+
+<p><strong>3. A vector database: store and retrieve vectors.</strong></p>
+
+<p>Examples include PostgreSQL with pgvector, Milvus, and Qdrant.</p>
+
+<p>The system can retrieve related material using vector similarity. Keyword search, metadata filters, and reranking can also help improve accuracy.</p>
+
+<p>Keep the responsibilities clear: <strong>the embedding model creates vectors; the retrieval system searches; the language model generates the answer.</strong></p>
+
+<h2 id="4-what-can-rag-do-and-why-do-businesses-use-it">4. What can RAG do, and why do businesses use it?</h2>
+
+<p>Its main value is letting AI use internal knowledge and external material that changes over time.</p>
+
+<p><strong>Customer support:</strong> retrieve company rules before answering questions about refunds, after-sales service, or product use.</p>
+
+<p><strong>Technical knowledge bases:</strong> help developers locate API documentation, system designs, and accumulated engineering decisions.</p>
+
+<p><strong>Personal knowledge assistants:</strong> find an idea in hundreds of saved technical articles after you have forgotten where you saw it.</p>
+
+<p><strong>Product-manual assistants:</strong> answer a user’s question without making them search through dozens of pages.</p>
+
+<p>But RAG is not a universal solution. If someone asks, “How much did I pay for yesterday’s order?”, the system should query the order database or a suitable API. It should not guess an exact payment amount from vector similarity.</p>
+
+<p><strong>RAG finds relevant knowledge in documents. It does not replace every database query or business API.</strong></p>
+
+<h2 id="5-how-is-rag-different-from-fine-tuning">5. How is RAG different from fine-tuning?</h2>
+
+<p>Return to our brilliant graduate.</p>
+
+<p><strong>RAG gives them a new textbook.</strong> The person stays the same, but can consult current information while answering.</p>
+
+<p><strong>Fine-tuning gives them specialized training.</strong> It changes the model’s parameters to adapt behavior to particular tasks or output requirements.</p>
+
+<p>If you want the AI to know the latest refund policy, RAG is usually the first approach to consider. If you need more consistent performance on a specific task, start with approaches such as prompt design, then consider fine-tuning where appropriate.</p>
+
+<p>These techniques are not mutually exclusive; they can work together.</p>
+
+<h2 id="6-final-thoughts">6. Final thoughts</h2>
+
+<p>The biggest lesson for me is this:</p>
+
+<p><strong>A valuable AI application does not have to make the model know everything. It has to help the model find the right information when it needs it.</strong></p>
+
+<p>That is not so different from traditional software. Orders live in databases, business rules are managed by business systems, and product information comes from services.</p>
+
+<p>The model does not need to memorize all of it. It needs relevant, accurate, trustworthy material at the moment it answers.</p>
+
+<p>The heart of RAG is therefore not just an embedding model or a vector database. It is <strong>putting the right knowledge in front of the model at the right time</strong>.</p>
+
+<p>Before RAG: “I think I remember this. Let me guess.”</p>
+
+<p>With RAG: “Let me check the latest company policy first.”</p>
+
+<p>The goal is to move from answering by impression to answering with evidence, provided the retrieval actually found the right evidence.</p>
+
+<p>After all, an open-book exam is not the scary part. The scary part is opening the wrong book and answering with complete confidence.</p>
+
+<p>That’s it for today’s installment of learning AI from the ground up.</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/en/#home" style="background-image: url(/assets/images/casper.png)"><span class="hidden">Harry</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/en/#home">Harry</a></h4>
+
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Guangzhou, China</span>
+                    <span class="author-link icon-link"><a href="https://blog.lo168.com"> http://blog.lo168.com/</a></span>
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Why+Language+Models+Need+a+Cheat+Sheet%3A+RAG+Explained&amp;url=https%3A%2F%2Fblog.lo168.com%2Fen%2Frag-explained%2F"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.lo168.com%2Fen%2Frag-explained%2F"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https%3A%2F%2Fblog.lo168.com%2Fen%2Frag-explained%2F"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next qzq-read-next">
+
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/image-mcp.png)" href="/en/mcp-explained/">
+            <section class="post" data-read-label="You Might Enjoy">
+                <h2>MCP Without the Jargon: How It Actually Works</h2>
+                <p>MCP is the rulebook, the client connects, and the server supplies tools. A practical explanation ...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/en/">Harry's Blog</a> &copy; 2026</section>
+          <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
+      </footer>
+  </div>
+  <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+  <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+  <!-- [[! The main JavaScript file for Casper ]] -->
+  <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="/assets/js/index.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
+  <script type="text/javascript" src="/assets/js/qzq-falling-title.js?v=20260606-hover3"></script>
+  
+    <script src="/assets/js/prettify.js"></script>
+    <script>
+        $(window).load(function(){
+           $("pre").addClass("prettyprint");
+           prettyPrint();
+       })
+   </script>
+  <!-- Add Google Analytics  -->
+      <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'utf-8', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+</body>
+</html>

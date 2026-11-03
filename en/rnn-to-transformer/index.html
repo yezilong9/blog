@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>From RNNs to Transformers: How AI Learned to Understand a Sentence</title>
+    <meta name="description" content="A friendly journey through RNNs, LSTMs, attention, and Transformers, without the intimidating formulas." />
+    <link rel="alternate" hreflang="zh-CN" href="https://blog.lo168.com/%E4%BB%8ERNN%E5%88%B0Transformer-AI%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%BC%9A%E7%90%86%E8%A7%A3%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%9A%84">
+<link rel="alternate" hreflang="en" href="https://blog.lo168.com/en/rnn-to-transformer/">
+<link rel="canonical" href="https://blog.lo168.com/en/rnn-to-transformer/">
+<meta name="blog-home" content="/en/">
+<script src="/assets/js/language.js" defer></script>
+
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" href="/assets/css/language.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/prettify.css" />
+
+    <!-- <script src="/assets/js/jquery.min.js"></script> -->
+    <!-- <style>.hljs { background: none; }</style> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script> -->
+
+   <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+       <meta name="referrer" content="origin" />
+
+    <meta property="og:site_name" content="Harry's Blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="From RNNs to Transformers: How AI Learned to Understand a Sentence" />
+    <meta property="og:description" content="Notes on technology, products, and life from a backend engineer who keeps learning." />
+    <meta property="og:url" content="https://blog.lo168.com/en/rnn-to-transformer/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="From RNNs to Transformers: How AI Learned to Understand a Sentence" />
+    <meta name="twitter:description" content="Notes on technology, products, and life from a backend engineer who keeps learning." />
+    <meta name="twitter:url" content="https://blog.lo168.com/en/rnn-to-transformer/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "From RNNs to Transformers: How AI Learned to Understand a Sentence",
+    "inLanguage": "en",
+    "url": "https://blog.lo168.com/en/rnn-to-transformer/",
+    "description": "Notes on technology, products, and life from a backend engineer who keeps learning."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 4.3.2" />
+    <link rel="alternate" type="application/rss+xml" title="Harry's Blog" href="/en/feed.xml" />
+
+
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/en/">Home</a></li>
+        <!-- <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li> -->
+        <!-- <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li> -->
+        <!-- <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li> -->
+    </ul>
+    <a class="subscribe-button icon-feed" href="/en/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        
+
+
+<!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<svg class="icon-sprite qzq-icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-github" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 0.8a11.2 11.2 0 0 0-3.54 21.82c0.56 0.1 0.77-0.24 0.77-0.54v-2.1c-3.14 0.68-3.8-1.34-3.8-1.34-0.51-1.3-1.25-1.64-1.25-1.64-1.02-0.7 0.08-0.68 0.08-0.68 1.13 0.08 1.72 1.16 1.72 1.16 1 1.71 2.62 1.22 3.26 0.93 0.1-0.72 0.39-1.22 0.71-1.5-2.5-0.29-5.14-1.25-5.14-5.58 0-1.23 0.44-2.24 1.16-3.03-0.12-0.28-0.5-1.43 0.11-2.98 0 0 0.95-0.3 3.1 1.16a10.7 10.7 0 0 1 5.64 0c2.15-1.46 3.09-1.16 3.09-1.16 0.62 1.55 0.23 2.7 0.12 2.98 0.72 0.79 1.15 1.8 1.15 3.03 0 4.34-2.64 5.29-5.16 5.57 0.4 0.35 0.76 1.04 0.76 2.1v3.1c0 0.3 0.2 0.65 0.78 0.54A11.2 11.2 0 0 0 12 0.8Z"></path>
+    </symbol>
+    <symbol id="icon-email" viewBox="0 0 24 24">
+        <path d="M4.5 6.5h15a1.8 1.8 0 0 1 1.8 1.8v7.4a1.8 1.8 0 0 1-1.8 1.8h-15a1.8 1.8 0 0 1-1.8-1.8V8.3a1.8 1.8 0 0 1 1.8-1.8Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="m4 8 8 5.4L20 8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
+    </symbol>
+    <symbol id="icon-telegram" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M21.7 4.15 18.5 19.4c-0.24 1.08-0.87 1.35-1.76 0.84l-4.88-3.6-2.36 2.27c-0.26 0.26-0.48 0.48-0.98 0.48l0.35-4.96 9.03-8.16c0.39-0.35-0.09-0.55-0.61-0.2L6.14 13.1 1.34 11.6c-1.04-0.33-1.06-1.04 0.22-1.54l18.78-7.24c0.87-0.32 1.63 0.2 1.36 1.33Z"></path>
+    </symbol>
+    <symbol id="icon-discord" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M19.5 5.05A16.2 16.2 0 0 0 15.42 3.8l-0.2 0.39c1.49 0.45 2.19 1.08 2.19 1.08A13.45 13.45 0 0 0 12 4.25c-2.17 0-4.1 0.51-5.41 1.02 0 0 0.72-0.67 2.31-1.12L8.72 3.8A16.02 16.02 0 0 0 4.63 5.05C2.05 8.9 1.35 12.65 1.7 16.34A16.45 16.45 0 0 0 6.7 18.9l0.94-1.24a10.64 10.64 0 0 1-1.48-0.71l0.35-0.27c2.86 1.34 5.96 1.34 8.78 0l0.36 0.27c-0.47 0.28-0.97 0.52-1.49 0.71l0.94 1.24a16.36 16.36 0 0 0 5-2.56c0.43-4.28-0.73-7.99-2.6-11.29ZM8.55 14.05c-0.98 0-1.77-0.91-1.77-2.02 0-1.12 0.78-2.03 1.77-2.03 0.98 0 1.79 0.91 1.77 2.03 0 1.11-0.79 2.02-1.77 2.02Zm6.9 0c-0.98 0-1.77-0.91-1.77-2.02 0-1.12 0.78-2.03 1.77-2.03 0.98 0 1.79 0.91 1.77 2.03 0 1.11-0.79 2.02-1.77 2.02Z"></path>
+    </symbol>
+</svg>
+
+<header class="qzq-post-header">
+    <nav class="site-header qzq-post-site-header" aria-label="Article navigation">
+        <div class="site-header-inner">
+            <div class="site-nav">
+                <a class="brand fantasy mobile-brand" href="/en/#home">Harry</a>
+                <a href="/en/#articles">Articles</a>
+                <a href="/en/#code">Code</a>
+                <a href="/en/#works">Works</a>
+                <a href="/en/#statistics">Time</a>
+            </div>
+            <div class="header-actions">
+                <div class="site-social contact-icons" aria-label="Contact links">
+                    <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
+                    <a class="contact-icon" href="mailto:ye363062816@qq.com" title="Email"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
+                    <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
+                    <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
+                </div>
+                <nav class="language-switch" aria-label="Choose language">
+    <a href="/%E4%BB%8ERNN%E5%88%B0Transformer-AI%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%A6%E4%BC%9A%E7%90%86%E8%A7%A3%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%9A%84" lang="zh-CN" hreflang="zh-CN" data-language="zh-CN" title="切换为中文">中</a>
+    
+    <a href="/en/rnn-to-transformer/" lang="en" hreflang="en" data-language="en" aria-current="true" title="Read in English">EN</a>
+    
+</nav>
+
+            </div>
+        </div>
+    </nav>
+    <div class="qzq-post-hero">
+        <a class="qzq-post-back" href="/en/#articles">Back to Articles</a>
+        <div class="qzq-post-title-stage" data-qzq-falling-stage aria-label="AI From RNNs to Transformers: How AI Learned to Understand a Sentence 叶子 2026-10-03">
+            <p class="qzq-post-kicker" data-qzq-falling-line>AI</p>
+            <h1 class="qzq-post-title" data-qzq-falling-line>From RNNs to Transformers: How AI Learned to Understand a Sentence</h1>
+            <p class="qzq-post-meta">
+                <span data-qzq-falling-line>Harry</span>
+                <time data-qzq-falling-line datetime="2026-10-03">2026-10-03</time>
+            </p>
+        </div>
+    </div>
+</header>
+
+<main class="content qzq-post-main" role="main">
+
+    <article class="post tag-fiction qzq-post-card">
+
+        <header class="post-header qzq-post-card-header">
+            <h1 class="post-title">From RNNs to Transformers: How AI Learned to Understand a Sentence</h1>
+            <section class="post-meta">
+                
+                
+                    
+                       <a href='/en/#articles'>Ai</a>
+                    
+                
+                
+                <time class="post-date" datetime="2026-10-03">2026-10-03</time>
+            </section>
+        </header>
+
+        <section class="post-content qzq-post-content">
+
+            <blockquote>
+  <p>Why can ChatGPT understand everyday language?
+Why doesn’t it mistake a request to write an email for a request to write a resignation letter?
+How does AI know that “apple” sometimes means a fruit and sometimes a phone?</p>
+</blockquote>
+
+<p>Behind these questions is a bigger one:</p>
+
+<p><strong>How does AI make sense of human language?</strong></p>
+
+<p>Let’s explore the development of language models, from RNNs to Transformers.</p>
+
+<p>Don’t worry: no complicated formulas today. Because formulas are the sort of thing that make AI calculate and humans fall asleep.</p>
+
+<hr />
+
+<h2 id="1-to-ai-a-sentence-is-not-simply-a-sentence">1. To AI, a sentence is not simply a sentence</h2>
+
+<p>Consider this sentence:</p>
+
+<blockquote>
+  <p>Xiaoming went to Beijing yesterday because the university he had always dreamed of attending was there.</p>
+</blockquote>
+
+<p>Our brains understand that “there” refers to Beijing. A computer starts with something more like a sequence:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Xiaoming
+yesterday
+went
+Beijing
+because
+there
+university
+</code></pre></div></div>
+
+<p>It does not automatically know who Xiaoming is, what Beijing is, or why “there” refers to Beijing.</p>
+
+<p>What the computer sees at first is not text, but a sequence of numbers.</p>
+
+<p>So the first challenge is: <strong>how do we get a machine to understand a sentence?</strong></p>
+
+<h2 id="2-rnns-give-ai-a-little-notebook">2. RNNs: give AI a little notebook</h2>
+
+<p>Researchers had a reasonable idea: people understand language partly because they remember context. Perhaps AI should too.</p>
+
+<p>When you read:</p>
+
+<blockquote>
+  <p>Xiaoming went to Beijing yesterday because…</p>
+</blockquote>
+
+<p>The word “because” makes you recall what happened just before it.</p>
+
+<p>This is the basic intuition behind an RNN, or <strong>Recurrent Neural Network</strong>: <strong>read and remember as you go</strong>.</p>
+
+<p>Take the sentence:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Xiaoming yesterday went to Beijing
+</code></pre></div></div>
+
+<p>The RNN begins reading. When it sees “Xiaoming”, its notebook records:</p>
+
+<blockquote>
+  <p>There is a person called Xiaoming.</p>
+</blockquote>
+
+<p>It continues to “yesterday” and updates its notes:</p>
+
+<blockquote>
+  <p>Something happened to Xiaoming yesterday.</p>
+</blockquote>
+
+<p>When it reaches “Beijing”, it updates them again:</p>
+
+<blockquote>
+  <p>Xiaoming went to Beijing yesterday.</p>
+</blockquote>
+
+<p>When “there” appears later, AI opens the notebook and asks, “What place was mentioned just now?”</p>
+
+<p>The answer is Beijing. So it concludes:</p>
+
+<blockquote>
+  <p>there = Beijing</p>
+</blockquote>
+
+<p>An RNN is like a diligent student: the teacher says something, it takes a note; the teacher continues, it updates the note.</p>
+
+<h2 id="3-the-problem-the-notebook-has-limited-room">3. The problem: the notebook has limited room</h2>
+
+<p>At first, RNNs perform well. With a sentence of only a few dozen characters, they can generally understand it. But what happens as the text gets longer?</p>
+
+<blockquote>
+  <p>Xiaoming was born in Shanghai… [another 5,000 words] …and later came here to work.</p>
+</blockquote>
+
+<p>Ask where “here” means, and the RNN may hesitate. “Shanghai? Or one of the other cities mentioned in between? Wait, what did I write down earlier?”</p>
+
+<p>This is the <strong>long-term dependency problem</strong>.</p>
+
+<p>The notebook analogy helps: imagine reading a 100-page novel while keeping only a short, constantly revised summary. At first, you remember the main character. Later, you may find yourself asking, “Wait, who was Xiaoming again?”</p>
+
+<h2 id="4-lstms-upgrade-to-a-smarter-notebook">4. LSTMs: upgrade to a smarter notebook</h2>
+
+<p>Researchers improved the RNN idea with <strong>Long Short-Term Memory</strong>, or <strong>LSTM</strong>, networks.</p>
+
+<p>Think of an LSTM as <strong>a notebook that automatically sorts information</strong>. An ordinary notebook records everything. The smart notebook saves important information and discards what is not important.</p>
+
+<p>In a story, “Xiaoming loves basketball” is important and may affect the plot later. Keep it! But “The weather was pleasant yesterday afternoon” is not very relevant to the story. Delete it!</p>
+
+<p>LSTMs improved the ability to retain useful information over longer sequences. But they still process the sequence step by step.</p>
+
+<h2 id="5-transformers-ai-learns-to-look-at-the-whole-article-at-once">5. Transformers: AI learns to look at the whole article at once</h2>
+
+<p>In 2017, the Transformer brought a major change.</p>
+
+<p>The biggest change was not making AI remember more. It was <strong>letting AI see all the information at the same time</strong>.</p>
+
+<p>An RNN reads like we read a book: page one, page two, page three, turning one page after another.</p>
+
+<p>A Transformer reads more like opening a PDF: everything is displayed together. It then asks, “Which words have the most important relationships?”</p>
+
+<p>Consider:</p>
+
+<blockquote>
+  <p>Xiaoming went to Beijing yesterday because there was a university there.</p>
+</blockquote>
+
+<p>When the Transformer sees “there”, it does not look only at the preceding word. It looks at the whole sentence and asks, “Which word has the strongest relationship with ‘there’?”</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>there -- Xiaoming     weaker relationship
+there -- yesterday    weaker relationship
+there -- Beijing      stronger relationship
+</code></pre></div></div>
+
+<p>AI therefore understands that “there” means Beijing. This ability is called <strong>Attention</strong>.</p>
+
+<p>Simply put, attention teaches AI not to look at all information equally, but to focus on the important information.</p>
+
+<h2 id="6-what-is-attention-like">6. What is attention like?</h2>
+
+<p>Humans do something similar when reading:</p>
+
+<blockquote>
+  <p>Jack Ma founded Alibaba.</p>
+</blockquote>
+
+<p>Where does your attention go? To “Jack Ma” and “Alibaba”, of course. You do not focus on small connecting words such as “a” and “the”, because they are not the important parts.</p>
+
+<p>Attention gives AI a similar ability. It automatically determines which words are important, which are supporting words, and which words are related.</p>
+
+<h2 id="7-rnns-and-transformers-two-employees">7. RNNs and Transformers: two employees</h2>
+
+<p>Imagine giving two employees a 100-page requirements document.</p>
+
+<h3 id="the-rnn-employee">The RNN employee</h3>
+
+<p>“Please read this document.”</p>
+
+<p>“Sure. Page one… update my notes. Page two… revise the notes. Page three… keep going.”</p>
+
+<p>A hundred pages later, you ask for a summary.</p>
+
+<p>“I remember it was about some kind of system…”</p>
+
+<h3 id="the-transformer-employee">The Transformer employee</h3>
+
+<p>“Please read this document.”</p>
+
+<p>“Wait a moment.”</p>
+
+<p>Snap! All the pages are open.</p>
+
+<p>“The user requirements are on page 20. Technical requirements are on page 50. The launch date is on page 80. This information needs to be connected.”</p>
+
+<p>This is where Transformers are powerful: they do not just remember information, but actively look for relationships between pieces of information.</p>
+
+<h2 id="8-why-do-models-such-as-chatgpt-use-transformers">8. Why do models such as ChatGPT use Transformers?</h2>
+
+<p>The problems ChatGPT faces are much more complex than ordinary text. It needs to handle:</p>
+
+<ul>
+  <li>Summarizing long documents.</li>
+  <li>Generating code.</li>
+  <li>Analyzing files.</li>
+  <li>Answering questions.</li>
+  <li>Everyday conversations.</li>
+</ul>
+
+<p>It may even need to understand hundreds of thousands of characters of information.</p>
+
+<p>RNNs read slowly, can forget things in long texts, and cannot fully take advantage of parallel GPU computation.</p>
+
+<p>Transformers can process large amounts of information at the same time, understand context better, and are better suited to large-scale training. That is why today’s large language models, including GPT, Claude, Gemini, and Llama, are essentially based on the Transformer architecture.</p>
+
+<h2 id="9-what-changed-along-the-way">9. What changed along the way?</h2>
+
+<p>We can summarize the journey in three stages:</p>
+
+<p><strong>RNN:</strong> “I can carry information from earlier steps.” The memory can be fragile over long sequences.</p>
+
+<p><strong>LSTM:</strong> “I can learn what to keep and what to forget.” The processing is still recurrent.</p>
+
+<p><strong>Transformer:</strong> “I can not only see everything, but also tell which information is most important.”</p>
+
+<p>And so, the era of large language models began.</p>
+
+<p>A simplified learning roadmap looks like this:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RNN
+  |
+LSTM
+  |
+Attention
+  |
+Transformer
+  |
+GPT-style language models
+</code></pre></div></div>
+
+<h2 id="10-how-deeply-should-a-developer-study-this">10. How deeply should a developer study this?</h2>
+
+<p>For an ordinary developer, understanding the idea behind RNNs is enough; you do not need to go very deep, because they are no longer the main direction.</p>
+
+<p>But Transformers are something you should master, because the core technical path for future AI application development is:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Transformer
+          |
+Large language models
+          |
+RAG knowledge bases
+          |
+AI agents
+          |
+Enterprise AI applications
+</code></pre></div></div>
+
+<h2 id="final-thoughts">Final thoughts</h2>
+
+<p>ChatGPT did not appear out of nowhere. It rests on decades of research.</p>
+
+<p>From RNNs teaching AI to remember the past to Transformers teaching it to focus on what matters, AI grew from a schoolchild who could only recite answers into an intelligent assistant that can chat, write code, and analyze problems.</p>
+
+<p>Understanding the journey from RNNs to Transformers is our first step toward learning AI.</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/en/#home" style="background-image: url(/assets/images/casper.png)"><span class="hidden">Harry</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/en/#home">Harry</a></h4>
+
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Guangzhou, China</span>
+                    <span class="author-link icon-link"><a href="https://blog.lo168.com"> http://blog.lo168.com/</a></span>
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=From+RNNs+to+Transformers%3A+How+AI+Learned+to+Understand+a+Sentence&amp;url=https%3A%2F%2Fblog.lo168.com%2Fen%2Frnn-to-transformer%2F"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.lo168.com%2Fen%2Frnn-to-transformer%2F"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https%3A%2F%2Fblog.lo168.com%2Fen%2Frnn-to-transformer%2F"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next qzq-read-next">
+
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/image-mcp.png)" href="/en/mcp-explained/">
+            <section class="post" data-read-label="Read This Next">
+                <h2>MCP Without the Jargon: How It Actually Works</h2>
+                <p>MCP is the rulebook, the client connects, and the server supplies tools. A practical explanation ...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/image-20230615105617585.png)" href="/en/cloudflare-pages-vless-part-two/">
+            <section class="post" data-read-label="You Might Enjoy">
+                <h2>Cloudflare Pages: Deploying a Free-Forever Node, Part Two</h2>
+                <p>Deploy the project with a KV namespace, an administrator password, and a second Pages deployment.</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/en/">Harry's Blog</a> &copy; 2026</section>
+          <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
+      </footer>
+  </div>
+  <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+  <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+  <!-- [[! The main JavaScript file for Casper ]] -->
+  <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="/assets/js/index.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
+  <script type="text/javascript" src="/assets/js/qzq-falling-title.js?v=20260606-hover3"></script>
+  
+    <script src="/assets/js/prettify.js"></script>
+    <script>
+        $(window).load(function(){
+           $("pre").addClass("prettyprint");
+           prettyPrint();
+       })
+   </script>
+  <!-- Add Google Analytics  -->
+      <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'utf-8', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+</body>
+</html>

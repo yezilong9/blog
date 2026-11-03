@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Harry's Blog</title>
+    <link>https://blog.lo168.com/en/</link>
+    <description>Notes on technology, products, and life.</description>
+    <language>en</language>
+    
+    
+    <item>
+      <title>Why Language Models Need a Cheat Sheet: RAG Explained</title>
+      <link>https://blog.lo168.com/en/rag-explained/</link>
+      <guid>https://blog.lo168.com/en/rag-explained/</guid>
+      <pubDate>Tue, 27 Oct 2026 11:18:00 +0800</pubDate>
+      <description>RAG turns a closed-book answer into an open-book one: retrieve useful information, add context, then generate a grounded response.</description>
+    </item>
+    
+    <item>
+      <title>MCP Without the Jargon: How It Actually Works</title>
+      <link>https://blog.lo168.com/en/mcp-explained/</link>
+      <guid>https://blog.lo168.com/en/mcp-explained/</guid>
+      <pubDate>Fri, 23 Oct 2026 10:18:00 +0800</pubDate>
+      <description>MCP is the rulebook, the client connects, and the server supplies tools. A practical explanation from request to response.</description>
+    </item>
+    
+    <item>
+      <title>From RNNs to Transformers: How AI Learned to Understand a Sentence</title>
+      <link>https://blog.lo168.com/en/rnn-to-transformer/</link>
+      <guid>https://blog.lo168.com/en/rnn-to-transformer/</guid>
+      <pubDate>Sat, 03 Oct 2026 10:18:00 +0800</pubDate>
+      <description>A friendly journey through RNNs, LSTMs, attention, and Transformers, without the intimidating formulas.</description>
+    </item>
+    
+    <item>
+      <title>Cloudflare Pages: Deploying a Free-Forever Node, Part Two</title>
+      <link>https://blog.lo168.com/en/cloudflare-pages-vless-part-two/</link>
+      <guid>https://blog.lo168.com/en/cloudflare-pages-vless-part-two/</guid>
+      <pubDate>Wed, 03 Jun 2026 10:18:00 +0800</pubDate>
+      <description>Deploy the project with a KV namespace, an administrator password, and a second Pages deployment.</description>
+    </item>
+    
+    <item>
+      <title>Deploying a Free-Forever VLESS Node with Cloudflare Pages</title>
+      <link>https://blog.lo168.com/en/cloudflare-pages-vless/</link>
+      <guid>https://blog.lo168.com/en/cloudflare-pages-vless/</guid>
+      <pubDate>Wed, 14 Jun 2023 18:18:00 +0800</pubDate>
+      <description>An educational walkthrough of importing the project, configuring its build, and deploying it to Cloudflare Pages.</description>
+    </item>
+    
+    <item>
+      <title>Receiving PUT Form Requests in Spring MVC</title>
+      <link>https://blog.lo168.com/en/spring-mvc-put/</link>
+      <guid>https://blog.lo168.com/en/spring-mvc-put/</guid>
+      <pubDate>Sat, 11 Jul 2015 18:18:00 +0800</pubDate>
+      <description>A small Spring configuration change for handling application/x-www-form-urlencoded PUT requests.</description>
+    </item>
+    
+    <item>
+      <title>A Simple WebSocket Demo with Netty</title>
+      <link>https://blog.lo168.com/en/netty-websocket/</link>
+      <guid>https://blog.lo168.com/en/netty-websocket/</guid>
+      <pubDate>Tue, 07 Jul 2015 18:18:00 +0800</pubDate>
+      <description>A small Netty WebSocket demo using the browser&apos;s native HTML5 WebSocket API.</description>
+    </item>
+    
+    <item>
+      <title>The Template Method Pattern in Java</title>
+      <link>https://blog.lo168.com/en/template-method-java/</link>
+      <guid>https://blog.lo168.com/en/template-method-java/</guid>
+      <pubDate>Mon, 06 Apr 2015 18:18:00 +0800</pubDate>
+      <description>From making coffee to tracking article views: share a fixed workflow while letting subclasses fill in the details.</description>
+    </item>
+    
+    <item>
+      <title>Packaging a Standalone Spring Boot JAR with Maven</title>
+      <link>https://blog.lo168.com/en/spring-boot-standalone-jar/</link>
+      <guid>https://blog.lo168.com/en/spring-boot-standalone-jar/</guid>
+      <pubDate>Tue, 03 Mar 2015 18:18:00 +0800</pubDate>
+      <description>Separate application code, configuration, and dependencies so a configuration update does not require rebuilding the JAR.</description>
+    </item>
+    
+    <item>
+      <title>Configuring MongoDB Replica Sets in Spring: XML and Annotations</title>
+      <link>https://blog.lo168.com/en/spring-mongodb-replica-set/</link>
+      <guid>https://blog.lo168.com/en/spring-mongodb-replica-set/</guid>
+      <pubDate>Mon, 02 Feb 2015 18:18:00 +0800</pubDate>
+      <description>Configure MongoTemplate with XML or Java annotations, then choose how reads are routed across a MongoDB replica set.</description>
+    </item>
+    
+    <item>
+      <title>Deploying twemproxy</title>
+      <link>https://blog.lo168.com/en/twemproxy-deployment/</link>
+      <guid>https://blog.lo168.com/en/twemproxy-deployment/</guid>
+      <pubDate>Sun, 04 Jan 2015 18:18:00 +0800</pubDate>
+      <description>Installation, configuration, startup, and connection testing for a Redis and Memcached proxy.</description>
+    </item>
+    
+    <item>
+      <title>Loading Environment-Specific Configuration with Maven</title>
+      <link>https://blog.lo168.com/en/maven-environment-profiles/</link>
+      <guid>https://blog.lo168.com/en/maven-environment-profiles/</guid>
+      <pubDate>Thu, 01 Jan 2015 18:18:00 +0800</pubDate>
+      <description>Use Maven profiles to package the right configuration for development, testing, and production.</description>
+    </item>
+    
+  </channel>
+</rss>
