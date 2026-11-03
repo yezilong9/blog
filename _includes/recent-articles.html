@@ -1,0 +1,17 @@
+{% for post in site.posts limit: 8 %}
+    {% assign card_colors = 'bg-pink,bg-indigo,bg-green,bg-purple,bg-teal' | split: ',' %}
+    {% assign color_index = forloop.index0 | modulo: card_colors.size %}
+    {% assign article = post %}
+    {% if language == 'en' and post.english %}{% assign article = post.english %}{% endif %}
+    {% assign article_cover = post.cover | strip %}
+    <a class="article-link" href="{{ article.url | relative_url }}"{% if include.duplicate %} aria-hidden="true" tabindex="-1"{% endif %}{% if language == 'en' and post.english == nil %} lang="zh-CN"{% endif %}>
+        <article class="article-card {{ card_colors[color_index] }}">
+            <div class="article-head">
+                <h2 class="article-title">{{ article.title }}</h2>
+                <span class="article-platform">{% if language == 'en' and post.english == nil %}中文{% else %}{{ t.blog }}{% endif %}</span>
+            </div>
+            <p class="article-excerpt">{{ article.excerpt | strip_html | normalize_whitespace | truncate: 120 }}</p>
+            <span class="article-thumb">{% if article_cover != '' %}<img src="{{ article_cover }}" alt="" onerror="this.remove()">{% endif %}</span>
+        </article>
+    </a>
+{% endfor %}

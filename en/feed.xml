@@ -1,0 +1,22 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Harry's Blog</title>
+    <link>{{ '/en/' | absolute_url | xml_escape }}</link>
+    <description>Notes on technology, products, and life.</description>
+    <language>en</language>
+    {% assign translations = site.translations | sort: 'date' | reverse %}
+    {% for article in translations limit: 20 %}
+    <item>
+      <title>{{ article.title | xml_escape }}</title>
+      <link>{{ article.url | absolute_url | xml_escape }}</link>
+      <guid>{{ article.url | absolute_url | xml_escape }}</guid>
+      <pubDate>{{ article.date | date_to_rfc822 }}</pubDate>
+      <description>{{ article.excerpt | strip_html | xml_escape }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

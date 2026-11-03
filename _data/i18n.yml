@@ -1,0 +1,134 @@
+zh-CN:
+  site_name: 叶子的博客
+  site_description: 记录技术、产品和生活，分享一个后端工程师的学习笔记。
+  location: 广东广州
+  language_label: 选择语言
+  translation_unavailable: 这篇文章的英文版还在准备中
+  articles: 文章
+  code: 技术
+  works: 作品
+  time: 时间
+  space: 足迹
+  statistics: 统计
+  skills: 技能
+  personal: 个人
+  company: 公司
+  product: 产品
+  blog: 博客
+  mobile_hint: 在桌面端浏览，体验更好。
+  my_name: 我的名字是：
+  i_am: 我是一个：
+  roles:
+    writer: 博客写作者
+    leader: 曾经的后端负责人
+    ai: AI 学习者，仍在加载中
+    java: Java 幸存者
+    product: 笔记太多的产品理想主义者
+    local: 广东广州本地人
+  story_intro: '我记录关于 <strong>前端</strong>、<strong>后端</strong>、<strong>架构</strong>、<strong>微服务</strong>、<strong>AI</strong> 和 <strong>生活</strong> 的故事，也读一些让我重新思考这些事情的 <strong>书</strong>。'
+  notes_before: 这个博客已经留下
+  notes_after: 篇笔记。
+  story_mark: 大多聊技术，偶尔聊生活，通常等 Bug 冷静下来才动笔。
+  recent_articles: 最新文章
+  code_intro: '我用 <strong class="orange-word">前端</strong>、<strong class="orange-word">后端</strong>、<strong class="orange-word">架构</strong>、<strong class="orange-word">微服务</strong> 和 <strong class="orange-word">AI</strong>，让复杂的问题变得有条理。'
+  open_project: 访问作品
+  projects:
+    bopdash_title: BopDash 免费网页游戏
+    bopdash: 免费的网页游戏集合，提供游戏分类、收藏和每日益智挑战，让碎片时间随时开玩。
+    hulava_title: Hulava 足球预测平台
+    hulava: AI 驱动的足球预测平台，为球迷提供比赛洞察、数据分析和更有依据的决策参考。
+    zvein_title: Zvein AI 聚合平台
+    zvein: 聚合 AI 模型和工具，帮助用户提升效率、释放创意，让工作流程更顺畅。
+    watsons_title: 屈臣氏电商平台
+    watsons: 担任交易团队负责人，搭建从下单、支付到履约、售后的完整订单交易闭环。
+    netease_title: 网易电商平台
+    netease: 担任交易团队负责人，以 DDD 为架构方法设计和开发订单相关系统，关注高并发、性能和可扩展性。
+  time_intro: 这就是我分配时间的方式。我最大的爱好是学习，因为我对几乎所有事物都充满好奇。
+  space_intro: 这是我走过的一些地方。目前，我住在中国广东广州。
+  chart_title: 时间分配：学习、游戏、编程、音乐与亲友
+  chart:
+    social: 亲友相聚
+    coding: 编程
+    game: 游戏
+    study: 学习
+    music: 音乐
+  contact_intro: 欢迎聊聊后端系统、实用的产品，以及那些能让日常工作轻松一点的小工具。
+  contact_me: 随时联系我。
+  back_articles: 返回文章
+  article_nav: 文章导航
+  share: 分享文章
+  menu: 菜单
+  close: 关闭
+  home: 首页
+  subscribe: 订阅
+  contact_links: 联系方式
+  email: 邮箱
+  read_next: 接着读这一篇
+  might_enjoy: 你可能也喜欢
+en:
+  site_name: Harry's Blog
+  site_description: Notes on technology, products, and life from a backend engineer who keeps learning.
+  location: Guangzhou, China
+  language_label: Choose language
+  translation_unavailable: The English version of this post is not available yet.
+  articles: Articles
+  code: Code
+  works: Works
+  time: Time
+  space: Space
+  statistics: Statistics
+  skills: Skills
+  personal: Personal
+  company: Company
+  product: Product
+  blog: Blog
+  mobile_hint: View on desktop for better experience.
+  my_name: 'My name is:'
+  i_am: "I'm a:"
+  roles:
+    writer: Blog Writer
+    leader: Former Backend Leader
+    ai: AI Learner, Still Loading
+    java: Java Survivor
+    product: Product Idealist With Too Many Notes
+    local: Guangzhou Local in Guangdong
+  story_intro: 'I write about <strong>frontend</strong>, <strong>backend</strong>, <strong>architecture</strong>, <strong>microservices</strong>, <strong>AI</strong>, <strong>life</strong>, and <strong>books</strong> that occasionally make me rethink all of the above.'
+  notes_before: This blog has collected
+  notes_after: notes so far.
+  story_mark: Mostly technical, sometimes personal, always written after the bug has calmed down.
+  recent_articles: Recent articles
+  code_intro: 'I build <strong class="orange-word">frontend</strong>, <strong class="orange-word">backend</strong>, <strong class="orange-word">architecture</strong>, <strong class="orange-word">microservices</strong>, and <strong class="orange-word">AI</strong> systems that make messy problems behave.'
+  open_project: Open project
+  projects:
+    bopdash_title: BopDash free browser games website
+    bopdash: A free browser-games hub with colorful categories, saved games, daily puzzles, and quick-play favorites for short breaks.
+    hulava_title: Hulava football prediction platform
+    hulava: An AI-powered football prediction platform designed to provide match insights, data analysis, and smarter decision support for football fans.
+    zvein_title: Zvein AI aggregation platform
+    zvein: An AI aggregation platform that helps users access AI models and tools to improve productivity, creativity, and workflow efficiency.
+    watsons_title: Watsons E-commerce Platform
+    watsons: Served as the trading team leader, responsible for building a complete order transaction loop, covering order creation, payment, fulfillment, and after-sales processes.
+    netease_title: NetEase E-commerce Platform
+    netease: Served as the trading team leader, applying DDD-driven architecture to design and develop order-related systems with a focus on high concurrency, performance, and scalability.
+  time_intro: This is how I spend my time. My biggest hobby is learning, as I am curious about almost everything.
+  space_intro: This is my footprint. And currently I'm living in Guangzhou, China.
+  chart_title: 'Time distribution: study, game, coding, music and social life'
+  chart:
+    social: Social or Family
+    coding: Coding
+    game: Game
+    study: Study
+    music: Music
+  contact_intro: I'm open to conversations about backend systems, useful products, and small tools that make daily work easier.
+  contact_me: Feel free to contact me.
+  back_articles: Back to Articles
+  article_nav: Article navigation
+  share: Share this post
+  menu: Menu
+  close: Close
+  home: Home
+  subscribe: Subscribe
+  contact_links: Contact links
+  email: Email
+  read_next: Read This Next
+  might_enjoy: You Might Enjoy
