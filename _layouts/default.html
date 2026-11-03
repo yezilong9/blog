@@ -1,5 +1,7 @@
+{% assign language = page.lang | default: 'zh-CN' %}
+{% assign t = site.data.i18n[language] %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ language }}">
 <head>
     <!-- [[! Document Settings ]] -->
     <meta charset="utf-8" />
@@ -7,7 +9,8 @@
 
     <!-- [[! Page Meta ]] -->
     <title>{% if page.title %}{{ page.title }}{% elsif site.name %}{{ site.name }}{% endif %}</title>
-    <meta name="description" content="{{ site.name }} - {{ site.description }}" />
+    <meta name="description" content="{{ page.excerpt | default: t.site_description | strip_html | normalize_whitespace | truncate: 160 | escape }}" />
+    {% include language-head.html %}
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,8 +19,7 @@
 
     <!-- [[! Styles'n'Scripts ]] -->
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css"
-    href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="{{ '/assets/css/language.css' | relative_url }}">
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/css/syntax.css" />
 
     <!-- [[! highlight.js ]] -->
@@ -42,12 +44,12 @@
         {{ content }}
 
         <footer class="site-footer clearfix">
-          <section class="copyright"><a href="{{ site.baseurl }}">{{ site.name }}</a> &copy; {{  site.time | date: '%Y' }}</section>
+          <section class="copyright"><a href="{{ page.home_url | default: '/' | relative_url }}">{{ t.site_name }}</a> &copy; {{  site.time | date: '%Y' }}</section>
           <section class="poweredby">Copyright © 2016 <a href="http://blog.lo168.com">yezilong</a></section>
       </footer>
   </div>
   <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
   <!-- [[! The main JavaScript file for Casper ]] -->
   <script type="text/javascript" src="{{ site.baseurl }}assets/js/jquery.fitvids.js"></script>
   <script type="text/javascript" src="{{ site.baseurl }}assets/js/index.js"></script>

@@ -16,7 +16,7 @@ author: '叶子'
 nickname: casper
 bio: '会一点点Java'
 location: '广东 广州'
-url: 'http://blog.lo168.com/'
+url: 'https://blog.lo168.com'
 image: 'assets/images/casper.png'
 
 short_url: 'http://blog.lo168.com/'
@@ -34,7 +34,24 @@ permalink: /:title
 # gems and other configs
 gems: [jekyll-paginate]
 plugins: [jekyll-paginate]
-exclude: [vendor]
+
+collections:
+  translations:
+    output: true
+    permalink: /en/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      lang: zh-CN
+  - scope:
+      path: ""
+      type: translations
+    values:
+      lang: en
+      layout: post
 
 # Additional settings available on the front-matter
 # Site logo in the index.html (as in demo.ghost.io)
@@ -75,3 +92,5 @@ exclude:
   - vendor
   - reference
   - .travis.yml
+  - tests
+  - scripts

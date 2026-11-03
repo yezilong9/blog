@@ -3,6 +3,9 @@ layout: default
 disqus: false
 class: 'post-template'
 ---
+{% assign language = page.lang | default: 'zh-CN' %}
+{% assign t = site.data.i18n[language] %}
+{% assign home_url = page.home_url | default: '/' | relative_url %}
 <!-- < default -->
 
 <!-- The comment above "< default" means - insert everything in this file into -->
@@ -28,30 +31,33 @@ class: 'post-template'
 </svg>
 
 <header class="qzq-post-header">
-    <nav class="site-header qzq-post-site-header" aria-label="文章导航">
+    <nav class="site-header qzq-post-site-header" aria-label="{{ t.article_nav }}">
         <div class="site-header-inner">
             <div class="site-nav">
-                <a class="brand fantasy mobile-brand" href="{{ site.baseurl }}#home">Harry</a>
-                <a href="{{ site.baseurl }}#articles">Articles</a>
-                <a href="{{ site.baseurl }}#code">Code</a>
-                <a href="{{ site.baseurl }}#works">Works</a>
-                <a href="{{ site.baseurl }}#statistics">Time</a>
+                <a class="brand fantasy mobile-brand" href="{{ home_url }}#home">Harry</a>
+                <a href="{{ home_url }}#articles">{{ t.articles }}</a>
+                <a href="{{ home_url }}#code">{{ t.code }}</a>
+                <a href="{{ home_url }}#works">{{ t.works }}</a>
+                <a href="{{ home_url }}#statistics">{{ t.time }}</a>
             </div>
-            <div class="site-social contact-icons" aria-label="contact links">
-                <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
-                <a class="contact-icon" href="mailto:ye363062816@qq.com" title="Email"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
-                <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
-                <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
+            <div class="header-actions">
+                <div class="site-social contact-icons" aria-label="{{ t.contact_links }}">
+                    <a class="contact-icon" href="https://github.com/yezilong9" title="GitHub" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-github"></use></svg></a>
+                    <a class="contact-icon" href="mailto:ye363062816@qq.com" title="{{ t.email }}"><svg aria-hidden="true"><use href="#icon-email"></use></svg></a>
+                    <a class="contact-icon" href="https://t.me/yezilong" title="Telegram" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-telegram"></use></svg></a>
+                    <a class="contact-icon" href="https://discord.com/users/1030001901867118602" title="Discord" target="_blank" rel="noreferrer"><svg aria-hidden="true"><use href="#icon-discord"></use></svg></a>
+                </div>
+                {% include language-switch.html %}
             </div>
         </div>
     </nav>
     <div class="qzq-post-hero">
-        <a class="qzq-post-back" href="{{ site.baseurl }}#articles">Back to Articles</a>
+        <a class="qzq-post-back" href="{{ home_url }}#articles">{{ t.back_articles }}</a>
         <div class="qzq-post-title-stage" data-qzq-falling-stage aria-label="{{ page.tags | first | default: 'Blog' }} {{ page.title }} {{ site.author }} {{ page.date | date:'%Y-%m-%d' }}">
             <p class="qzq-post-kicker" data-qzq-falling-line>{{ page.tags | first | default: 'Blog' }}</p>
             <h1 class="qzq-post-title" data-qzq-falling-line>{{ page.title }}</h1>
             <p class="qzq-post-meta">
-                <span data-qzq-falling-line>{{ site.author }}</span>
+                <span data-qzq-falling-line>{% if language == 'en' %}Harry{% else %}{{ site.author }}{% endif %}</span>
                 <time data-qzq-falling-line datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date:'%Y-%m-%d' }}</time>
             </p>
         </div>
@@ -66,12 +72,11 @@ class: 'post-template'
             <h1 class="post-title">{{ page.title }}</h1>
             <section class="post-meta">
                 {% if page.tags.size > 0 %}
-                on
                 {% for tag in page.tags %}
                     {% if forloop.index == page.tags.size %}
-                       <a href='{{ site.baseurl }}tag/{{ tag }}'>{{ tag | capitalize }}</a>
+                       <a href='{{ home_url }}#articles'>{{ tag | capitalize }}</a>
                     {% else %}
-                       <a href='{{ site.baseurl }}tag/{{ tag }}'>{{ tag | capitalize }}</a>,
+                       <a href='{{ home_url }}#articles'>{{ tag | capitalize }}</a>,
                     {% endif %}
                 {% endfor %}
                 {% endif %}
@@ -92,15 +97,15 @@ class: 'post-template'
 
             {% if site.image %}
             <figure class="author-image">
-                <a class="img" href="{{ site.baseurl }}author/{{ site.nickname }}" style="background-image: url({{ site.baseurl }}{{ site.image }})"><span class="hidden">{{ page.author }}'s Picture</span></a>
+                <a class="img" href="{{ home_url }}#home" style="background-image: url({{ site.baseurl }}{{ site.image }})"><span class="hidden">Harry</span></a>
             </figure>
             {% endif %}
 
             <section class="author">
-                <h4><a href="{{ site.baseurl }}author/{{ site.nickname }}">{{ site.author }}</a></h4>
+                <h4><a href="{{ home_url }}#home">{% if language == 'en' %}Harry{% else %}{{ site.author }}{% endif %}</a></h4>
 
                 <div class="author-meta">
-                    {% if site.location %}<span class="author-location icon-location"> {{ site.location }}</span>{% endif %}
+                    {% if site.location %}<span class="author-location icon-location"> {{ t.location }}</span>{% endif %}
                     {% if site.url %}<span class="author-link icon-link"><a href="{{ site.url }}"> {{ site.short_url }}</a></span>{% endif %}
                 </div>
             </section>
@@ -108,16 +113,16 @@ class: 'post-template'
             <!-- /author  -->
 
             <section class="share">
-                <h4>Share this post</h4>
-                <a class="icon-twitter" href="http://twitter.com/share?text={{ page.title }}&amp;url={{ site.url }}{{ page.url | remove: '/' }}"
+                <h4>{{ t.share }}</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text={{ page.title | url_encode }}&amp;url={{ page.url | absolute_url | url_encode }}"
                     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>
                 </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url | remove: '/' }}"
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}"
                     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <span class="hidden">Facebook</span>
                 </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url={{ site.url }}{{ page.url | remove: '/' }}"
+                <a class="icon-google-plus" href="https://plus.google.com/share?url={{ page.url | absolute_url | url_encode }}"
                    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <span class="hidden">Google+</span>
                 </a>
@@ -136,22 +141,21 @@ class: 'post-template'
 
 <aside class="read-next qzq-read-next">
 
-    <!-- [[! next_post ]] -->{{ post.url | remove: '/' }}
-    {% if page.next %}
-        <a class="read-next-story {% if page.next.cover %}" style="background-image: url({{ site.baseurl }}{{ page.next.cover }}){% else %}no-cover{% endif %}" href="{{ site.baseurl }}{{ page.next.url | remove: '/' }}">
-            <section class="post">
-                <h2>{{ page.next.title }}</h2>
-                <p>{{ page.next.content | strip_html | truncatewords:15 }}</p>
+    {% if page.related_next %}
+        <a class="read-next-story {% unless page.related_next.cover %}no-cover{% endunless %}"{% if page.related_next.cover %} style="background-image: url({{ page.related_next.cover | relative_url }})"{% endif %} href="{{ page.related_next.url | relative_url }}">
+            <section class="post" data-read-label="{{ t.read_next }}">
+                <h2>{{ page.related_next.title }}</h2>
+                <p>{{ page.related_next.excerpt | strip_html | normalize_whitespace | truncate: 100 }}</p>
             </section>
         </a>
     {% endif %}
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
-    {% if page.previous %}
-        <a class="read-next-story prev {% if page.previous.cover %}" style="background-image: url({{ site.baseurl }}{{ page.previous.cover }}){% else %}no-cover{% endif %}" href="{{ site.baseurl }}{{ page.previous.url | remove: '/' }}">
-            <section class="post">
-                <h2>{{ page.previous.title }}</h2>
-                <p>{{ page.previous.content | strip_html | truncatewords:15 }}</p>
+    {% if page.related_previous %}
+        <a class="read-next-story prev {% unless page.related_previous.cover %}no-cover{% endunless %}"{% if page.related_previous.cover %} style="background-image: url({{ page.related_previous.cover | relative_url }})"{% endif %} href="{{ page.related_previous.url | relative_url }}">
+            <section class="post" data-read-label="{{ t.might_enjoy }}">
+                <h2>{{ page.related_previous.title }}</h2>
+                <p>{{ page.related_previous.excerpt | strip_html | normalize_whitespace | truncate: 100 }}</p>
             </section>
         </a>
     {% endif %}

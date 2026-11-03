@@ -1,39 +1,52 @@
 - name: Java / Spring
   level: 8
+  description_zh: "后端主力技术栈，用于构建可扩展的电商系统、清晰的 API、业务模型和易维护的服务。"
   description: "Backend main stack for building scalable e-commerce systems, clean APIs, business models, and maintainable services."
 
 - name: Data Sources
+  name_zh: 数据存储
   level: 8
+  description_zh: "熟悉 Redis、MySQL、TiDB 和 Elasticsearch，关注数据存储、搜索、缓存与性能优化。"
   description: "Experienced with Redis, MySQL, TiDB, and Elasticsearch for data storage, search, caching, and performance optimization."
 
 - name: Docker / Kubernetes
   level: 6
+  description_zh: "能够使用 Docker 和 Kubernetes 处理 CI/CD、部署、服务维护与环境管理。"
   description: "Capable of handling CI/CD, deployment, service maintenance, and environment management with Docker and Kubernetes."
 
 - name: Netty
   level: 6
+  description_zh: "熟悉 WebSocket、连接管理、事件驱动模型和网络编程。"
   description: "Familiar with WebSocket, connection management, event-driven models, and network programming."
 
 - name: JavaScript
   level: 6
+  description_zh: "能实现实用的前端交互，并结合后端经验完成全栈交付。"
   description: "Able to build practical frontend interactions and combine them with backend skills for full-stack delivery."
 
 - name: Linux / Git
   level: 7
+  description_zh: "熟悉命令行操作、部署排障、Git 工作流与自动化脚本。"
   description: "Comfortable with command-line operations, deployment troubleshooting, Git workflows, and automation scripts."
 
 - name: Ruby / PHP
   level: 5
+  description_zh: "有维护和改进既有业务系统的经验，比起追逐潮流，更在意系统的稳定性。"
   description: "Experienced in maintaining and improving legacy business systems when stability matters more than trends."
 
 - name: Data Structures / Algorithms
+  name_zh: 数据结构 / 算法
   level: 5
+  description_zh: "用扎实的基础理解性能、复杂度，以及不同技术方案之间的取舍。"
   description: "Solid fundamentals for understanding performance, complexity, and technical trade-offs."
 
 - name: AI
   level: 5
+  description_zh: "持续学习 AI 技术，探索它如何提高生产力、改善产品并创造业务价值。"
   description: "Actively learning AI technologies and exploring how they can improve productivity, products, and business value."
 
 - name: English
+  name_zh: 英语
   level: 4
+  description_zh: "正在提升英语沟通能力，为国际协作和面向全球的产品开发做准备。"
   description: "Improving English communication skills to support international collaboration and global product development."
